@@ -1,10 +1,15 @@
 // src/pages/Revive2026.jsx
 import React from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay } from "swiper/modules";
+import "swiper/css";
 
 import heroImg from "../assets/img/digital-art-style-theatre-stage.jpg";
 import eventImg from "../assets/img/people-taking-part.jpg";
 import heroImg2 from "../assets/img/front-view-woman-meditating-mat.jpg";
+import ganeshImg from "../assets/img/Dr. Ganesh Raghu .jpeg";
+import sallyImg from "../assets/img/Dr. Sally SIngh .jpeg";
 
 const BASE_URL = "https://vaayuchest.com";
 
@@ -25,12 +30,36 @@ const T = {
 };
 
 const SPEAKERS = [
-  "Dr. Rik Gosslink",
-  "Dr. Sally Singh",
-  "Dr. Ganesh Raghu",
-  "Dr. Shashwat Verma",
-  "Dr. Veena Nambiar",
-  "Dr. Sumanta Ghosh",
+  {
+    name: "Dr. Ganesh Raghu",
+    role: "Pulmonary Fibrosis & Rehabilitation Outcomes (International Speaker)",
+    img: ganeshImg,
+  },
+  {
+    name: "Dr. Sally Singh",
+    role: "Pulmonary Rehabilitation Implementation (International Speaker)",
+    img: sallyImg,
+  },
+  {
+    name: "Dr. Rik Gosslink",
+    role: "Respiratory Rehabilitation — Past, Present & Future (International Speaker)",
+    img: null,
+  },
+  {
+    name: "Dr. Shashwat Verma",
+    role: "Pulmonary Rehabilitation in Multimorbid Patients",
+    img: null,
+  },
+  {
+    name: "Dr. Veena Nambiar",
+    role: "Cardiac Rehabilitation — Execution & Pathways in India",
+    img: null,
+  },
+  {
+    name: "Dr. Sumanta Ghosh",
+    role: "Technology-Enhanced Pulmonary & Cardiac Rehabilitation",
+    img: null,
+  },
 ];
 
 const CHAIRPERSONS = ["Dr. K S Satish", "Dr. Venkatesh T K"];
@@ -213,6 +242,53 @@ const Revive2026 = () => {
             gap: 22px;
           }
 
+          .speaker-slide {
+            display: grid;
+            grid-template-columns: minmax(0, 420px) 1fr;
+            gap: clamp(24px, 4vw, 46px);
+            align-items: center;
+            padding: clamp(24px, 4vw, 42px);
+          }
+
+          .speaker-photo img,
+          .speaker-initial {
+            width: 100%;
+            height: clamp(260px, 30vw, 380px);
+            object-fit: cover;
+            object-position: top center;
+            border-radius: 24px;
+          }
+
+          .speaker-initial {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: ${T.light};
+            color: ${T.green};
+            font-size: clamp(64px, 8vw, 110px);
+            font-weight: 700;
+            border: 1px solid ${T.border};
+          }
+
+          .speaker-info h3 {
+            color: ${T.text};
+            font-size: clamp(1.6rem, 3vw, 2.4rem);
+            font-weight: 600;
+            margin: 10px 0 12px;
+          }
+
+          .speaker-role {
+            color: ${T.muted};
+            font-size: clamp(15px, 1.6vw, 18px);
+            line-height: 1.6;
+            margin: 0;
+          }
+
+          @media (max-width: 800px) {
+            .speaker-slide { grid-template-columns: 1fr; text-align: center; }
+            .speaker-photo img, .speaker-initial { height: 280px; }
+          }
+
           .faculty-card {
             padding: 30px 24px;
             text-align: center;
@@ -368,6 +444,46 @@ const Revive2026 = () => {
           </div>
         </section>
 
+        {/* SPEAKERS SLIDER */}
+        <section className="revive-section white" style={{ paddingBottom: 40 }}>
+          <div className="revive-wrap">
+            <div className="revive-center" style={{ marginBottom: 30 }}>
+              <p className="revive-eyebrow">Faculty</p>
+              <h2 className="revive-heading">Meet Our Speakers</h2>
+            </div>
+
+            <Swiper
+              modules={[Autoplay]}
+              autoplay={{ delay: 2800, disableOnInteraction: false }}
+              loop
+              speed={800}
+              spaceBetween={26}
+              slidesPerView={1}
+            >
+              {SPEAKERS.map((sp) => (
+                <SwiperSlide key={sp.name}>
+                  <div className="speaker-slide revive-card">
+                    <div className="speaker-photo">
+                      {sp.img ? (
+                        <img src={sp.img} alt={sp.name} />
+                      ) : (
+                        <div className="speaker-initial">
+                          {sp.name.replace("Dr. ", "").charAt(0)}
+                        </div>
+                      )}
+                    </div>
+                    <div className="speaker-info">
+                      <p className="revive-eyebrow">Speaker</p>
+                      <h3>{sp.name}</h3>
+                      <p className="speaker-role">{sp.role}</p>
+                    </div>
+                  </div>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
+        </section>
+
         {/* ABOUT */}
         <section className="revive-section white">
           <div className="revive-wrap">
@@ -439,26 +555,11 @@ const Revive2026 = () => {
           </div>
         </section>
 
-        {/* FACULTY */}
+        {/* CHAIRPERSONS */}
         <section className="revive-section white">
           <div className="revive-wrap">
             <div className="revive-center">
               <p className="revive-eyebrow">Faculty</p>
-              <h2 className="revive-heading">Speakers</h2>
-            </div>
-
-            <div className="grid-3">
-              {SPEAKERS.map((name) => (
-                <div className="revive-card faculty-card" key={name}>
-                  <span className="faculty-avatar">
-                    {name.replace("Dr. ", "").charAt(0)}
-                  </span>
-                  <h3>{name}</h3>
-                </div>
-              ))}
-            </div>
-
-            <div className="revive-center" style={{ marginTop: 56 }}>
               <h2 className="revive-heading">Chairpersons</h2>
             </div>
 
