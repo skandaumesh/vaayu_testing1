@@ -5,7 +5,7 @@ import { Navigation, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 
-import opdImg from "../assets/img/OPD.jpg";
+import opdImg from "../assets/img/opd.jpg";
 import respiratoryImg from "../assets/img/Breathe Easy Again_ How Lung Transplants Can Give a Second Chance at Life.jpg";
 import rehabImg from "../assets/img/offerImg.jpg";
 import sleepImg from "../assets/img/sl.jpg";

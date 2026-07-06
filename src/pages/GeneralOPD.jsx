@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 
-import opdBanner from "../assets/img/OPD.jpg";
+import opdBanner from "../assets/img/opd.jpg";
 import img7 from "../assets/img/DOCTOR !!!the dream of many.jpg";
 import consultation from "../assets/img/Lung Cancer Specialist in Nagpur  -  Dr_ Sameeksha Dubey.jpg";
 import diagnostics from "../assets/img/Pearly Penile Papules Removal Price_ A Comparison of Treatment Options (1).jpg";

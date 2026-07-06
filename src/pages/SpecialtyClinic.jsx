@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 // ✅ Import image and video (keep these files in your assets/img folder)
 import doctorImage from "../assets/img/specialist-doctor.jpg";
-import specialtyVideo from "../assets/img/speciality.MP4";
+import specialtyVideo from "../assets/img/speciality.mp4";
 
 const fadeInUp = {
   hidden: { opacity: 0, y: 40 },

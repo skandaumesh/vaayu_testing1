@@ -17,7 +17,7 @@ import {
 } from "react-icons/md";
 import { FaUserDoctor } from "react-icons/fa6";
 
-import ravindraImg from "../../assets/img/DSC00661 (1).jpg";
+import ravindraImg from "../../assets/img/DSC00661 (1).JPG";
 import aboutBg from "../../assets/img/logo_make_11_06_2023_412.jpg";
 
 export default function Ravindra() {

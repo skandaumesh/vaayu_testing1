@@ -6,7 +6,7 @@ import Testimonials from "../components/Testimonials";
 import heroImg from "../assets/img/wmremove-transformed.png";
 import heroImg1 from "../assets/img/IMG_0159.JPG";
 import mehtaImg from "../assets/img/mehta.JPG";
-import doctorImg from "../assets/img/DSC00661 (1).jpg";
+import doctorImg from "../assets/img/DSC00661 (1).JPG";
 import nebulizerImg from "../assets/img/De.jpeg";
 import nebulizerImg11 from "../assets/img/front-view-man-using-nebulizer.jpg";
 import sleepImg from "../assets/img/young-guy-sleeping-bed-wearing-smartwatch-sleep-tracker.jpg";

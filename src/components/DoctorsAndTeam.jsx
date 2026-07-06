@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import rasheekaImg from "../assets/img/doctors/Rasheeka.jpg";
 // ✅ Actual doctor and specialist images
 //import cc from "../assets/img/cc.png";
-import cc from "../assets/img/DSC00661 (1).jpg";
+import cc from "../assets/img/DSC00661 (1).JPG";
 
 
 import aa from "../assets/img/Screenshot 2026-05-19 092742.png";
