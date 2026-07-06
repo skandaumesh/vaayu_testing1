@@ -1,0 +1,671 @@
+import React, { useState } from "react";
+import { Link as RouterLink } from "react-router-dom";
+import { AiOutlineMail, AiOutlinePhone } from "react-icons/ai";
+import { FaBars, FaTimes } from "react-icons/fa";
+import vaayuLogo from "../assets/img/vaayu-logo.png";
+
+const Navbar = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const closeMenu = () => setMenuOpen(false);
+
+  const serviceBranches = [
+    { name: "General Respiratory Clinics", path: "/general-opd" },
+    {
+      name: "Specialty Respiratory Clinics",
+      path: "/specialty-clinic",
+      submenu: [
+        { name: "Interstitial Lung Disease (ILD)", highlight: true, path: "/specialty-clinic/ild" },
+        { name: "Asthma", highlight: true, path: "/specialty-clinic/asthma" },
+        { name: "Chronic Obstructive Pulmonary Disease (COPD)", path: "/specialty-clinic/copd" },
+        { name: "Sarcoidosis", path: "/specialty-clinic/sarcoidosis" },
+        { name: "Pulmonary Hypertension", path: "/specialty-clinic/pulmonary-hypertension" },
+      ],
+    },
+    {
+      name: "Pulmonary Wellness & Rehabilitation",
+      path: "/pulmonary-rehab",
+      submenu: [
+        { name: "Pulmonary Rehabilitation", path: "/pulmonary-rehab/pulmonary" },
+        { name: "Cardiac Rehabilitation", path: "/pulmonary-rehab/cardiac" },
+        { name: "Rehab for pulmonary hypertension", path: "/pulmonary-rehab/PulmonaryHypertensionRehab" },
+        { name: "Pain management", path: "/pulmonary-rehab/pain-management" },
+      ],
+    },
+    {
+      name: "Comprehensive Sleep Center",
+      path: "/sleep-clinic",
+      submenu: [
+        { name: "Snoring", path: "/sleep-clinic/snoring" },
+        { name: "Obstructive Sleep Apnea (OSA)", path: "/sleep-clinic/osa" },
+        { name: "Insomnia", path: "/sleep-clinic/insomnia" },
+        { name: "Parasomnias", path: "/sleep-clinic/parasomnias" },
+      ],
+    },
+    {
+      name: "Allergy and Immunology Center",
+      path: "/allergy-immunology",
+      submenu: [
+        { name: "Allergy Testing", path: "/allergy-immunology/allergy-testing" },
+        { name: "Immunotherapy", path: "/allergy-immunology/immunotherapy" },
+      ],
+    },
+    {
+      name: "Allied Services",
+      path: "/allied-services",
+      submenu: [
+        { name: "ENT", path: "/allied-services/ent" },
+        { name: "Pediatric Pulmonology", path: "/allied-services/pediatric-pulmonology" },
+        { name: "Clinical Psychology", path: "/allied-services/clinical-psychology" },
+        { name: "Diet and Nutrition", path: "/allied-services/diet" },
+        { name: "Weight Management", path: "/allied-services/weight-management" },
+      ],
+    },
+    {
+      name: "Home Care Services",
+      path: "/home-care",
+      submenu: [
+        { name: "Home Nursing", path: "/home-care/home-nursing" },
+        { name: "Home Testing", path: "/home-care/home-testing" },
+        { name: "Home Rehabilitation", path: "/home-care/home-rehab" },
+        { name: "Home Delivery of Medications", path: "/home-care/Medications" },
+        { name: "Home injections and antibiotics", path: "/home-care/InjectionsAntibiotics" },
+      ],
+    },
+    {
+      name: "Preventive Respiratory Center",
+      path: "/preventive-clinics",
+      submenu: [
+        { name: "Tobacco Cessation", path: "/preventive-clinics/tobacco-cessation" },
+        { name: "Respiratory Health Checks", path: "/preventive-clinics/health-checks" },
+      ],
+    },
+  ];
+
+  return (
+    <header className="w-full text-white font-sans fixed top-0 left-0 z-50">
+      <div className="bg-[#5B6641] py-3 px-5 lg:px-32 flex flex-col md:flex-row items-center justify-between text-sm">
+        <img src={vaayuLogo} alt="Vaayu Chest and Sleep Specialists" className="h-20" />
+        <div className="flex gap-6 mt-2 md:mt-0">
+          <div className="flex items-center gap-1">
+            <AiOutlineMail /> admin@vaayuchest.com
+          </div>
+          <div className="flex items-center gap-1">
+            <AiOutlinePhone /> +91 63649 28680 / +91 63649 28681
+          </div>
+        </div>
+        <a
+          href="https://www.eka.care/clinic/vaayu-chest-and-sleep-specialists?utm_source=%2Fdoctor%2F%5Bslug%5D&utm_medium=eka-web&utm_campaign=web-navigation"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+         <button className="bg-white text-[#5B6641] px-4 py-2 rounded mt-2 md:mt-0 animate-bounce shadow-lg">
+  BOOK AN APPOINTMENT
+</button>
+
+        </a>
+      </div>
+
+      <nav className="bg-[#6A734F] px-5 lg:px-32">
+        <div className="flex justify-between items-center py-3">
+          <ul className="hidden lg:flex gap-6 uppercase text-sm items-center">
+            <li><RouterLink to="/" className="hover:text-white">Home</RouterLink></li>
+            <li><RouterLink to="/about" className="hover:text-white">About</RouterLink></li>
+            <li className="relative group">
+              <div className="flex items-center gap-1 hover:text-white cursor-pointer">
+                OUR SERVICES <span>▼</span>
+              </div>
+              <ul className="absolute left-0 top-full mt-1 bg-[#78866B] rounded shadow-lg z-50 min-w-[260px] divide-y divide-[#6A734F] opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all duration-200">
+                {serviceBranches.map(({ name, path, submenu }) => (
+                  <li key={name} className="relative group/item">
+                    <RouterLink to={path} className="block px-4 py-3 text-white hover:bg-[#556B2F]" onClick={closeMenu}>{name}</RouterLink>
+                    {submenu && (
+                      <ul className="absolute left-full top-0 ml-1 bg-[#78866B] rounded shadow-lg z-50 min-w-[280px] divide-y divide-[#6A734F] opacity-0 group-hover/item:opacity-100 invisible group-hover/item:visible transition-all duration-200">
+                        {submenu.map((sub) => (
+                          <li key={sub.name}>
+                            <RouterLink to={sub.path} className="block px-4 py-2 text-white hover:bg-[#556B2F]" onClick={closeMenu}>
+                              {sub.name}
+                              {sub.highlight && (
+                                <span className="text-yellow-300 font-semibold"> - Center of Excellence</span>
+                              )}
+                            </RouterLink>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </li>
+
+            <li className="relative group">
+              <div className="flex items-center gap-1 hover:text-white cursor-pointer">
+                RESOURCES <span>▼</span>
+              </div>
+              <ul className="absolute left-0 top-full mt-1 bg-[#78866B] rounded shadow-lg z-50 min-w-[220px] divide-y divide-[#6A734F] opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all duration-200">
+   <li className="relative group/item-patients">
+  <span className="block px-4 py-3 text-white cursor-default">Patients</span>
+  <ul className="absolute left-full top-3 ml-1 bg-[#78866B] rounded shadow-lg z-50 min-w-[280px] divide-y divide-[#6A734F] opacity-0 group-hover/item-patients:opacity-100 invisible group-hover/item-patients:visible transition-all duration-200">
+
+    {/* Education submenu */}
+    <li className="relative group/item-education">
+      <span className="block px-4 py-2 text-white cursor-default">Education</span>
+      <ul className="absolute left-full top-2 ml-1 bg-[#78866B] rounded shadow-lg z-50 min-w-[300px] divide-y divide-[#6A734F] opacity-0 group-hover/item-education:opacity-100 invisible group-hover/item-education:visible transition-all duration-200">
+        {/* education links */}
+         <li><RouterLink to="/specialty-clinic/asthma" className="block px-4 py-2 text-white hover:bg-[#556B2F]" onClick={closeMenu}>Asthma</RouterLink></li>
+                <li><RouterLink to="/specialty-clinic/copd" className="block px-4 py-2 text-white hover:bg-[#556B2F]" onClick={closeMenu}>COPD</RouterLink></li>
+                <li><RouterLink to="/specialty-clinic/ild" className="block px-4 py-2 text-white hover:bg-[#556B2F]" onClick={closeMenu}>Interstitial Lung Disease (ILD)</RouterLink></li>
+                <li><RouterLink to="/specialty-clinic/sarcoidosis" className="block px-4 py-2 text-white hover:bg-[#556B2F]" onClick={closeMenu}>Sarcoidosis</RouterLink></li>
+                <li><RouterLink to="/patient-resources/education/bronchiectasis" className="block px-4 py-2 text-white hover:bg-[#556B2F]" onClick={closeMenu}>Bronchiectasis</RouterLink></li>
+                <li><RouterLink to="/specialty-clinic/pulmonary-hypertension" className="block px-4 py-2 text-white hover:bg-[#556B2F]" onClick={closeMenu}>Pulmonary Hypertension</RouterLink></li>
+                <li><RouterLink to="/patient-resources/education/tuberculosis" className="block px-4 py-2 text-white hover:bg-[#556B2F]" onClick={closeMenu}>Tuberculosis</RouterLink></li>
+                <li><RouterLink to="/sleep-clinic/osa" className="block px-4 py-2 text-white hover:bg-[#556B2F]" onClick={closeMenu}>Obstructive Sleep Apnea (OSA)</RouterLink></li>
+                <li><RouterLink to="/patient-resources/education/lung-cancer" className="block px-4 py-2 text-white hover:bg-[#556B2F]" onClick={closeMenu}>Lung Cancer</RouterLink></li>
+                <li><RouterLink to="/patient-resources/education/lung-transplant" className="block px-4 py-2 text-white hover:bg-[#556B2F]" onClick={closeMenu}>Lung Transplant</RouterLink></li>
+                                <li><RouterLink to="/patient-resources/education/critical-care" className="block px-4 py-2 text-white hover:bg-[#556B2F]" onClick={closeMenu}>Critical Care</RouterLink></li>
+                                <li>
+                      <RouterLink to="/blogs" className="block px-4 py-2 text-white hover:bg-[#556B2F]" onClick={closeMenu}>
+                        Blogs
+                      </RouterLink>
+                    </li>
+
+
+      </ul>
+    </li>
+
+    
+
+  </ul>
+</li>
+
+
+                <li className="relative group/item">
+                  <span className="block px-4 py-3 text-white cursor-default">Professionals</span>
+                  <ul className="absolute left-full top-0 ml-1 bg-[#78866B] rounded shadow-lg z-50 min-w-[220px] divide-y divide-[#6A734F] opacity-0 group-hover/item:opacity-100 invisible group-hover/item:visible transition-all duration-200">
+                    <li>
+                      <RouterLink to="/resources/innovations" className="block px-4 py-2 text-white hover:bg-[#556B2F]" onClick={closeMenu}>
+                        Our Innovations
+                      </RouterLink>
+                    </li>
+                    <li>
+                      <RouterLink to="/resources/publications" className="block px-4 py-2 text-white hover:bg-[#556B2F]" onClick={closeMenu}>
+                        Our Publications
+                      </RouterLink>
+                    </li>
+                    
+                    <li>
+                      <RouterLink to="/resources/job-openings" className="block px-4 py-2 text-white hover:bg-[#556B2F]" onClick={closeMenu}>
+                        Job Openings
+                      </RouterLink>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+
+            <li><RouterLink to="/capi-2025" className="hover:text-white">CAPI 2025</RouterLink></li>
+            <li><RouterLink to="/patient-resources/testimonials" className="hover:text-white">Testimonials</RouterLink></li>
+            <li><RouterLink to="/blogs" className="hover:text-white">Blogs</RouterLink></li>
+            <li><RouterLink to="/social-impact" className="hover:text-white">Social Impact</RouterLink></li>
+            <li><RouterLink to="/cont" className="hover:text-white">Contact</RouterLink></li>
+
+          </ul>
+
+          {/* Mobile menu toggle */}
+          <div className="lg:hidden">
+            <button onClick={() => setMenuOpen((prev) => !prev)}>
+              {menuOpen ? <FaTimes size={22} /> : <FaBars size={22} />}
+            </button>
+          </div>
+        </div>
+      </nav>
+    </header>
+  );
+};
+
+export default Navbar;
+
+
+
+
+
+#########################
+
+
+navbar latest draft
+
+
+
+
+import React, { useState } from "react";
+import { Link as RouterLink } from "react-router-dom";
+import { AiOutlineMail, AiOutlinePhone } from "react-icons/ai";
+import { FaBars, FaTimes } from "react-icons/fa";
+import vaayuLogo from "../assets/img/vaayu-logo.png";
+
+const Navbar = () => {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const closeMenu = () => setMenuOpen(false);
+
+  const serviceBranches = [
+    { name: "General Respiratory Clinics", path: "/general-opd" },
+    {
+      name: "Specialty Respiratory Clinics",
+      path: "/specialty-clinic",
+      submenu: [
+        { name: "Interstitial Lung Disease (ILD)", highlight: true, path: "/specialty-clinic/ild" },
+        { name: "Asthma", highlight: true, path: "/specialty-clinic/asthma" },
+        { name: "Chronic Obstructive Pulmonary Disease (COPD)", path: "/specialty-clinic/copd" },
+        { name: "Sarcoidosis", path: "/specialty-clinic/sarcoidosis" },
+        { name: "Pulmonary Hypertension", path: "/specialty-clinic/pulmonary-hypertension" },
+      ],
+    },
+    {
+      name: "Pulmonary Wellness & Rehabilitation",
+      path: "/pulmonary-rehab",
+      submenu: [
+        { name: "Pulmonary Rehabilitation", path: "/pulmonary-rehab/pulmonary" },
+        { name: "Cardiac Rehabilitation", path: "/pulmonary-rehab/cardiac" },
+        { name: "Rehab for pulmonary hypertension", path: "/pulmonary-rehab/PulmonaryHypertensionRehab" },
+        { name: "Pain management", path: "/pulmonary-rehab/pain-management" },
+      ],
+    },
+    {
+      name: "Comprehensive Sleep Center",
+      path: "/sleep-clinic",
+      submenu: [
+        { name: "Snoring", path: "/sleep-clinic/snoring" },
+        { name: "Obstructive Sleep Apnea (OSA)", path: "/sleep-clinic/osa" },
+        { name: "Insomnia", path: "/sleep-clinic/insomnia" },
+        { name: "Parasomnias", path: "/sleep-clinic/parasomnias" },
+      ],
+    },
+    {
+      name: "Allergy and Immunology Center",
+      path: "/allergy-immunology",
+      submenu: [
+        { name: "Allergy Testing", path: "/allergy-immunology/allergy-testing" },
+        { name: "Immunotherapy", path: "/allergy-immunology/immunotherapy" },
+      ],
+    },
+    {
+      name: "Allied Services",
+      path: "/allied-services",
+      submenu: [
+        { name: "ENT", path: "/allied-services/ent" },
+        { name: "Pediatric Pulmonology", path: "/allied-services/pediatric-pulmonology" },
+        { name: "Clinical Psychology", path: "/allied-services/clinical-psychology" },
+        { name: "Diet and Nutrition", path: "/allied-services/diet" },
+        { name: "Weight Management", path: "/allied-services/weight-management" },
+      ],
+    },
+    {
+      name: "Home Care Services",
+      path: "/home-care",
+      submenu: [
+        { name: "Home Nursing", path: "/home-care/home-nursing" },
+        { name: "Home Testing", path: "/home-care/home-testing" },
+        { name: "Home Rehabilitation", path: "/home-care/home-rehab" },
+        { name: "Home Delivery of Medications", path: "/home-care/Medications" },
+        { name: "Home injections and antibiotics", path: "/home-care/InjectionsAntibiotics" },
+      ],
+    },
+    {
+      name: "Preventive Respiratory Center",
+      path: "/preventive-clinics",
+      submenu: [
+        { name: "Tobacco Cessation", path: "/preventive-clinics/tobacco-cessation" },
+        { name: "Respiratory Health Checks", path: "/preventive-clinics/health-checks" },
+      ],
+    },
+  ];
+
+  return (
+    <header className="w-full text-white font-sans fixed top-0 left-0 z-50">
+      <div className="bg-[#5B6641] py-3 px-5 lg:px-32 flex flex-col md:flex-row items-center justify-between text-sm">
+        <img src={vaayuLogo} alt="Vaayu Chest and Sleep Specialists" className="h-20" />
+        <div className="flex gap-6 mt-2 md:mt-0">
+          <div className="flex items-center gap-1">
+            <AiOutlineMail /> admin@vaayuchest.com
+          </div>
+          <div className="flex items-center gap-1">
+            <AiOutlinePhone /> +91 63649 28680 / +91 63649 28681
+          </div>
+        </div>
+        <a
+          href="https://www.eka.care/clinic/vaayu-chest-and-sleep-specialists?utm_source=%2Fdoctor%2F%5Bslug%5D&utm_medium=eka-web&utm_campaign=web-navigation"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+         <button className="bg-white text-[#5B6641] px-4 py-2 rounded mt-2 md:mt-0 animate-bounce shadow-lg">
+  BOOK AN APPOINTMENT
+</button>
+
+        </a>
+      </div>
+
+      <nav className="bg-[#6A734F] px-5 lg:px-32">
+        <div className="flex justify-between items-center py-3">
+          <ul className="hidden lg:flex gap-6 uppercase text-sm items-center">
+            <li><RouterLink to="/" className="hover:text-white">Home</RouterLink></li>
+            <li><RouterLink to="/about" className="hover:text-white">About</RouterLink></li>
+            <li className="relative group">
+              <div className="flex items-center gap-1 hover:text-white cursor-pointer">
+                OUR SERVICES <span>▼</span>
+              </div>
+              <ul className="absolute left-0 top-full mt-1 bg-[#78866B] rounded shadow-lg z-50 min-w-[260px] divide-y divide-[#6A734F] opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all duration-200">
+                {serviceBranches.map(({ name, path, submenu }) => (
+                  <li key={name} className="relative group/item">
+                    <RouterLink to={path} className="block px-4 py-3 text-white hover:bg-[#556B2F]" onClick={closeMenu}>{name}</RouterLink>
+                    {submenu && (
+                      <ul className="absolute left-full top-0 ml-1 bg-[#78866B] rounded shadow-lg z-50 min-w-[280px] divide-y divide-[#6A734F] opacity-0 group-hover/item:opacity-100 invisible group-hover/item:visible transition-all duration-200">
+                        {submenu.map((sub) => (
+                          <li key={sub.name}>
+                            <RouterLink to={sub.path} className="block px-4 py-2 text-white hover:bg-[#556B2F]" onClick={closeMenu}>
+                              {sub.name}
+                              {sub.highlight && (
+                                <span className="text-yellow-300 font-semibold"> - Center of Excellence</span>
+                              )}
+                            </RouterLink>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </li>
+
+            <li className="relative group">
+              <div className="flex items-center gap-1 hover:text-white cursor-pointer">
+                RESOURCES <span>▼</span>
+              </div>
+              <ul className="absolute left-0 top-full mt-1 bg-[#78866B] rounded shadow-lg z-50 min-w-[220px] divide-y divide-[#6A734F] opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all duration-200">
+   <li className="relative group/item-patients">
+  <span className="block px-4 py-3 text-white cursor-default">Patients</span>
+  <ul className="absolute left-full top-3 ml-1 bg-[#78866B] rounded shadow-lg z-50 min-w-[280px] divide-y divide-[#6A734F] opacity-0 group-hover/item-patients:opacity-100 invisible group-hover/item-patients:visible transition-all duration-200">
+
+    {/* Education submenu */}
+    <li className="relative group/item-education">
+      <span className="block px-4 py-2 text-white cursor-default">Education</span>
+      <ul className="absolute left-full top-2 ml-1 bg-[#78866B] rounded shadow-lg z-50 min-w-[300px] divide-y divide-[#6A734F] opacity-0 group-hover/item-education:opacity-100 invisible group-hover/item-education:visible transition-all duration-200">
+        {/* education links */}
+         <li><RouterLink to="/specialty-clinic/asthma" className="block px-4 py-2 text-white hover:bg-[#556B2F]" onClick={closeMenu}>Asthma</RouterLink></li>
+                <li><RouterLink to="/specialty-clinic/copd" className="block px-4 py-2 text-white hover:bg-[#556B2F]" onClick={closeMenu}>COPD</RouterLink></li>
+                <li><RouterLink to="/specialty-clinic/ild" className="block px-4 py-2 text-white hover:bg-[#556B2F]" onClick={closeMenu}>Interstitial Lung Disease (ILD)</RouterLink></li>
+                <li><RouterLink to="/specialty-clinic/sarcoidosis" className="block px-4 py-2 text-white hover:bg-[#556B2F]" onClick={closeMenu}>Sarcoidosis</RouterLink></li>
+                <li><RouterLink to="/patient-resources/education/bronchiectasis" className="block px-4 py-2 text-white hover:bg-[#556B2F]" onClick={closeMenu}>Bronchiectasis</RouterLink></li>
+                <li><RouterLink to="/specialty-clinic/pulmonary-hypertension" className="block px-4 py-2 text-white hover:bg-[#556B2F]" onClick={closeMenu}>Pulmonary Hypertension</RouterLink></li>
+                <li><RouterLink to="/patient-resources/education/tuberculosis" className="block px-4 py-2 text-white hover:bg-[#556B2F]" onClick={closeMenu}>Tuberculosis</RouterLink></li>
+                <li><RouterLink to="/sleep-clinic/osa" className="block px-4 py-2 text-white hover:bg-[#556B2F]" onClick={closeMenu}>Obstructive Sleep Apnea (OSA)</RouterLink></li>
+                <li><RouterLink to="/patient-resources/education/lung-cancer" className="block px-4 py-2 text-white hover:bg-[#556B2F]" onClick={closeMenu}>Lung Cancer</RouterLink></li>
+                <li><RouterLink to="/patient-resources/education/lung-transplant" className="block px-4 py-2 text-white hover:bg-[#556B2F]" onClick={closeMenu}>Lung Transplant</RouterLink></li>
+                                <li><RouterLink to="/patient-resources/education/critical-care" className="block px-4 py-2 text-white hover:bg-[#556B2F]" onClick={closeMenu}>Critical Care</RouterLink></li>
+                                <li>
+                      <RouterLink to="/blogs" className="block px-4 py-2 text-white hover:bg-[#556B2F]" onClick={closeMenu}>
+                        Blogs
+                      </RouterLink>
+                    </li>
+
+
+      </ul>
+    </li>
+
+    
+
+  </ul>
+</li>
+
+
+                <li className="relative group/item">
+                  <span className="block px-4 py-3 text-white cursor-default">Professionals</span>
+                  <ul className="absolute left-full top-0 ml-1 bg-[#78866B] rounded shadow-lg z-50 min-w-[220px] divide-y divide-[#6A734F] opacity-0 group-hover/item:opacity-100 invisible group-hover/item:visible transition-all duration-200">
+                    <li>
+                      <RouterLink to="/resources/innovations" className="block px-4 py-2 text-white hover:bg-[#556B2F]" onClick={closeMenu}>
+                        Our Innovations
+                      </RouterLink>
+                    </li>
+                    <li>
+                      <RouterLink to="/resources/publications" className="block px-4 py-2 text-white hover:bg-[#556B2F]" onClick={closeMenu}>
+                        Our Publications
+                      </RouterLink>
+                    </li>
+                    
+                    <li>
+                      <RouterLink to="/resources/job-openings" className="block px-4 py-2 text-white hover:bg-[#556B2F]" onClick={closeMenu}>
+                        Job Openings
+                      </RouterLink>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+
+            <li><RouterLink to="/capi-2025" className="hover:text-white">CAPI 2025</RouterLink></li>
+            <li><RouterLink to="/patient-resources/testimonials" className="hover:text-white">Testimonials</RouterLink></li>
+            <li><RouterLink to="/blogs" className="hover:text-white">Blogs</RouterLink></li>
+            <li><RouterLink to="/social-impact" className="hover:text-white">Social Impact</RouterLink></li>
+            <li><RouterLink to="/cont" className="hover:text-white">Contact</RouterLink></li>
+
+          </ul>
+
+          {/* Mobile menu toggle and menu list */}
+          <div className="lg:hidden">
+            <button onClick={() => setMenuOpen((prev) => !prev)}>
+              {menuOpen ? <FaTimes size={22} /> : <FaBars size={22} />}
+            </button>
+
+            {menuOpen && (
+              <div className="bg-[#6A734F] text-white px-5 py-4 space-y-3 mt-4 rounded shadow-lg">
+                <RouterLink to="/" onClick={closeMenu} className="block">Home</RouterLink>
+                <RouterLink to="/about" onClick={closeMenu} className="block">About</RouterLink>
+
+                {/* Our Services */}
+                <div>
+                  <p className="font-semibold">Our Services</p>
+                  <div className="ml-2 space-y-2">
+                    {serviceBranches.map(({ name, path, submenu }) => (
+                      <div key={name}>
+                        <RouterLink to={path} onClick={closeMenu} className="block">{name}</RouterLink>
+                        {submenu && (
+                          <div className="ml-4 space-y-1 text-sm">
+                            {submenu.map((sub) => (
+                              <RouterLink key={sub.name} to={sub.path} onClick={closeMenu} className="block">
+                                {sub.name}
+                                {sub.highlight && (
+                                  <span className="text-yellow-300 font-semibold"> - Center of Excellence</span>
+                                )}
+                              </RouterLink>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Resources */}
+                <div>
+                  <p className="font-semibold mt-4">Resources</p>
+                  <div className="ml-2">
+                    <p className="underline">Patients - Education</p>
+                    <div className="ml-4 space-y-1 text-sm">
+                      <RouterLink to="/specialty-clinic/asthma" onClick={closeMenu} className="block">Asthma</RouterLink>
+                      <RouterLink to="/specialty-clinic/copd" onClick={closeMenu} className="block">COPD</RouterLink>
+                      <RouterLink to="/specialty-clinic/ild" onClick={closeMenu} className="block">ILD</RouterLink>
+                      <RouterLink to="/specialty-clinic/sarcoidosis" onClick={closeMenu} className="block">Sarcoidosis</RouterLink>
+                      <RouterLink to="/patient-resources/education/bronchiectasis" onClick={closeMenu} className="block">Bronchiectasis</RouterLink>
+                      <RouterLink to="/specialty-clinic/pulmonary-hypertension" onClick={closeMenu} className="block">Pulmonary Hypertension</RouterLink>
+                      <RouterLink to="/patient-resources/education/tuberculosis" onClick={closeMenu} className="block">Tuberculosis</RouterLink>
+                      <RouterLink to="/sleep-clinic/osa" onClick={closeMenu} className="block">OSA</RouterLink>
+                      <RouterLink to="/patient-resources/education/lung-cancer" onClick={closeMenu} className="block">Lung Cancer</RouterLink>
+                      <RouterLink to="/patient-resources/education/lung-transplant" onClick={closeMenu} className="block">Lung Transplant</RouterLink>
+                      <RouterLink to="/patient-resources/education/critical-care" onClick={closeMenu} className="block">Critical Care</RouterLink>
+                      <RouterLink to="/blogs" onClick={closeMenu} className="block">Blogs</RouterLink>
+                    </div>
+
+                    <p className="underline mt-3">Professionals</p>
+                    <div className="ml-4 space-y-1 text-sm">
+                      <RouterLink to="/resources/innovations" onClick={closeMenu} className="block">Our Innovations</RouterLink>
+                      <RouterLink to="/resources/publications" onClick={closeMenu} className="block">Our Publications</RouterLink>
+                      <RouterLink to="/resources/job-openings" onClick={closeMenu} className="block">Job Openings</RouterLink>
+                    </div>
+                  </div>
+                </div>
+
+                <RouterLink to="/capi-2025" onClick={closeMenu} className="block mt-4">CAPI 2025</RouterLink>
+                <RouterLink to="/patient-resources/testimonials" onClick={closeMenu} className="block">Testimonials</RouterLink>
+                <RouterLink to="/blogs" onClick={closeMenu} className="block">Blogs</RouterLink>
+                <RouterLink to="/social-impact" onClick={closeMenu} className="block">Social Impact</RouterLink>
+                <RouterLink to="/cont" onClick={closeMenu} className="block">Contact</RouterLink>
+              </div>
+            )}
+          </div>
+        </div>
+      </nav>
+    </header>
+  );
+};
+
+export default Navbar;
+
+
+
+
+#######################
+
+
+import React, { useEffect, useState } from "react";
+import About from "./About";
+import InfoCards from "./InfoCards";
+import DepartmentDetails from "../components/DepartmentDetails";
+import StatsCards from "../components/StatsCards";
+import LifecyclePath from "./LifecyclePath";
+import CovidImpact from "./CovidImpact";
+import Testimonials from "./Testimonials";
+
+// ✅ Slider Content
+const sliderContent = [
+  {
+    image: "/cm.jpg",
+    title: "We Are Your Partners In The Journey From Illness To Wellness!!!!",
+    text: "With our skilled, experienced, committed team, offering end to end solutions, we smoothen your path to recovery.",
+  },
+    
+
+  {
+    image: "/bc2.jpg",
+    title: "We Walk With You On The Path To Better Health & Better Life",
+    text: "We work with you to avoid hospitalisation .But if illness takes you there , we help expedite your recovery .",
+
+  },
+
+    {
+    image: "/slider.jpg",
+    title: "Vaayu Specialty Clinics: Advanced Treatments & Expert Care From Diagnosis to Renewed Health",
+    text: "From targeted diagnostics to bespoke treatments for ILD, COPD, Asthma, Pulmonary Hypertension, and Sarcoidosis, our multidisciplinary teams unite under one roof—committed to restoring your lung health and transforming your life.",
+  },
+];
+
+const Home = () => {
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % sliderContent.length);
+    }, 50000); // ⏱️ 50 seconds
+    return () => clearInterval(timer);
+  }, []);
+
+  const handlePrev = () => {
+    setCurrent((prev) => (prev === 0 ? sliderContent.length - 1 : prev - 1));
+  };
+
+  const handleNext = () => {
+    setCurrent((prev) => (prev + 1) % sliderContent.length);
+  };
+
+  return (
+    <div>
+      {/* ✅ Hero Section with Simple Arrows and Dots */}
+      <div
+        className="relative w-full h-[90vh] bg-cover bg-center bg-no-repeat flex flex-col justify-center px-5 lg:px-32 text-white transition-all duration-700"
+        style={{ backgroundImage: `url(${sliderContent[current].image})` }}
+      >
+        {/* Dark Overlay */}
+        <div className="absolute inset-0 bg-black opacity-30 z-0" />
+
+        {/* Text Content */}
+<div className="z-10 pt-24 md:pt-0">
+          <h1 className="text-4xl md:text-5xl font-bold leading-tight">
+            {sliderContent[current].title}
+          </h1>
+          <p className="mt-4 text-lg max-w-2xl">
+            {sliderContent[current].text}
+          </p>
+        </div>
+{/* ← Left Arrow */}
+<button
+  onClick={handlePrev}
+  className="absolute left-1 sm:left-4 top-[55%] sm:top-1/2 transform -translate-y-1/2 text-white text-2xl z-20"
+>
+  &#10094;
+</button>
+
+{/* → Right Arrow */}
+<button
+  onClick={handleNext}
+  className="absolute right-1 sm:right-4 top-[55%] sm:top-1/2 transform -translate-y-1/2 text-white text-2xl z-20"
+>
+  &#10095;
+</button>
+
+
+
+        {/* ● Dots */}
+        <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-2 z-20">
+          {sliderContent.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrent(index)}
+              className={`w-2 h-2 rounded-full ${
+                index === current ? "bg-white" : "bg-gray-400"
+              } hover:bg-white transition`}
+            ></button>
+          ))}
+        </div>
+      </div>
+
+      {/* Stats Cards */}
+      <StatsCards />
+
+      {/* About Us Section */}
+      <div className="px-5 lg:px-32 mt-16">
+        <About />
+      </div>
+
+      {/* Info Cards Section */}
+      <div className="px-5 lg:px-32 mt-16">
+        <InfoCards />
+      </div>
+
+      {/* Lifecycle Path */}
+      <LifecyclePath />
+
+      {/* Department Details */}
+      <div className="px-5 lg:px-32 mt-20">
+        <DepartmentDetails />
+      </div>
+     
+
+    
+
+      {/* COVID Impact */}
+      <CovidImpact />
+      {/* Testimonials */}
+      <Testimonials />
+        
+    </div>
+  );
+};
+
+export default Home;

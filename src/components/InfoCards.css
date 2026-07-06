@@ -1,0 +1,112 @@
+.info-cards {
+  margin-top: 70px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  padding: 50px 40px;
+  background: #F4F5EC;
+}
+
+/* CARD */
+.info-card {
+  background: #ffffff;
+  padding: 28px;
+  border-radius: 20px;
+  border: 1px solid #E2E8D8;
+  box-shadow: 0 10px 30px rgba(63, 71, 35, 0.08);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+/* subtle top highlight */
+.info-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 4px;
+  width: 100%;
+  background: #5B6641;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.info-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px rgba(63, 71, 35, 0.12);
+}
+
+/* LABEL */
+.info-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: #6A734F;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+/* TITLE */
+.info-card h3 {
+  font-size: 22px;
+  font-weight: 800;
+  color: #3F4723;
+  margin-bottom: 12px;
+}
+
+/* PHONE LINK */
+.info-card h3 a {
+  color: #5B6641;
+  text-decoration: none;
+}
+
+.info-card h3 a:hover {
+  text-decoration: underline;
+}
+
+/* TEXT */
+.info-card p {
+  font-size: 14px;
+  color: #5F654D;
+  line-height: 1.6;
+}
+
+/* HOURS BOX */
+.hours-box {
+  background: #EEF4E9;
+  border: 1px solid #DCE6D1;
+  border-radius: 14px;
+  padding: 14px;
+  margin-bottom: 14px;
+}
+
+.hours-box div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* DAY + TIME */
+.day {
+  font-weight: 600;
+  color: #3F4723;
+}
+
+.time {
+  font-weight: 700;
+  color: #5B6641;
+}
+
+/* MOBILE */
+@media (max-width: 1024px) {
+  .info-cards {
+    grid-template-columns: 1fr;
+    padding: 40px 16px;
+  }
+
+  .hours-box div {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+}

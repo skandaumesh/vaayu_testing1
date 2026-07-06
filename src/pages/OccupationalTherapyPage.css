@@ -1,0 +1,623 @@
+:root {
+  --ot-primary: #0a3a43;
+  --ot-primary-dark: #062a31;
+  --ot-secondary: #0f5964;
+  --ot-gold: #d4a84f;
+  --ot-bg: #f5fbfb;
+  --ot-white: #ffffff;
+  --ot-text: #18343a;
+  --ot-text-light: #5f777c;
+  --ot-shadow: 0 20px 60px rgba(6, 42, 49, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.ot-page {
+  width: 100%;
+  background:
+    radial-gradient(circle at top left, rgba(212, 168, 79, 0.08), transparent 24%),
+    radial-gradient(circle at top right, rgba(15, 89, 100, 0.1), transparent 28%),
+    linear-gradient(180deg, #f9fdfd 0%, #eef8f8 100%);
+  color: var(--ot-text);
+  overflow: hidden;
+}
+
+.ot-container {
+  width: min(1200px, calc(100% - 40px));
+  margin: 0 auto;
+}
+
+.ot-section-heading {
+  margin-bottom: 48px;
+}
+
+.ot-section-heading.center {
+  text-align: center;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ot-section-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--ot-secondary);
+  background: rgba(15, 89, 100, 0.08);
+  border: 1px solid rgba(15, 89, 100, 0.12);
+  margin-bottom: 18px;
+}
+
+.ot-section-tag.light {
+  color: #e8f4f4;
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+.ot-section-heading h2,
+.ot-content-panel h2,
+.ot-cta-content h2 {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  line-height: 1.15;
+  margin: 0 0 16px;
+  color: var(--ot-primary-dark);
+}
+
+.ot-section-heading h2 span,
+.ot-content-panel h2 span,
+.ot-hero-content h1 span {
+  color: var(--ot-gold);
+}
+
+.ot-section-heading p,
+.ot-content-panel p,
+.ot-cta-content p,
+.ot-hero-subtext {
+  font-size: 1.04rem;
+  line-height: 1.8;
+  color: var(--ot-text-light);
+  margin: 0;
+}
+
+.ot-hero {
+  position: relative;
+  padding: 90px 0 70px;
+}
+
+.ot-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(212, 168, 79, 0.14), transparent 20%),
+    radial-gradient(circle at 85% 25%, rgba(15, 89, 100, 0.18), transparent 22%);
+  pointer-events: none;
+}
+
+.ot-hero-grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.ot-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: rgba(10, 58, 67, 0.06);
+  color: var(--ot-secondary);
+  border: 1px solid rgba(10, 58, 67, 0.1);
+  border-radius: 999px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.ot-hero-content h1 {
+  font-size: clamp(2.4rem, 5vw, 4.5rem);
+  line-height: 1.08;
+  margin: 0 0 20px;
+  color: var(--ot-primary-dark);
+  letter-spacing: -0.02em;
+}
+
+.ot-hero-subtext {
+  max-width: 640px;
+  margin-bottom: 28px;
+}
+
+.ot-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 28px;
+}
+
+.ot-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 22px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.96rem;
+  transition: all 0.35s ease;
+}
+
+.ot-btn-primary {
+  background: linear-gradient(135deg, var(--ot-primary), var(--ot-secondary));
+  color: #fff;
+  box-shadow: 0 16px 34px rgba(10, 58, 67, 0.22);
+}
+
+.ot-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 24px 44px rgba(10, 58, 67, 0.28);
+}
+
+.ot-btn-secondary {
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--ot-primary);
+  border: 1px solid rgba(10, 58, 67, 0.12);
+  backdrop-filter: blur(10px);
+}
+
+.ot-btn-secondary:hover {
+  transform: translateY(-2px);
+  background: #fff;
+}
+
+.ot-btn-light {
+  background: #fff;
+  color: var(--ot-primary-dark);
+}
+
+.ot-btn-outline-light {
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  color: #fff;
+  background: transparent;
+}
+
+.ot-hero-mini-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.ot-mini-card {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(10, 58, 67, 0.08);
+  backdrop-filter: blur(10px);
+  font-weight: 600;
+  color: var(--ot-primary);
+  box-shadow: 0 8px 26px rgba(10, 58, 67, 0.08);
+}
+
+.ot-hero-image-wrap {
+  position: relative;
+}
+
+.ot-hero-image-card {
+  position: relative;
+  padding: 14px;
+  border-radius: 32px;
+  background: rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(10, 58, 67, 0.08);
+  box-shadow: var(--ot-shadow);
+  backdrop-filter: blur(12px);
+}
+
+.ot-hero-image-card img {
+  width: 100%;
+  height: 620px;
+  object-fit: cover;
+  display: block;
+  border-radius: 24px;
+}
+
+.ot-floating-stat {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  max-width: 230px;
+  padding: 14px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 18px 36px rgba(10, 58, 67, 0.14);
+  border: 1px solid rgba(10, 58, 67, 0.08);
+}
+
+.ot-floating-stat svg {
+  color: var(--ot-gold);
+  flex-shrink: 0;
+}
+
+.ot-floating-stat strong {
+  display: block;
+  color: var(--ot-primary-dark);
+  font-size: 0.94rem;
+  margin-bottom: 3px;
+}
+
+.ot-floating-stat span {
+  display: block;
+  color: var(--ot-text-light);
+  font-size: 0.84rem;
+  line-height: 1.4;
+}
+
+.ot-stat-1 {
+  left: -28px;
+  bottom: 110px;
+}
+
+.ot-stat-2 {
+  right: -22px;
+  top: 80px;
+}
+
+.ot-intro-section,
+.ot-challenges-section,
+.ot-help-section,
+.ot-learn-section,
+.ot-benefit-section,
+.ot-importance-section,
+.ot-cta-section {
+  padding: 90px 0;
+}
+
+.ot-two-col {
+  display: grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  gap: 52px;
+  align-items: center;
+}
+
+.ot-two-col.reverse {
+  grid-template-columns: 1.05fr 0.95fr;
+}
+
+.ot-image-panel {
+  position: relative;
+}
+
+.ot-image-panel::before {
+  content: "";
+  position: absolute;
+  inset: -14px;
+  border-radius: 32px;
+  background: linear-gradient(
+    135deg,
+    rgba(212, 168, 79, 0.18),
+    rgba(15, 89, 100, 0.1)
+  );
+  z-index: 0;
+}
+
+.ot-image-panel img {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 520px;
+  object-fit: cover;
+  border-radius: 28px;
+  display: block;
+  box-shadow: var(--ot-shadow);
+}
+
+.ot-list-box {
+  margin-top: 28px;
+  display: grid;
+  gap: 14px;
+}
+
+.ot-check-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px 18px;
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(10, 58, 67, 0.08);
+  border-radius: 18px;
+  box-shadow: 0 12px 28px rgba(10, 58, 67, 0.06);
+}
+
+.ot-check-item svg {
+  color: var(--ot-gold);
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.ot-check-item span {
+  color: var(--ot-text);
+  font-weight: 600;
+  line-height: 1.6;
+}
+
+.ot-challenge-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+}
+
+.ot-glass-card {
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(10, 58, 67, 0.08);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 16px 40px rgba(10, 58, 67, 0.08);
+}
+
+.ot-challenge-card {
+  padding: 26px;
+  border-radius: 24px;
+  min-height: 250px;
+  transition: all 0.35s ease;
+}
+
+.ot-card-icon {
+  width: 54px;
+  height: 54px;
+  border-radius: 16px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 18px;
+  background: linear-gradient(135deg, rgba(10, 58, 67, 0.1), rgba(212, 168, 79, 0.18));
+  color: var(--ot-primary);
+}
+
+.ot-challenge-card h3 {
+  font-size: 1.1rem;
+  line-height: 1.45;
+  margin: 0 0 10px;
+  color: var(--ot-primary-dark);
+}
+
+.ot-challenge-card p {
+  margin: 0;
+  color: var(--ot-text-light);
+  line-height: 1.7;
+  font-size: 0.97rem;
+}
+
+.ot-learn-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+  margin-top: 28px;
+}
+
+.ot-learn-card {
+  position: relative;
+  padding: 24px 20px 22px;
+  border-radius: 22px;
+  background: #fff;
+  border: 1px solid rgba(10, 58, 67, 0.08);
+  box-shadow: 0 16px 34px rgba(10, 58, 67, 0.08);
+  overflow: hidden;
+}
+
+.ot-learn-card::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, var(--ot-gold), var(--ot-secondary));
+}
+
+.ot-learn-number {
+  font-size: 1.7rem;
+  font-weight: 800;
+  color: rgba(10, 58, 67, 0.18);
+  margin-bottom: 12px;
+}
+
+.ot-learn-card p {
+  margin: 0;
+  line-height: 1.7;
+  font-weight: 600;
+  color: var(--ot-text);
+}
+
+.ot-benefit-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+}
+
+.ot-benefit-card {
+  padding: 28px 20px;
+  border-radius: 24px;
+  text-align: center;
+  background: linear-gradient(180deg, #ffffff 0%, #f4fbfb 100%);
+  border: 1px solid rgba(10, 58, 67, 0.08);
+  box-shadow: 0 16px 34px rgba(10, 58, 67, 0.07);
+  transition: all 0.35s ease;
+}
+
+.ot-benefit-icon {
+  width: 58px;
+  height: 58px;
+  margin: 0 auto 16px;
+  display: grid;
+  place-items: center;
+  border-radius: 18px;
+  color: var(--ot-primary);
+  background: linear-gradient(135deg, rgba(212, 168, 79, 0.18), rgba(15, 89, 100, 0.12));
+}
+
+.ot-benefit-card h3 {
+  margin: 0;
+  font-size: 1.12rem;
+  color: var(--ot-primary-dark);
+}
+
+.ot-importance-points {
+  margin-top: 26px;
+  display: grid;
+  gap: 14px;
+}
+
+.ot-importance-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 18px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(10, 58, 67, 0.08);
+  box-shadow: 0 14px 30px rgba(10, 58, 67, 0.06);
+}
+
+.ot-importance-item svg {
+  color: var(--ot-gold);
+  flex-shrink: 0;
+}
+
+.ot-importance-item span {
+  font-weight: 600;
+  color: var(--ot-text);
+}
+
+.ot-cta-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 34px;
+  padding: 54px;
+  background:
+    radial-gradient(circle at top right, rgba(212, 168, 79, 0.16), transparent 25%),
+    linear-gradient(135deg, #08343c 0%, #0d5660 100%);
+  box-shadow: 0 28px 60px rgba(6, 42, 49, 0.22);
+}
+
+.ot-cta-content {
+  position: relative;
+  z-index: 2;
+  max-width: 760px;
+}
+
+.ot-cta-content h2,
+.ot-cta-content p {
+  color: #fff;
+}
+
+.ot-cta-content p {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.ot-cta-points {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 22px;
+  margin: 26px 0 30px;
+}
+
+.ot-cta-points span {
+  color: #fff;
+  font-weight: 600;
+}
+
+@media (max-width: 1100px) {
+  .ot-hero-grid,
+  .ot-two-col,
+  .ot-two-col.reverse {
+    grid-template-columns: 1fr;
+  }
+
+  .ot-hero-image-card img,
+  .ot-image-panel img {
+    height: 500px;
+  }
+
+  .ot-stat-1 {
+    left: 12px;
+    bottom: 20px;
+  }
+
+  .ot-stat-2 {
+    right: 12px;
+    top: 20px;
+  }
+
+  .ot-challenge-grid,
+  .ot-benefit-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .ot-container {
+    width: min(100% - 24px, 1200px);
+  }
+
+  .ot-intro-section,
+  .ot-challenges-section,
+  .ot-help-section,
+  .ot-learn-section,
+  .ot-benefit-section,
+  .ot-importance-section,
+  .ot-cta-section,
+  .ot-hero {
+    padding: 70px 0;
+  }
+
+  .ot-hero-content h1 {
+    font-size: 2.3rem;
+  }
+
+  .ot-hero-image-card img,
+  .ot-image-panel img {
+    height: 380px;
+  }
+
+  .ot-floating-stat {
+    position: static;
+    max-width: 100%;
+    margin-top: 14px;
+  }
+
+  .ot-challenge-grid,
+  .ot-benefit-grid,
+  .ot-learn-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ot-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .ot-cta-card {
+    padding: 34px 24px;
+    border-radius: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .ot-hero-content h1,
+  .ot-section-heading h2,
+  .ot-content-panel h2,
+  .ot-cta-content h2 {
+    font-size: 1.9rem;
+  }
+
+  .ot-mini-card {
+    width: 100%;
+  }
+}

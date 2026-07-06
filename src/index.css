@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'DM Sans', sans-serif;
+}
+.slick-slide > div {
+  margin: 0 10px;
+}
+
+/* Add to index.css or a global CSS file */
+.swiper-button-next,
+.swiper-button-prev {
+  color: #1ABC9C; /* Tailwind cyan-700 */
+  font-weight: bold;
+  top: 35%;
+}
