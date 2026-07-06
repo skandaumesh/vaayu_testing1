@@ -4,17 +4,17 @@ import DoctorsAndTeam from "../components/DoctorsAndTeam";
 import Testimonials from "../components/Testimonials";
 
 import heroImg from "../assets/img/wmremove-transformed.png";
-import heroImg1 from "../assets/img/IMG_0159.jpg";
+import heroImg1 from "../assets/img/IMG_0159.JPG";
 import mehtaImg from "../assets/img/mehta.JPG";
 import doctorImg from "../assets/img/DSC00661 (1).jpg";
 import nebulizerImg from "../assets/img/De.jpeg";
 import nebulizerImg11 from "../assets/img/front-view-man-using-nebulizer.jpg";
 import sleepImg from "../assets/img/young-guy-sleeping-bed-wearing-smartwatch-sleep-tracker.jpg";
-import rehabImg1 from "../assets/img/IMG_0215.jpg";
+import rehabImg1 from "../assets/img/IMG_0215.JPG";
 import rehabImg2 from "../assets/img/healthcare-concept-clinic (1).jpg";
 
 import aboutImage from "../assets/img/About us image 1.jpg";
-import whyVaayuImg from "../assets/img/IMG_0215.jpg";
+import whyVaayuImg from "../assets/img/IMG_0215.JPG";
 import journeyBg from "../assets/img/clinical-psychology-hero.jpg";
 import careImg from "../assets/img/healthchecks-benefit.jpg";
 import diagnosticsImg from "../assets/img/Live Pain-Free Again with Innovative RenuO2 Pain Treatment Utah.jpg";

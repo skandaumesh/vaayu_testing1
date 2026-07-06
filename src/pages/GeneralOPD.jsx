@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 
-import opdBanner from "../assets/img/opd.jpg";
+import opdBanner from "../assets/img/OPD.jpg";
 import img7 from "../assets/img/DOCTOR !!!the dream of many.jpg";
 import consultation from "../assets/img/Lung Cancer Specialist in Nagpur  -  Dr_ Sameeksha Dubey.jpg";
 import diagnostics from "../assets/img/Pearly Penile Papules Removal Price_ A Comparison of Treatment Options (1).jpg";
@@ -13,7 +13,7 @@ import allergy from "../assets/img/adult-allergy.jpg";
 import panels from "../assets/img/panels.png";
 import xray from "../assets/img/xray.jpg";
 import pft from "../assets/img/Breathe Easy Again_ How Lung Transplants Can Give a Second Chance at Life.jpg";
-import ctscan from "../assets/img/IMG_0215.jpg";
+import ctscan from "../assets/img/IMG_0215.JPG";
 const EKA =
   "https://www.eka.care/clinic/vaayu-chest-and-sleep-specialists?utm_source=general-opd-page&utm_medium=eka-web&utm_campaign=web-navigation";
 const T = {

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import opdImage from "../assets/img/opd.jpg";
+import opdImage from "../assets/img/OPD.jpg";
 import entImage from "../assets/img/DeWatermark.ai_1753859308812.jpeg"; // Adjust the path if needed
 import entImage1 from "../assets/img/parasomnia-hero.png"; // Adjust the path if needed
 import entImage2 from "../assets/img/rehab.jpg"; // Adjust the path if needed
