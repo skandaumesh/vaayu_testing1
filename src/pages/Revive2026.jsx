@@ -692,6 +692,44 @@ const Revive2026 = () => {
             margin: 0;
           }
 
+          .speaker-role-inline { display: none; }
+
+          /* Touch devices & small screens: no hover, so show credentials inline */
+          @media (hover: none), (max-width: 640px) {
+            .speaker-hint,
+            .speaker-overlay { display: none; }
+
+            .speaker-role-inline {
+              display: block;
+              color: ${T.muted};
+              font-size: 12px;
+              line-height: 1.55;
+              margin: 7px 0 0;
+            }
+
+            .speaker-slide {
+              flex-direction: column;
+              text-align: center;
+              padding: 24px 18px 22px;
+              gap: 14px;
+              min-height: 0;
+            }
+
+            .speaker-info {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+            }
+
+            .speaker-photo img,
+            .speaker-initial {
+              width: 96px;
+              height: 96px;
+            }
+
+            .speaker-initial { font-size: 36px; }
+          }
+
           .revive-page .swiper-slide { height: auto; }
 
           /* continuous conveyor-belt motion */
@@ -1076,6 +1114,7 @@ const Revive2026 = () => {
                       <p className="revive-eyebrow">Speaker</p>
                       <h3>{sp.name}</h3>
                       <p className="speaker-hint">Hover for profile →</p>
+                      <p className="speaker-role-inline">{sp.role}</p>
                     </div>
                     <div className="speaker-overlay">
                       {sp.img && <img src={sp.img} alt="" />}
