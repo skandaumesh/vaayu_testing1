@@ -3,13 +3,20 @@ import React, { useEffect, useState } from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
+import Confetti from "react-confetti";
 import "swiper/css";
 
 import heroImg from "../assets/img/digital-art-style-theatre-stage.jpg";
 import eventImg from "../assets/img/people-taking-part.jpg";
 import heroImg2 from "../assets/img/front-view-woman-meditating-mat.jpg";
-import ganeshImg from "../assets/img/Dr. Ganesh Raghu .jpeg";
-import sallyImg from "../assets/img/Dr. Sally SIngh .jpeg";
+import ganeshImg from "../assets/img/Dr Ganesh Raghu.png";
+import sallyImg from "../assets/img/Dr Sally.png";
+import rikImg from "../assets/img/Dr Rik framed.png";
+import shaswatImg from "../assets/img/Dr Shashwat.png";
+import sumantaImg from "../assets/img/Dr Sumanta ghosh.png";
+import veenaImg from "../assets/img/Dr veena.png";
+import satishImg from "../assets/img/Dr k s Satish.png";
+import venkateshImg from "../assets/img/Dr Venkatesh T k.png";
 
 import hl1 from "../assets/highlights/web/h1.jpg";
 import hl2 from "../assets/highlights/web/h2.jpg";
@@ -25,7 +32,7 @@ import hl10 from "../assets/highlights/web/h10.jpg";
 const HIGHLIGHTS_2025 = [hl1, hl2, hl3, hl4, hl5, hl6, hl7, hl8, hl9, hl10];
 
 const BASE_URL = "https://vaayuchest.com";
-const EVENT_DATE = new Date("2026-08-12T08:45:00+05:30");
+const EVENT_DATE = new Date("2026-08-23T08:45:00+05:30");
 
 const SEO_TITLE =
   "REVIVE 2026 – Reimagining Pulmonary & Cardiac Rehabilitation | Vaayu Chest & Sleep Specialists";
@@ -46,37 +53,48 @@ const T = {
 const SPEAKERS = [
   {
     name: "Dr. Ganesh Raghu",
-    role: "Pulmonary Fibrosis & Rehabilitation Outcomes (International Speaker)",
+    role: "M.D., ATSF, FCCP, FACP — Director, Center for Interstitial Lung Disease (ILD) & Co-Director, Scleroderma Clinic, UWMC. Professor of Medicine, Adjunct Professor of Laboratory Medicine and Pathology, University of Washington (UW)",
     img: ganeshImg,
   },
   {
     name: "Dr. Sally Singh",
-    role: "Pulmonary Rehabilitation Implementation (International Speaker)",
+    role: "Professor of Pulmonary and Cardiac Rehabilitation, Centre for Exercise and Rehabilitation Science, University Hospitals of Leicester NHS Trust, UK",
     img: sallyImg,
   },
   {
-    name: "Dr. Rik Gosslink",
-    role: "Respiratory Rehabilitation — Past, Present & Future (International Speaker)",
-    img: null,
-  },
-  {
-    name: "Dr. Shashwat Verma",
-    role: "Pulmonary Rehabilitation in Multimorbid Patients",
-    img: null,
-  },
-  {
-    name: "Dr. Veena Nambiar",
-    role: "Cardiac Rehabilitation — Execution & Pathways in India",
-    img: null,
+    name: "Dr. Rik Gosselink",
+    role: "Emeritus Professor, Department of Rehabilitation Sciences, Faculty of Movement and Rehabilitation Sciences, University of Leuven, Belgium. Extraordinary Professor, Stellenbosch University, South Africa",
+    img: rikImg,
   },
   {
     name: "Dr. Sumanta Ghosh",
-    role: "Technology-Enhanced Pulmonary & Cardiac Rehabilitation",
-    img: null,
+    role: "MPTh, PhD(c) — Chief Respiratory PT, HealthSpecifics PR Clinics, Delhi-NCR & Assam",
+    img: sumantaImg,
+  },
+  {
+    name: "Dr. Veena Kiran Nambiar",
+    role: "Professor, Ramaiah College of Physiotherapy, Ramaiah Memorial Hospital, Bangalore",
+    img: veenaImg,
+  },
+  {
+    name: "Dr. Shaswat Verma",
+    role: "Associate Professor, Ramaiah College of Physiotherapy, Bangalore",
+    img: shaswatImg,
   },
 ];
 
-const CHAIRPERSONS = ["Dr. K S Satish", "Dr. Venkatesh T K"];
+const CHAIRPERSONS = [
+  {
+    name: "Dr. Venkatesh T K",
+    role: "Interventional Cardiologist, Apollo Hospital, Bangalore",
+    img: venkateshImg,
+  },
+  {
+    name: "Dr. K S Satish",
+    role: "Pulmonologist, Manipal Hospital, Bangalore",
+    img: satishImg,
+  },
+];
 
 const Countdown = () => {
   const calc = () => {
@@ -103,7 +121,7 @@ const Countdown = () => {
 
   return (
     <section className="rv-countdown">
-      <p className="revive-eyebrow">Save the Date — 12 August 2026</p>
+      <p className="revive-eyebrow">Save the Date — 23 August 2026</p>
       <h2 className="revive-heading" style={{ marginBottom: 28 }}>
         The Conclave Begins In
       </h2>
@@ -119,10 +137,51 @@ const Countdown = () => {
   );
 };
 
+const CELEBRATION_COLORS = [
+  "#61724e",
+  "#8ba36b",
+  "#c9d8b2",
+  "#f2c94c",
+  "#f2994a",
+  "#ffffff",
+];
+
 const Revive2026 = () => {
+  const [celebrate, setCelebrate] = useState(true);
+  const [winSize, setWinSize] = useState({
+    width: typeof window !== "undefined" ? window.innerWidth : 0,
+    height: typeof window !== "undefined" ? window.innerHeight : 0,
+  });
+
+  useEffect(() => {
+    const onResize = () =>
+      setWinSize({ width: window.innerWidth, height: window.innerHeight });
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+
   return (
     <HelmetProvider>
       <div className="revive-page">
+        {celebrate && (
+          <Confetti
+            width={winSize.width}
+            height={winSize.height}
+            numberOfPieces={500}
+            recycle={false}
+            gravity={0.22}
+            initialVelocityY={14}
+            tweenDuration={1000}
+            colors={CELEBRATION_COLORS}
+            onConfettiComplete={() => setCelebrate(false)}
+            style={{
+              position: "fixed",
+              inset: 0,
+              zIndex: 9999,
+              pointerEvents: "none",
+            }}
+          />
+        )}
         <Helmet>
           <title>{SEO_TITLE}</title>
           <meta name="description" content={SEO_DESCRIPTION} />
@@ -249,11 +308,23 @@ const Revive2026 = () => {
             line-height: 1.75;
           }
 
+          .split-card .split-img {
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 14px 34px rgba(47, 54, 26, 0.12);
+          }
+
           .split-card img {
             width: 100%;
             height: clamp(280px, 34vw, 420px);
             object-fit: cover;
             border-radius: 24px;
+            transition: transform 0.6s ease;
+          }
+
+          .split-card .split-img:hover img,
+          .split-card img:hover {
+            transform: scale(1.05);
           }
 
           .point {
@@ -266,6 +337,15 @@ const Revive2026 = () => {
             background: ${T.soft};
             border: 1px solid ${T.border};
             margin-top: 12px;
+            transition: transform 0.25s ease, background 0.25s ease,
+                        border-color 0.25s ease, box-shadow 0.25s ease;
+          }
+
+          .point:hover {
+            transform: translateX(8px);
+            background: ${T.white};
+            border-color: rgba(97, 114, 78, 0.4);
+            box-shadow: 0 10px 26px rgba(47, 54, 26, 0.1);
           }
 
           .point span {
@@ -279,6 +359,12 @@ const Revive2026 = () => {
             justify-content: center;
             font-weight: 700;
             font-size: 13px;
+            transition: background 0.25s ease, transform 0.25s ease;
+          }
+
+          .point:hover span {
+            background: linear-gradient(135deg, #e9c46a 0%, ${T.green} 70%);
+            transform: scale(1.12);
           }
 
           .point p { margin: 0; color: ${T.text}; line-height: 1.55; }
@@ -481,54 +567,126 @@ const Revive2026 = () => {
           html { scroll-behavior: smooth; }
           #about, #highlights, #speakers, #register { scroll-margin-top: 96px; }
 
+          .speakers-section {
+            background:
+              radial-gradient(640px 320px at 10% 6%, rgba(255, 255, 255, 0.09), transparent 60%),
+              radial-gradient(520px 280px at 90% 94%, rgba(233, 196, 106, 0.14), transparent 60%),
+              linear-gradient(160deg, ${T.deep} 0%, ${T.green} 100%);
+            overflow: hidden;
+          }
+
+          .speakers-section .revive-eyebrow { color: #e9c46a; }
+          .speakers-section .revive-heading { color: #ffffff; }
+
           .speakers-full {
             width: 100%;
             padding: 0 18px;
           }
 
           .speaker-slide {
+            position: relative;
             display: flex;
-            gap: 16px;
+            gap: 18px;
             align-items: center;
-            padding: 18px 20px;
+            padding: 20px 22px;
             border-radius: 20px;
-            min-height: 138px;
+            min-height: 150px;
             height: 100%;
+            overflow: hidden;
             box-shadow: none !important;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+          }
+
+          .speaker-slide:hover,
+          .speaker-slide:focus-within {
+            transform: translateY(-6px) scale(1.05);
+            z-index: 30;
+            box-shadow: 0 18px 44px rgba(47, 54, 26, 0.2) !important;
+          }
+
+          .speaker-photo {
+            flex-shrink: 0;
+            padding: 4px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #e9c46a 0%, ${T.green} 55%, ${T.deep} 100%);
+            box-shadow: 0 8px 22px rgba(47, 54, 26, 0.18);
           }
 
           .speaker-photo img,
           .speaker-initial {
-            width: 92px;
-            height: 92px;
+            width: 100px;
+            height: 100px;
             object-fit: cover;
             object-position: top center;
-            border-radius: 16px;
-            flex-shrink: 0;
+            border-radius: 50%;
+            background: ${T.soft};
+            border: 3px solid #ffffff;
           }
 
           .speaker-initial {
             display: flex;
             align-items: center;
             justify-content: center;
-            background: ${T.light};
             color: ${T.green};
-            font-size: 36px;
+            font-size: 40px;
             font-weight: 700;
-            border: 1px solid ${T.border};
           }
-
-          .speaker-photo { flex-shrink: 0; }
 
           .speaker-info h3 {
             color: ${T.text};
-            font-size: 1.05rem;
+            font-size: 1.1rem;
             font-weight: 700;
-            margin: 6px 0 6px;
+            margin: 6px 0 0;
+          }
+
+          .speaker-hint {
+            margin: 9px 0 0;
+            font-size: 11.5px;
+            letter-spacing: 0.4px;
+            color: ${T.muted};
+            opacity: 0.8;
+          }
+
+          .speaker-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 14px 18px;
+            background: linear-gradient(150deg, ${T.deep} 0%, ${T.green} 100%);
+            border-radius: 20px;
+            opacity: 0;
+            transform: translateY(14px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            pointer-events: none;
+          }
+
+          .speaker-overlay img {
+            width: 66px;
+            height: 66px;
+            object-fit: cover;
+            object-position: top center;
+            border-radius: 50%;
+            border: 3px solid rgba(255, 255, 255, 0.75);
+            flex-shrink: 0;
+          }
+
+          .speaker-slide:hover .speaker-overlay,
+          .speaker-slide:focus-within .speaker-overlay {
+            opacity: 1;
+            transform: translateY(0);
+          }
+
+          .speaker-overlay h3 {
+            color: #ffffff;
+            font-size: 1rem;
+            font-weight: 700;
+            margin: 0 0 6px;
           }
 
           .speaker-role {
-            color: ${T.muted};
+            color: rgba(255, 255, 255, 0.88);
             font-size: 12.5px;
             line-height: 1.5;
             margin: 0;
@@ -540,6 +698,9 @@ const Revive2026 = () => {
           .speakers-marquee .swiper-wrapper {
             transition-timing-function: linear !important;
           }
+
+          /* room for the hover pop-out so it isn't clipped */
+          .speakers-marquee { padding: 18px 0; }
 
           .highlights-full {
             width: 100%;
@@ -556,6 +717,12 @@ const Revive2026 = () => {
             border: 1px solid ${T.border};
             box-shadow: 0 18px 44px rgba(47,54,26,.16);
             background: ${T.white};
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+          }
+
+          .highlight-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 26px 56px rgba(47, 54, 26, 0.24);
           }
 
           .highlight-card img {
@@ -563,33 +730,84 @@ const Revive2026 = () => {
             height: clamp(220px, 26vw, 320px);
             object-fit: cover;
             display: block;
+            transition: transform 0.6s ease;
+          }
+
+          .highlight-card:hover img {
+            transform: scale(1.07);
           }
 
           .faculty-card {
-            padding: 30px 24px;
+            position: relative;
+            padding: 36px 26px 30px;
             text-align: center;
+            background: linear-gradient(180deg, #ffffff 0%, ${T.soft} 100%);
+            border: 1px solid ${T.border};
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+          }
+
+          .faculty-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 72px;
+            height: 4px;
+            border-radius: 0 0 6px 6px;
+            background: linear-gradient(90deg, #e9c46a, ${T.green});
+          }
+
+          .faculty-card:hover {
+            transform: scale(1.07);
+            box-shadow: 0 18px 44px rgba(47, 54, 26, 0.18);
+          }
+
+          .faculty-badge {
+            display: inline-block;
+            padding: 5px 14px;
+            border-radius: 999px;
+            background: ${T.light};
+            color: ${T.deep};
+            font-size: 10.5px;
+            font-weight: 700;
+            letter-spacing: 1.6px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
           }
 
           .faculty-card h3 {
             color: ${T.text};
             font-size: clamp(1.05rem, 1.6vw, 1.25rem);
             font-weight: 600;
-            margin: 14px 0 0;
+            margin: 16px 0 0;
           }
 
-          .faculty-avatar {
-            width: 64px;
-            height: 64px;
+          .faculty-photo-ring {
+            display: inline-block;
+            padding: 4px;
             border-radius: 50%;
-            background: ${T.light};
-            color: ${T.green};
-            font-weight: 700;
-            font-size: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto;
-            border: 2px solid ${T.border};
+            background: linear-gradient(135deg, #e9c46a 0%, ${T.green} 55%, ${T.deep} 100%);
+            box-shadow: 0 10px 26px rgba(47, 54, 26, 0.18);
+          }
+
+          .faculty-photo {
+            width: 128px;
+            height: 128px;
+            object-fit: cover;
+            object-position: top center;
+            border-radius: 50%;
+            background: ${T.soft};
+            border: 3px solid #ffffff;
+            display: block;
+          }
+
+          .faculty-role {
+            color: ${T.muted};
+            font-size: 13px;
+            line-height: 1.55;
+            margin: 8px 0 0;
           }
 
           .grid-2-center {
@@ -628,6 +846,13 @@ const Revive2026 = () => {
             text-decoration: none;
             margin: 18px 8px 0;
             box-shadow: 0 14px 34px rgba(0,0,0,0.16);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+          }
+
+          .cta-btn:hover {
+            transform: translateY(-4px) scale(1.04);
+            box-shadow: 0 0 22px rgba(233, 196, 106, 0.5),
+                        0 20px 44px rgba(0, 0, 0, 0.22);
           }
 
           .cta-btn.solid {
@@ -708,11 +933,16 @@ const Revive2026 = () => {
                 The upcoming conclave in Bengaluru brings together clinicians,
                 rehabilitation specialists, therapists and technology-driven
                 healthcare thinkers to rethink how pulmonary and cardiac
-                rehabilitation is delivered. Main Conclave: 12 August 2026, Bengaluru — venue to be
+                rehabilitation is delivered. Main Conclave: 23 August 2026, Bengaluru — venue to be
                 announced.
               </p>
               <div>
-                <a className="cta-btn solid" href="tel:+916364928680">
+                <a
+                  className="cta-btn solid"
+                  href="https://forms.gle/VpHGZ17V5tZDi9fF6"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   Register Your Interest
                 </a>
               </div>
@@ -804,7 +1034,7 @@ const Revive2026 = () => {
         </section>
 
         {/* SPEAKERS SLIDER */}
-        <section id="speakers" className="revive-section white" style={{ paddingBottom: 40 }}>
+        <section id="speakers" className="revive-section speakers-section" style={{ paddingBottom: 48 }}>
           <div className="revive-wrap">
             <div className="revive-center" style={{ marginBottom: 30 }}>
               <p className="revive-eyebrow">Faculty</p>
@@ -823,7 +1053,7 @@ const Revive2026 = () => {
               }}
               loop
               speed={9000}
-              spaceBetween={18}
+              spaceBetween={30}
               slidesPerView={1}
               breakpoints={{
                 640: { slidesPerView: 2 },
@@ -832,7 +1062,7 @@ const Revive2026 = () => {
             >
               {SPEAKERS.map((sp) => (
                 <SwiperSlide key={sp.name}>
-                  <div className="speaker-slide revive-card">
+                  <div className="speaker-slide revive-card" tabIndex={0}>
                     <div className="speaker-photo">
                       {sp.img ? (
                         <img src={sp.img} alt={sp.name} />
@@ -845,7 +1075,14 @@ const Revive2026 = () => {
                     <div className="speaker-info">
                       <p className="revive-eyebrow">Speaker</p>
                       <h3>{sp.name}</h3>
-                      <p className="speaker-role">{sp.role}</p>
+                      <p className="speaker-hint">Hover for profile →</p>
+                    </div>
+                    <div className="speaker-overlay">
+                      {sp.img && <img src={sp.img} alt="" />}
+                      <div>
+                        <h3>{sp.name}</h3>
+                        <p className="speaker-role">{sp.role}</p>
+                      </div>
                     </div>
                   </div>
                 </SwiperSlide>
@@ -855,7 +1092,7 @@ const Revive2026 = () => {
         </section>
 
         {/* CHAIRPERSONS */}
-        <section className="revive-section white">
+        <section className="revive-section white" style={{ paddingTop: 56 }}>
           <div className="revive-wrap">
             <div className="revive-center">
               <p className="revive-eyebrow">Faculty</p>
@@ -863,12 +1100,16 @@ const Revive2026 = () => {
             </div>
 
             <div className="grid-2-center">
-              {CHAIRPERSONS.map((name) => (
-                <div className="revive-card faculty-card" key={name}>
-                  <span className="faculty-avatar">
-                    {name.replace("Dr. ", "").charAt(0)}
-                  </span>
-                  <h3>{name}</h3>
+              {CHAIRPERSONS.map((cp) => (
+                <div className="revive-card faculty-card" key={cp.name}>
+                  <span className="faculty-badge">Chairperson</span>
+                  <div>
+                    <span className="faculty-photo-ring">
+                      <img className="faculty-photo" src={cp.img} alt={cp.name} />
+                    </span>
+                  </div>
+                  <h3>{cp.name}</h3>
+                  <p className="faculty-role">{cp.role}</p>
                 </div>
               ))}
             </div>
@@ -998,16 +1239,17 @@ const Revive2026 = () => {
             <div className="revive-card impact-card dark-card">
               <h2 className="revive-heading">Be Part of REVIVE 2026</h2>
               <p className="revive-text max">
-                Registration details will be announced soon. Reach out to
-                reserve your interest for the conclave, workshops, or the
+                Register your interest for the conclave, workshops, or the
                 pre-conference paper presentations.
               </p>
               <div>
-                <a className="cta-btn" href="tel:+916364928680">
-                  Call +91 63649 28680
-                </a>
-                <a className="cta-btn" href="mailto:admin@vaayuchest.com">
-                  admin@vaayuchest.com
+                <a
+                  className="cta-btn"
+                  href="https://forms.gle/VpHGZ17V5tZDi9fF6"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Register Your Interest
                 </a>
               </div>
             </div>
