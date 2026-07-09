@@ -1093,7 +1093,7 @@ const Revive2026 = () => {
                     text: "For everyday rehab care and clinical decisions.",
                   },
                   {
-                    title: "Case-Based Discussions",
+                    title: "Case-Based Sessions",
                     text: "On real hospital and community challenges.",
                   },
                   {
@@ -1105,8 +1105,8 @@ const Revive2026 = () => {
                     text: "Across doctors, therapists, and rehab staff.",
                   },
                   {
-                    title: "Patient-Centered Focus",
-                    text: "On recovery, function, and long-term quality of life.",
+                    title: "Hands-On Experience",
+                    text: "Practice techniques directly with expert guidance.",
                   },
                 ].map((item, i) => (
                   <div className="point" key={item.title}>
