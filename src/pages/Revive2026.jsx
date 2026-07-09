@@ -70,11 +70,6 @@ const KEYNOTE_SPEAKERS = [
 
 const SPEAKERS = [
   {
-    name: "Dr. Mary Beth Brown",
-    role: "Associate Professor, Director of Research, Division of Physical Therapy, Department of Rehabilitation Medicine, UW Medicine, Seattle, WA",
-    img: null,
-  },
-  {
     name: "Dr. K S Satish",
     role: "Pulmonologist, Manipal Hospital, Bangalore",
     img: satishImg,
