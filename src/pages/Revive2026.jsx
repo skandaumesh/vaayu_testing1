@@ -77,21 +77,6 @@ const SPEAKERS = [
     img: satishImg,
     tag: "Chairperson",
   },
-  {
-    name: "Dr. Vivek Anand Padegal",
-    role: "Senior Consultant — Pulmonology, Fortis Hospital, Bangalore",
-    img: null,
-  },
-  {
-    name: "Dr. Shivalingaswamy Salimath",
-    role: "Interventional Pulmonologist, Trustwell Hospitals Pvt Ltd, Bangalore",
-    img: null,
-  },
-  {
-    name: "Dr. Abraham Samuel Babu",
-    role: "Additional Professor, Department of Physiotherapy, MCHP, MAHE, Manipal",
-    img: null,
-  },
 ];
 
 const OTHER_FACULTY = [
