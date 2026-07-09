@@ -62,37 +62,62 @@ const SPEAKERS = [
     img: sallyImg,
   },
   {
+    name: "Dr. Mary Beth Brown",
+    role: "Associate Professor, Director of Research, Division of Physical Therapy, Department of Rehabilitation Medicine, UW Medicine, Seattle, WA",
+    img: null,
+  },
+  {
     name: "Dr. Rik Gosselink",
     role: "Emeritus Professor, Department of Rehabilitation Sciences, Faculty of Movement and Rehabilitation Sciences, University of Leuven, Belgium. Extraordinary Professor, Stellenbosch University, South Africa",
     img: rikImg,
   },
   {
+    name: "Dr. K S Satish",
+    role: "Pulmonologist, Manipal Hospital, Bangalore",
+    img: satishImg,
+    tag: "Chairperson",
+  },
+  {
+    name: "Dr. Vivek Anand Padegal",
+    role: "Senior Consultant — Pulmonology, Fortis Hospital, Bangalore",
+    img: null,
+  },
+  {
+    name: "Dr. Shivalingaswamy Salimath",
+    role: "Interventional Pulmonologist, Trustwell Hospitals Pvt Ltd, Bangalore",
+    img: null,
+  },
+  {
+    name: "Dr. Abraham Samuel Babu",
+    role: "Additional Professor, Department of Physiotherapy, MCHP, MAHE, Manipal",
+    img: null,
+  },
+];
+
+const OTHER_FACULTY = [
+  {
+    name: "Dr. Venkatesh T K",
+    role: "Interventional Cardiologist, Apollo Hospital, Bangalore",
+    img: venkateshImg,
+    tag: "Chairperson",
+  },
+  {
     name: "Dr. Sumanta Ghosh",
     role: "MPTh, PhD(c) — Chief Respiratory PT, HealthSpecifics PR Clinics, Delhi-NCR & Assam",
     img: sumantaImg,
+    tag: "Speaker",
   },
   {
     name: "Dr. Veena Kiran Nambiar",
     role: "Professor, Ramaiah College of Physiotherapy, Ramaiah Memorial Hospital, Bangalore",
     img: veenaImg,
+    tag: "Speaker",
   },
   {
     name: "Dr. Shaswat Verma",
     role: "Associate Professor, Ramaiah College of Physiotherapy, Bangalore",
     img: shaswatImg,
-  },
-];
-
-const CHAIRPERSONS = [
-  {
-    name: "Dr. Venkatesh T K",
-    role: "Interventional Cardiologist, Apollo Hospital, Bangalore",
-    img: venkateshImg,
-  },
-  {
-    name: "Dr. K S Satish",
-    role: "Pulmonologist, Manipal Hospital, Bangalore",
-    img: satishImg,
+    tag: "Speaker",
   },
 ];
 
@@ -1099,7 +1124,7 @@ const Revive2026 = () => {
           <div className="revive-wrap">
             <div className="revive-center" style={{ marginBottom: 30 }}>
               <p className="revive-eyebrow">Faculty</p>
-              <h2 className="revive-heading">Meet Our Speakers</h2>
+              <h2 className="revive-heading">Speakers &amp; Chairpersons</h2>
             </div>
           </div>
 
@@ -1134,7 +1159,7 @@ const Revive2026 = () => {
                       )}
                     </div>
                     <div className="speaker-info">
-                      <p className="revive-eyebrow">Speaker</p>
+                      <p className="revive-eyebrow">{sp.tag || "Speaker"}</p>
                       <h3>{sp.name}</h3>
                       <p className="speaker-hint">Hover for profile →</p>
                       <p className="speaker-role-inline">{sp.role}</p>
@@ -1151,20 +1176,12 @@ const Revive2026 = () => {
               ))}
             </Swiper>
           </div>
-        </section>
 
-        {/* CHAIRPERSONS */}
-        <section className="revive-section white" style={{ paddingTop: 56 }}>
-          <div className="revive-wrap">
-            <div className="revive-center">
-              <p className="revive-eyebrow">Faculty</p>
-              <h2 className="revive-heading">Chairpersons</h2>
-            </div>
-
+          <div className="revive-wrap" style={{ marginTop: 34 }}>
             <div className="grid-2-center">
-              {CHAIRPERSONS.map((cp) => (
+              {OTHER_FACULTY.map((cp) => (
                 <div className="revive-card faculty-card" key={cp.name}>
-                  <span className="faculty-badge">Chairperson</span>
+                  <span className="faculty-badge">{cp.tag}</span>
                   <div>
                     <span className="faculty-photo-ring">
                       <img className="faculty-photo" src={cp.img} alt={cp.name} />
