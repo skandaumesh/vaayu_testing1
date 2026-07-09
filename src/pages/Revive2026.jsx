@@ -50,7 +50,7 @@ const T = {
   border: "rgba(97,114,78,0.14)",
 };
 
-const SPEAKERS = [
+const KEYNOTE_SPEAKERS = [
   {
     name: "Dr. Ganesh Raghu",
     role: "M.D., ATSF, FCCP, FACP — Director, Center for Interstitial Lung Disease (ILD) & Co-Director, Scleroderma Clinic, UWMC. Professor of Medicine, Adjunct Professor of Laboratory Medicine and Pathology, University of Washington (UW)",
@@ -62,47 +62,42 @@ const SPEAKERS = [
     img: sallyImg,
   },
   {
+    name: "Dr. Rik Gosselink",
+    role: "Emeritus Professor, Department of Rehabilitation Sciences, Faculty of Movement and Rehabilitation Sciences, University of Leuven, Belgium. Extraordinary Professor, Stellenbosch University, South Africa",
+    img: rikImg,
+  },
+];
+
+const SPEAKERS = [
+  {
     name: "Dr. Mary Beth Brown",
     role: "Associate Professor, Director of Research, Division of Physical Therapy, Department of Rehabilitation Medicine, UW Medicine, Seattle, WA",
     img: null,
   },
   {
-    name: "Dr. Rik Gosselink",
-    role: "Emeritus Professor, Department of Rehabilitation Sciences, Faculty of Movement and Rehabilitation Sciences, University of Leuven, Belgium. Extraordinary Professor, Stellenbosch University, South Africa",
-    img: rikImg,
-  },
-  {
     name: "Dr. K S Satish",
     role: "Pulmonologist, Manipal Hospital, Bangalore",
     img: satishImg,
-    tag: "Chairperson",
   },
-];
-
-const OTHER_FACULTY = [
   {
     name: "Dr. Venkatesh T K",
     role: "Interventional Cardiologist, Apollo Hospital, Bangalore",
     img: venkateshImg,
-    tag: "Chairperson",
   },
   {
     name: "Dr. Sumanta Ghosh",
     role: "MPTh, PhD(c) — Chief Respiratory PT, HealthSpecifics PR Clinics, Delhi-NCR & Assam",
     img: sumantaImg,
-    tag: "Speaker",
   },
   {
     name: "Dr. Veena Kiran Nambiar",
     role: "Professor, Ramaiah College of Physiotherapy, Ramaiah Memorial Hospital, Bangalore",
     img: veenaImg,
-    tag: "Speaker",
   },
   {
     name: "Dr. Shaswat Verma",
     role: "Associate Professor, Ramaiah College of Physiotherapy, Bangalore",
     img: shaswatImg,
-    tag: "Speaker",
   },
 ];
 
@@ -155,6 +150,32 @@ const CELEBRATION_COLORS = [
   "#f2994a",
   "#ffffff",
 ];
+
+const SpeakerCard = ({ sp }) => (
+  <div className="speaker-slide revive-card" tabIndex={0}>
+    <div className="speaker-photo">
+      {sp.img ? (
+        <img src={sp.img} alt={sp.name} />
+      ) : (
+        <div className="speaker-initial">
+          {sp.name.replace("Dr. ", "").charAt(0)}
+        </div>
+      )}
+    </div>
+    <div className="speaker-info">
+      <h3>{sp.name}</h3>
+      <p className="speaker-hint">Hover for profile →</p>
+      <p className="speaker-role-inline">{sp.role}</p>
+    </div>
+    <div className="speaker-overlay">
+      {sp.img && <img src={sp.img} alt="" />}
+      <div>
+        <h3>{sp.name}</h3>
+        <p className="speaker-role">{sp.role}</p>
+      </div>
+    </div>
+  </div>
+);
 
 const Revive2026 = () => {
   const [celebrate, setCelebrate] = useState(true);
@@ -1111,6 +1132,12 @@ const Revive2026 = () => {
               <p className="revive-eyebrow">Faculty</p>
               <h2 className="revive-heading">Speakers &amp; Chairpersons</h2>
             </div>
+
+            <div className="grid-3" style={{ marginBottom: 38 }}>
+              {KEYNOTE_SPEAKERS.map((sp) => (
+                <SpeakerCard key={sp.name} sp={sp} />
+              ))}
+            </div>
           </div>
 
           <div className="speakers-full">
@@ -1133,50 +1160,10 @@ const Revive2026 = () => {
             >
               {SPEAKERS.map((sp) => (
                 <SwiperSlide key={sp.name}>
-                  <div className="speaker-slide revive-card" tabIndex={0}>
-                    <div className="speaker-photo">
-                      {sp.img ? (
-                        <img src={sp.img} alt={sp.name} />
-                      ) : (
-                        <div className="speaker-initial">
-                          {sp.name.replace("Dr. ", "").charAt(0)}
-                        </div>
-                      )}
-                    </div>
-                    <div className="speaker-info">
-                      <p className="revive-eyebrow">{sp.tag || "Speaker"}</p>
-                      <h3>{sp.name}</h3>
-                      <p className="speaker-hint">Hover for profile →</p>
-                      <p className="speaker-role-inline">{sp.role}</p>
-                    </div>
-                    <div className="speaker-overlay">
-                      {sp.img && <img src={sp.img} alt="" />}
-                      <div>
-                        <h3>{sp.name}</h3>
-                        <p className="speaker-role">{sp.role}</p>
-                      </div>
-                    </div>
-                  </div>
+                  <SpeakerCard sp={sp} />
                 </SwiperSlide>
               ))}
             </Swiper>
-          </div>
-
-          <div className="revive-wrap" style={{ marginTop: 34 }}>
-            <div className="grid-2-center">
-              {OTHER_FACULTY.map((cp) => (
-                <div className="revive-card faculty-card" key={cp.name}>
-                  <span className="faculty-badge">{cp.tag}</span>
-                  <div>
-                    <span className="faculty-photo-ring">
-                      <img className="faculty-photo" src={cp.img} alt={cp.name} />
-                    </span>
-                  </div>
-                  <h3>{cp.name}</h3>
-                  <p className="faculty-role">{cp.role}</p>
-                </div>
-              ))}
-            </div>
           </div>
         </section>
 
