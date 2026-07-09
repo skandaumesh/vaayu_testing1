@@ -159,6 +159,7 @@ const SpeakerCard = ({ sp }) => (
     </div>
     <div className="speaker-info">
       <h3>{sp.name}</h3>
+      <p className="speaker-role-brief">{sp.role}</p>
       <p className="speaker-role-inline">{sp.role}</p>
     </div>
     <div className="speaker-overlay">
@@ -709,11 +710,23 @@ const Revive2026 = () => {
             margin: 0;
           }
 
+          .speaker-role-brief {
+            margin: 7px 0 0;
+            color: ${T.muted};
+            font-size: 12.5px;
+            line-height: 1.5;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+          }
+
           .speaker-role-inline { display: none; }
 
           /* Touch devices & small screens: no hover, so show credentials inline */
           @media (hover: none), (max-width: 640px) {
-            .speaker-overlay { display: none; }
+            .speaker-overlay,
+            .speaker-role-brief { display: none; }
 
             .speaker-role-inline {
               display: block;
