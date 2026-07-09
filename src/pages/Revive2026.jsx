@@ -899,6 +899,31 @@ const Revive2026 = () => {
             box-shadow: 0 14px 34px rgba(97,114,78,0.35);
           }
 
+          @keyframes ctaPulse {
+            0% {
+              transform: scale(1);
+              box-shadow: 0 0 0 0 rgba(233, 196, 106, 0.65),
+                          0 14px 34px rgba(97, 114, 78, 0.35);
+            }
+            70% {
+              transform: scale(1.05);
+              box-shadow: 0 0 0 18px rgba(233, 196, 106, 0),
+                          0 14px 34px rgba(97, 114, 78, 0.35);
+            }
+            100% {
+              transform: scale(1);
+              box-shadow: 0 0 0 0 rgba(233, 196, 106, 0),
+                          0 14px 34px rgba(97, 114, 78, 0.35);
+            }
+          }
+
+          .cta-btn.pulse { animation: ctaPulse 1.7s ease-out infinite; }
+          .cta-btn.pulse:hover { animation: none; }
+
+          @media (prefers-reduced-motion: reduce) {
+            .cta-btn.pulse { animation: none; }
+          }
+
           @media (max-width: 1050px) {
             .grid-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
           }
@@ -968,20 +993,18 @@ const Revive2026 = () => {
                 Technology
               </p>
               <p className="revive-text max">
-                The upcoming conclave in Bengaluru brings together clinicians,
-                rehabilitation specialists, therapists and technology-driven
-                healthcare thinkers to rethink how pulmonary and cardiac
-                rehabilitation is delivered. Main Conclave: 23 August 2026, Bengaluru — venue to be
-                announced.
+                Join clinicians, therapists and innovators reimagining pulmonary
+                &amp; cardiac rehabilitation. 23 August 2026, Bengaluru — venue
+                to be announced.
               </p>
               <div>
                 <a
-                  className="cta-btn solid"
+                  className="cta-btn solid pulse"
                   href="https://forms.gle/VpHGZ17V5tZDi9fF6"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Register Your Interest
+                  Register Now
                 </a>
               </div>
             </div>
@@ -1283,12 +1306,12 @@ const Revive2026 = () => {
               </p>
               <div>
                 <a
-                  className="cta-btn"
+                  className="cta-btn pulse"
                   href="https://forms.gle/VpHGZ17V5tZDi9fF6"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Register Your Interest
+                  Register Now
                 </a>
               </div>
             </div>
