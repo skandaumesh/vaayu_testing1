@@ -303,6 +303,19 @@ const Revive2026 = () => {
             padding: clamp(110px, 12vw, 150px) 20px;
           }
 
+          .hero-date {
+            display: inline-block;
+            margin: 18px auto 0;
+            padding: 12px 26px;
+            border-radius: 999px;
+            background: ${T.green};
+            color: #fff;
+            font-weight: 700;
+            font-size: clamp(1.05rem, 2.4vw, 1.45rem);
+            line-height: 1.4;
+            box-shadow: 0 10px 28px rgba(47,54,26,.25);
+          }
+
           .hero-card {
             max-width: 980px;
             margin: auto;
@@ -1023,8 +1036,10 @@ const Revive2026 = () => {
               </p>
               <p className="revive-text max">
                 Join clinicians, therapists and innovators reimagining pulmonary
-                &amp; cardiac rehabilitation. 23 August 2026 — Hyatt Centric
-                Hebbal, Bengaluru.
+                &amp; cardiac rehabilitation.
+              </p>
+              <p className="hero-date">
+                23 August 2026 &mdash; Hyatt Centric Hebbal, Bengaluru
               </p>
               <div>
                 <a
@@ -1105,7 +1120,7 @@ const Revive2026 = () => {
                     text: "Across doctors, therapists, and rehab staff.",
                   },
                   {
-                    title: "Hands-On Experience",
+                    title: "Hands-On Workshop",
                     text: "Practice techniques directly with expert guidance.",
                   },
                 ].map((item, i) => (
