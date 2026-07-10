@@ -1023,8 +1023,8 @@ const Revive2026 = () => {
               </p>
               <p className="revive-text max">
                 Join clinicians, therapists and innovators reimagining pulmonary
-                &amp; cardiac rehabilitation. 23 August 2026, Bengaluru — venue
-                to be announced.
+                &amp; cardiac rehabilitation. 23 August 2026 — Hyatt Centric
+                Hebbal, Bengaluru.
               </p>
               <div>
                 <a
