@@ -13,10 +13,16 @@ import ganeshImg from "../assets/img/Dr Ganesh Raghu.png";
 import sallyImg from "../assets/img/Dr Sally.png";
 import rikImg from "../assets/img/Dr Rik framed.png";
 import shaswatImg from "../assets/img/Dr Shashwat.png";
-import sumantaImg from "../assets/img/Dr Sumanta ghosh.png";
 import veenaImg from "../assets/img/Dr veena.png";
 import satishImg from "../assets/img/Dr k s Satish.png";
 import venkateshImg from "../assets/img/Dr Venkatesh T k.png";
+import waqarImg from "../assets/img/waqar naqvi.png";
+import barryImg from "../assets/img/barry.jpeg";
+import mariyaImg from "../assets/img/dr mariya.jpeg";
+import sameerImg from "../assets/img/sameer.jpeg";
+import yogitaImg from "../assets/img/DR YOGITA HATMODE.jpg";
+import dhilipImg from "../assets/img/dr dilip.jpeg";
+import shradhaImg from "../assets/img/dr shradha.jpeg";
 
 import hl1 from "../assets/highlights/web/h1.jpg";
 import hl2 from "../assets/highlights/web/h2.jpg";
@@ -66,6 +72,16 @@ const KEYNOTE_SPEAKERS = [
     role: "Emeritus Professor, Department of Rehabilitation Sciences, Faculty of Movement and Rehabilitation Sciences, University of Leuven, Belgium. Extraordinary Professor, Stellenbosch University, South Africa",
     img: rikImg,
   },
+  {
+    name: "Dr. Waqar M. Naqvi",
+    role: "PhD, FIAP, International FIAMER Institute Fellow — Founder & Director, AD VIVUM Education and Research, Qatar",
+    img: waqarImg,
+  },
+  {
+    name: "Dr. Barry A. Franklin",
+    role: "PhD, FACSM, MAACVPR, FAHA, FASPC, FPCNA (Hon) — Director (Emeritus), Preventive Cardiology and Cardiac Rehabilitation, Corewell Health East, William Beaumont University Hospital, Royal Oak",
+    img: barryImg,
+  },
 ];
 
 const SPEAKERS = [
@@ -80,11 +96,6 @@ const SPEAKERS = [
     img: venkateshImg,
   },
   {
-    name: "Dr. Sumanta Ghosh",
-    role: "MPTh, PhD(c) — Chief Respiratory PT, HealthSpecifics PR Clinics, Delhi-NCR & Assam",
-    img: sumantaImg,
-  },
-  {
     name: "Dr. Veena Kiran Nambiar",
     role: "Professor, Ramaiah College of Physiotherapy, Ramaiah Memorial Hospital, Bangalore",
     img: veenaImg,
@@ -93,6 +104,31 @@ const SPEAKERS = [
     name: "Dr. Shaswat Verma",
     role: "Associate Professor, Ramaiah College of Physiotherapy, Bangalore",
     img: shaswatImg,
+  },
+  {
+    name: "Dr. Mariya Jiandani",
+    role: "Prof & HOD (Physiotherapy), Seth GSMC & KEMH. Cardiac Rehabilitation Foundation Certified, FAIMER Fellow & Faculty, IFI Fellow 2024",
+    img: mariyaImg,
+  },
+  {
+    name: "Dr. Sameer Bansal",
+    role: "Organizing Chairman, REVIVE 2025 — Consultant Pulmonologist & Clinical Head, Vaayu Chest & Sleep Specialists",
+    img: sameerImg,
+  },
+  {
+    name: "Dr. Yogita Hatmode",
+    role: "Organizing Secretary, REVIVE 2025 — Head, Pulmonary Wellness & Rehabilitation, Vaayu Chest & Sleep Specialists",
+    img: yogitaImg,
+  },
+  {
+    name: "Dr. R. Dhilip Kumar",
+    role: "HOD — Cardiac Rehab, Vaayu Chest & Sleep Speciality Centre",
+    img: dhilipImg,
+  },
+  {
+    name: "Dr. Shradha",
+    role: "Specialist — Pulmonary Rehabilitation, Vaayu Chest & Sleep Specialists",
+    img: shradhaImg,
   },
 ];
 
@@ -146,8 +182,11 @@ const CELEBRATION_COLORS = [
   "#ffffff",
 ];
 
-const SpeakerCard = ({ sp }) => (
-  <div className="speaker-slide revive-card" tabIndex={0}>
+const SpeakerCard = ({ sp, variant }) => (
+  <div
+    className={`speaker-slide revive-card${variant === "keynote" ? " keynote" : ""}`}
+    tabIndex={0}
+  >
     <div className="speaker-photo">
       {sp.img ? (
         <img src={sp.img} alt={sp.name} />
@@ -411,6 +450,12 @@ const Revive2026 = () => {
           .grid-3 {
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 22px;
+          }
+
+          .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
             gap: 22px;
           }
 
@@ -693,15 +738,7 @@ const Revive2026 = () => {
             pointer-events: none;
           }
 
-          .speaker-overlay img {
-            width: 66px;
-            height: 66px;
-            object-fit: cover;
-            object-position: top center;
-            border-radius: 50%;
-            border: 3px solid rgba(255, 255, 255, 0.75);
-            flex-shrink: 0;
-          }
+          .speaker-overlay img { display: none; }
 
           .speaker-slide:hover .speaker-overlay,
           .speaker-slide:focus-within .speaker-overlay {
@@ -735,6 +772,73 @@ const Revive2026 = () => {
           }
 
           .speaker-role-inline { display: none; }
+
+          /* Keynote row: photo centered on top, name under it, info on hover */
+          .speaker-slide.keynote {
+            flex-direction: column;
+            justify-content: flex-start;
+            text-align: center;
+            gap: 14px;
+            padding: 30px 16px 26px;
+            background: linear-gradient(180deg, #ffffff 0%, #f5f8ef 100%);
+            border: 1px solid rgba(233, 196, 106, 0.45) !important;
+          }
+
+          .speaker-slide.keynote::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 62%;
+            height: 4px;
+            border-radius: 0 0 10px 10px;
+            background: linear-gradient(90deg, #e9c46a, ${T.green});
+          }
+
+          .speaker-slide.keynote .speaker-photo img,
+          .speaker-slide.keynote .speaker-initial {
+            width: 118px;
+            height: 118px;
+          }
+
+          .speaker-slide.keynote .speaker-info h3 {
+            margin: 0;
+            font-size: 1.16rem;
+          }
+
+          .speaker-photo { transition: box-shadow 0.3s ease; }
+
+          .speaker-slide.keynote:hover .speaker-photo,
+          .speaker-slide.keynote:focus-within .speaker-photo {
+            box-shadow: 0 0 0 7px rgba(233, 196, 106, 0.28),
+                        0 14px 34px rgba(47, 54, 26, 0.3);
+          }
+
+          .speaker-slide.keynote .speaker-role-brief { display: none; }
+
+          .speaker-slide.keynote .speaker-overlay {
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+            gap: 10px;
+          }
+
+          /* marquee cards: tie into the gold accent language */
+          .speaker-slide:not(.keynote) {
+            border: 1px solid rgba(233, 196, 106, 0.3) !important;
+          }
+
+          /* gold underline accent below the section heading */
+          .speakers-section .revive-center::after {
+            content: "";
+            display: block;
+            width: 76px;
+            height: 4px;
+            margin: 18px auto 0;
+            border-radius: 999px;
+            background: linear-gradient(90deg, #e9c46a, rgba(233, 196, 106, 0.25));
+          }
 
           /* Touch devices & small screens: no hover, so show credentials inline */
           @media (hover: none), (max-width: 640px) {
@@ -967,7 +1071,8 @@ const Revive2026 = () => {
           }
 
           @media (max-width: 1050px) {
-            .grid-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .grid-3,
+            .grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
           }
 
           @media (max-width: 900px) {
@@ -994,7 +1099,8 @@ const Revive2026 = () => {
               border-radius: 24px !important;
             }
 
-            .grid-3 { grid-template-columns: 1fr; }
+            .grid-3,
+            .grid-4 { grid-template-columns: 1fr; }
 
             .split-card img { height: 260px; }
           }
@@ -1146,9 +1252,9 @@ const Revive2026 = () => {
               <h2 className="revive-heading">Speakers &amp; Chairpersons</h2>
             </div>
 
-            <div className="grid-3" style={{ marginBottom: 38 }}>
+            <div className="grid-4" style={{ marginBottom: 38 }}>
               {KEYNOTE_SPEAKERS.map((sp) => (
-                <SpeakerCard key={sp.name} sp={sp} />
+                <SpeakerCard key={sp.name} sp={sp} variant="keynote" />
               ))}
             </div>
           </div>
