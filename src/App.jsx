@@ -13,6 +13,7 @@ import NotFound from "./pages/NotFound";
 
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import SeoManager from "./components/SeoManager";
 import Home from "./pages/Home";
 import Services from "./components/Services";
 import DoctorsAndTeam from "./components/DoctorsAndTeam";
@@ -151,6 +152,7 @@ const App = () => {
   return (
     <Router>
       <ScrollToTop />
+      <SeoManager />
       <AnalyticsTracker />
 
       <Navbar />
