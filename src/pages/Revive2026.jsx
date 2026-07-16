@@ -140,6 +140,7 @@ const EVENT_SCHEMA = {
   name: "REVIVE 2026 — Conclave of Pulmonary & Cardiac Rehabilitation",
   description: SEO_DESCRIPTION,
   startDate: "2026-08-23T08:45:00+05:30",
+  endDate: "2026-08-23T18:00:00+05:30",
   eventStatus: "https://schema.org/EventScheduled",
   eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
   url: `${BASE_URL}/revive-2026`,
