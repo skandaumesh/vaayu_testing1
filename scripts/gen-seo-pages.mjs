@@ -99,8 +99,10 @@ const headExtras = `
   </head>`;
 html = html.replace("</head>", headExtras);
 
-// Static event summary for non-JS crawlers (inside #root so React replaces it on mount)
-const staticSummary = `<div id="root"><main>
+// Static event summary for non-JS crawlers (inside #root so React replaces it
+// on mount). Visually hidden so browsers don't flash unstyled text before
+// React loads — crawlers parse the HTML source and ignore CSS.
+const staticSummary = `<div id="root"><main style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">
   <h1>REVIVE 2026 — Reimagining Pulmonary &amp; Cardiac Rehabilitation</h1>
   <p><strong>Date:</strong> Sunday, 23 August 2026 &middot; <strong>Venue:</strong> Hyatt Centric Hebbal, Bengaluru, Karnataka, India</p>
   <p>REVIVE 2026 is the Conclave of Pulmonary &amp; Cardiac Rehabilitation organised by Vaayu Chest &amp; Sleep Specialists, Bengaluru — practical skills, real-world challenges and future-ready technology, with hands-on workshops and international faculty.</p>
