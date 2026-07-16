@@ -132,6 +132,63 @@ const SPEAKERS = [
   },
 ];
 
+const REGISTER_URL = "https://forms.gle/VpHGZ17V5tZDi9fF6";
+
+const EVENT_SCHEMA = {
+  "@context": "https://schema.org",
+  "@type": "Event",
+  name: "REVIVE 2026 — Conclave of Pulmonary & Cardiac Rehabilitation",
+  description: SEO_DESCRIPTION,
+  startDate: "2026-08-23T08:45:00+05:30",
+  eventStatus: "https://schema.org/EventScheduled",
+  eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+  url: `${BASE_URL}/revive-2026`,
+  image: [`${BASE_URL}/revive-2026-og.jpg`],
+  location: {
+    "@type": "Place",
+    name: "Hyatt Centric Hebbal Bengaluru",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "Hebbal",
+      addressLocality: "Bengaluru",
+      addressRegion: "Karnataka",
+      addressCountry: "IN",
+    },
+  },
+  organizer: {
+    "@type": "MedicalOrganization",
+    name: "Vaayu Chest & Sleep Specialists",
+    url: BASE_URL,
+    telephone: "+91 63649 28680",
+    email: "admin@vaayuchest.com",
+  },
+  performer: [...KEYNOTE_SPEAKERS, ...SPEAKERS].map((sp) => ({
+    "@type": "Person",
+    name: sp.name,
+    description: sp.role,
+  })),
+  offers: {
+    "@type": "Offer",
+    url: REGISTER_URL,
+    availability: "https://schema.org/InStock",
+    validFrom: "2026-07-01T00:00:00+05:30",
+  },
+  subEvent: {
+    "@type": "Event",
+    name: "REVIVE 2026 Pre-Conference — Scientific Paper Presentation",
+    description:
+      "Virtual pre-conference scientific paper presentation session for pulmonary and cardiac rehabilitation research.",
+    startDate: "2026-08-20T14:30:00+05:30",
+    endDate: "2026-08-20T16:30:00+05:30",
+    eventAttendanceMode: "https://schema.org/OnlineEventAttendanceMode",
+    eventStatus: "https://schema.org/EventScheduled",
+    location: {
+      "@type": "VirtualLocation",
+      url: `${BASE_URL}/revive-2026`,
+    },
+  },
+};
+
 const Countdown = () => {
   const calc = () => {
     const diff = Math.max(0, EVENT_DATE.getTime() - Date.now());
@@ -256,6 +313,16 @@ const Revive2026 = () => {
           <meta property="og:description" content={SEO_DESCRIPTION} />
           <meta property="og:type" content="event" />
           <meta property="og:url" content={`${BASE_URL}/revive-2026`} />
+          <meta property="og:image" content={`${BASE_URL}/revive-2026-og.jpg`} />
+          <meta property="og:image:width" content="1200" />
+          <meta property="og:image:height" content="630" />
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:title" content={SEO_TITLE} />
+          <meta name="twitter:description" content={SEO_DESCRIPTION} />
+          <meta name="twitter:image" content={`${BASE_URL}/revive-2026-og.jpg`} />
+          <script type="application/ld+json">
+            {JSON.stringify(EVENT_SCHEMA)}
+          </script>
         </Helmet>
 
         <style>{`

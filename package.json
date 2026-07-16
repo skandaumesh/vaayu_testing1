@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "set NODE_OPTIONS=--dns-result-order=ipv4first && vite --host 0.0.0.0",
-    "build": "vite build",
+    "build": "vite build && node scripts/gen-seo-pages.mjs",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },

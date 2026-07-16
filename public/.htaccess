@@ -2,6 +2,10 @@
 RewriteEngine On
 RewriteBase /
 RewriteRule ^index\.html$ - [L]
+
+# SEO: serve the crawler-visible copy (event meta + JSON-LD baked in) for the
+# REVIVE 2026 route; React mounts on top of it for real visitors
+RewriteRule ^revive-2026/?$ /revive-2026.html [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . /index.html [L]
