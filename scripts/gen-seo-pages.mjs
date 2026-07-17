@@ -117,7 +117,7 @@ const staticSummary = `<div id="root"><main style="position:absolute;width:1px;h
     <li>Dr. Barry A. Franklin — Corewell Health East, William Beaumont University Hospital, USA</li>
   </ul>
   <h2>Pre-Conference</h2>
-  <p>Scientific Paper Presentation — Thursday, 20 August 2026, 02:30–04:30 PM (virtual session).</p>
+  <p>Scientific E-Poster Paper Presentation. Theme: Innovations in Cardiopulmonary Rehabilitation: From Research to Real-World Practice. Thursday, 20 August 2026, 02:30-04:30 PM (virtual session). Prizes: 1st &#8377;10,000, 2nd &#8377;7,500, 3rd &#8377;5,000.</p>
   <p><a href="${REGISTER}">Register for REVIVE 2026</a> &middot; Contact: +91 63649 28680 &middot; admin@vaayuchest.com</p>
 </main></div>`;
 html = html.replace(/<div id="root">\s*<\/div>/, staticSummary);

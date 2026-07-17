@@ -164,9 +164,9 @@ const EVENT_SCHEMA = {
   },
   subEvent: {
     "@type": "Event",
-    name: "REVIVE 2026 Pre-Conference — Scientific Paper Presentation",
+    name: "REVIVE 2026 Pre-Conference — Scientific E-Poster Paper Presentation",
     description:
-      "Virtual pre-conference scientific paper presentation session for pulmonary and cardiac rehabilitation research.",
+      "Virtual pre-conference e-poster paper presentation session. Theme: Innovations in Cardiopulmonary Rehabilitation: From Research to Real-World Practice.",
     startDate: "2026-08-20T14:30:00+05:30",
     endDate: "2026-08-20T16:30:00+05:30",
     eventAttendanceMode: "https://schema.org/OnlineEventAttendanceMode",
@@ -977,6 +977,63 @@ const Revive2026 = () => {
             transform: scale(1.07);
           }
 
+          .prize-strip {
+            margin-top: 34px;
+            text-align: center;
+          }
+
+          .prize-heading {
+            color: ${T.green};
+            font-size: clamp(1.05rem, 1.8vw, 1.3rem);
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            margin: 0 0 18px;
+          }
+
+          .prize-row {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+            max-width: 760px;
+            margin: 0 auto;
+          }
+
+          .prize-tile {
+            padding: 22px 14px;
+            text-align: center;
+            border: 1px solid rgba(233, 196, 106, 0.45) !important;
+            background: linear-gradient(180deg, #ffffff 0%, #fdf8ec 100%);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+          }
+
+          .prize-tile:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 16px 38px rgba(47, 54, 26, 0.16);
+          }
+
+          .prize-medal { font-size: 34px; line-height: 1; display: block; }
+
+          .prize-place {
+            margin: 10px 0 2px;
+            color: ${T.muted};
+            font-size: 12.5px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+          }
+
+          .prize-amount {
+            margin: 0;
+            color: ${T.deep};
+            font-size: clamp(1.3rem, 2.4vw, 1.7rem);
+            font-weight: 800;
+          }
+
+          @media (max-width: 640px) {
+            .prize-row { grid-template-columns: 1fr; max-width: 320px; }
+          }
+
           .faculty-card {
             position: relative;
             padding: 36px 26px 30px;
@@ -1396,7 +1453,7 @@ const Revive2026 = () => {
             <div className="revive-center">
               <p className="revive-eyebrow">Pre-Conference</p>
               <h2 className="revive-heading">
-                Scientific Paper Presentation
+                Scientific E-Poster Paper Presentation
               </h2>
             </div>
 
@@ -1413,12 +1470,30 @@ const Revive2026 = () => {
 
               <div>
                 {[
+                  "Theme: Innovations in Cardiopulmonary Rehabilitation: From Research to Real-World Practice",
                   "Thursday, 20 August 2026 — Virtual session",
                   "02:30 PM – 04:30 PM (2 hours)",
                 ].map((item, i) => (
                   <div className="point" key={item}>
                     <span>{i + 1}</span>
                     <p>{item}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="prize-strip">
+              <p className="prize-heading">E-Poster Presentation Prizes</p>
+              <div className="prize-row">
+                {[
+                  { place: "1st Prize", amount: "₹10,000", medal: "🥇" },
+                  { place: "2nd Prize", amount: "₹7,500", medal: "🥈" },
+                  { place: "3rd Prize", amount: "₹5,000", medal: "🥉" },
+                ].map((p) => (
+                  <div className="prize-tile revive-card" key={p.place}>
+                    <span className="prize-medal">{p.medal}</span>
+                    <p className="prize-place">{p.place}</p>
+                    <p className="prize-amount">{p.amount}</p>
                   </div>
                 ))}
               </div>
