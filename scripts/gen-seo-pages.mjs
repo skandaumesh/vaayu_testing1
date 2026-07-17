@@ -63,12 +63,8 @@ const SCHEMA = {
     telephone: "+91 63649 28680",
     email: "admin@vaayuchest.com",
   },
-  offers: {
-    "@type": "Offer",
-    url: REGISTER,
-    availability: "https://schema.org/InStock",
-    validFrom: "2026-07-01T00:00:00+05:30",
-  },
+  // NOTE: re-add "offers" with price + priceCurrency once registration fees
+  // are confirmed — enables the ticket price in Google's event snippet
 };
 
 let html = readFileSync(distIndex, "utf8");

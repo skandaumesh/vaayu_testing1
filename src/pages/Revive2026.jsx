@@ -156,12 +156,8 @@ const EVENT_SCHEMA = {
     name: sp.name,
     description: sp.role,
   })),
-  offers: {
-    "@type": "Offer",
-    url: REGISTER_URL,
-    availability: "https://schema.org/InStock",
-    validFrom: "2026-07-01T00:00:00+05:30",
-  },
+  // NOTE: re-add "offers" with price + priceCurrency once the client confirms
+  // registration fees — enables the ticket price in Google's event snippet
   subEvent: {
     "@type": "Event",
     name: "REVIVE 2026 Pre-Conference — Scientific E-Poster Paper Presentation",
