@@ -14,8 +14,6 @@ import sallyImg from "../assets/img/Dr Sally.png";
 import rikImg from "../assets/img/Dr Rik framed.png";
 import shaswatImg from "../assets/img/Dr Shashwat.png";
 import veenaImg from "../assets/img/Dr veena.png";
-import satishImg from "../assets/img/Dr k s Satish.png";
-import venkateshImg from "../assets/img/Dr Venkatesh T k.png";
 import waqarImg from "../assets/img/waqar naqvi.png";
 import barryImg from "../assets/img/barry.jpeg";
 import mariyaImg from "../assets/img/dr mariya.jpeg";
@@ -86,16 +84,6 @@ const KEYNOTE_SPEAKERS = [
 
 const SPEAKERS = [
   {
-    name: "Dr. K S Satish",
-    role: "Pulmonologist, Manipal Hospital, Bangalore",
-    img: satishImg,
-  },
-  {
-    name: "Dr. Venkatesh T K",
-    role: "Interventional Cardiologist, Apollo Hospital, Bangalore",
-    img: venkateshImg,
-  },
-  {
     name: "Dr. Veena Kiran Nambiar",
     role: "Professor, Ramaiah College of Physiotherapy, Ramaiah Memorial Hospital, Bangalore",
     img: veenaImg,
@@ -126,7 +114,7 @@ const SPEAKERS = [
     img: dhilipImg,
   },
   {
-    name: "Dr. Shradha",
+    name: "Dr. Shraddha S",
     role: "Specialist — Pulmonary Rehabilitation, Vaayu Chest & Sleep Specialists",
     img: shradhaImg,
   },
