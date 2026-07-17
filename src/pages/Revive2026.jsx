@@ -71,14 +71,14 @@ const KEYNOTE_SPEAKERS = [
     img: rikImg,
   },
   {
-    name: "Dr. Waqar M. Naqvi",
-    role: "PhD, FIAP, International FIAMER Institute Fellow — Founder & Director, AD VIVUM Education and Research, Qatar",
-    img: waqarImg,
-  },
-  {
     name: "Dr. Barry A. Franklin",
     role: "PhD, FACSM, MAACVPR, FAHA, FASPC, FPCNA (Hon) — Director (Emeritus), Preventive Cardiology and Cardiac Rehabilitation, Corewell Health East, William Beaumont University Hospital, Royal Oak",
     img: barryImg,
+  },
+  {
+    name: "Dr. Waqar M. Naqvi",
+    role: "PhD, FIAP, International FIAMER Institute Fellow — Founder & Director, AD VIVUM Education and Research, Qatar",
+    img: waqarImg,
   },
 ];
 
