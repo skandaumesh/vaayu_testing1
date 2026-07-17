@@ -100,12 +100,12 @@ const SPEAKERS = [
   },
   {
     name: "Dr. Sameer Bansal",
-    role: "Organizing Chairman, REVIVE 2025 — Consultant Pulmonologist & Clinical Head, Vaayu Chest & Sleep Specialists",
+    role: "Organizing Chairman, REVIVE 2026 — Consultant Pulmonologist & Clinical Head, Vaayu Chest & Sleep Specialists",
     img: sameerImg,
   },
   {
     name: "Dr. Yogita Hatmode",
-    role: "Organizing Secretary, REVIVE 2025 — Head, Pulmonary Wellness & Rehabilitation, Vaayu Chest & Sleep Specialists",
+    role: "Organizing Secretary, REVIVE 2026 — Head, Pulmonary Wellness & Rehabilitation, Vaayu Chest & Sleep Specialists",
     img: yogitaImg,
   },
   {
