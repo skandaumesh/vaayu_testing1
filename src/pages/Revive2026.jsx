@@ -1415,7 +1415,6 @@ const Revive2026 = () => {
                 {[
                   "Thursday, 20 August 2026 — Virtual session",
                   "02:30 PM – 04:30 PM (2 hours)",
-                  "Judges: Dr. Rasheeka & Dr. Cherishma Dsilva",
                 ].map((item, i) => (
                   <div className="point" key={item}>
                     <span>{i + 1}</span>
