@@ -114,6 +114,7 @@ const staticSummary = `<div id="root"><main style="position:absolute;width:1px;h
   </ul>
   <h2>Pre-Conference</h2>
   <p>Scientific E-Poster Paper Presentation. Theme: Innovations in Cardiopulmonary Rehabilitation: From Research to Real-World Practice. Thursday, 20 August 2026, 02:30-04:30 PM (virtual session). Prizes: 1st &#8377;10,000, 2nd &#8377;7,500, 3rd &#8377;5,000.</p>
+  <p>Abstract submissions: open 18 July 2026, close 5 August 2026 (max 350 words; original research, case reports or quality improvement projects). Selected abstracts notified 10 August 2026. E-posters due to rehabilitation@vaayuchest.com by 10 August 2026. Categories: Junior (UG/PG students), Senior (graduates, clinicians, academicians), PhD Scholars.</p>
   <p><a href="${REGISTER}">Register for REVIVE 2026</a> &middot; Contact: +91 63649 28680 &middot; admin@vaayuchest.com</p>
 </main></div>`;
 html = html.replace(/<div id="root">\s*<\/div>/, staticSummary);

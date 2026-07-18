@@ -1030,6 +1030,117 @@ const Revive2026 = () => {
             .prize-row { grid-template-columns: 1fr; max-width: 320px; }
           }
 
+          .guide-title {
+            color: ${T.green};
+            font-size: clamp(1.4rem, 2.4vw, 2rem);
+            font-weight: 600;
+            margin: 14px 0 0;
+          }
+
+          .guide-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 20px;
+          }
+
+          .guide-card {
+            padding: clamp(22px, 3vw, 32px);
+          }
+
+          .guide-card h4 {
+            color: ${T.green};
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin: 0 0 14px;
+          }
+
+          .guide-card ul {
+            margin: 0;
+            padding-left: 20px;
+            display: grid;
+            gap: 10px;
+          }
+
+          .guide-card li {
+            color: ${T.muted};
+            font-size: 14px;
+            line-height: 1.65;
+          }
+
+          .guide-card a {
+            color: ${T.green};
+            font-weight: 700;
+            text-decoration: underline;
+          }
+
+          .cat-row {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
+            margin-top: 22px;
+          }
+
+          .cat-chip {
+            background: ${T.soft};
+            border: 1px solid ${T.border};
+            border-radius: 16px;
+            padding: 16px 18px;
+            text-align: center;
+          }
+
+          .cat-chip strong {
+            display: block;
+            color: ${T.deep};
+            font-size: 14.5px;
+            margin-bottom: 4px;
+          }
+
+          .cat-chip span {
+            color: ${T.muted};
+            font-size: 12.5px;
+            line-height: 1.5;
+          }
+
+          @media (max-width: 900px) {
+            .guide-grid, .cat-row { grid-template-columns: 1fr; }
+          }
+
+          .dates-table-wrap {
+            overflow-x: auto;
+            border-radius: 14px;
+            border: 1px solid ${T.border};
+          }
+
+          .dates-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+          }
+
+          .dates-table th {
+            background: ${T.green};
+            color: #ffffff;
+            text-align: left;
+            font-weight: 700;
+            padding: 12px 18px;
+            letter-spacing: 0.04em;
+          }
+
+          .dates-table td {
+            padding: 12px 18px;
+            color: ${T.text};
+            border-top: 1px solid ${T.border};
+            line-height: 1.55;
+          }
+
+          .dates-table td:first-child {
+            font-weight: 700;
+            color: ${T.deep};
+            white-space: nowrap;
+          }
+
+          .dates-table tbody tr:nth-child(even) { background: ${T.soft}; }
+
           .faculty-card {
             position: relative;
             padding: 36px 26px 30px;
@@ -1492,6 +1603,83 @@ const Revive2026 = () => {
                     <p className="prize-amount">{p.amount}</p>
                   </div>
                 ))}
+              </div>
+            </div>
+
+            {/* ABSTRACT & E-POSTER GUIDELINES */}
+            <div className="guide-block">
+              <div className="revive-center" style={{ margin: "48px auto 26px" }}>
+                <p className="revive-eyebrow">Abstract Guidelines</p>
+                <h3 className="guide-title">Submit Your Abstract</h3>
+              </div>
+
+              <div className="guide-grid">
+                <div className="revive-card guide-card">
+                  <h4>Abstract Guidelines</h4>
+                  <ul>
+                    <li>Original research, case reports or quality improvement projects. Content must be scientific, evidence-based and free from commercial promotion.</li>
+                    <li>Abstract text within 350 words; title within 15 words.</li>
+                    <li>Sections: Introduction, Aim &amp; Objectives, Methods, Results, Conclusion and Clinical Relevance.</li>
+                    <li>Submit in MS Word or PDF with full author names, affiliations, email IDs and the presenting author&apos;s name.</li>
+                    <li>The presenting author must be registered for the conference.</li>
+                    <li><strong>Last date for abstract submission: 5th August 2026.</strong></li>
+                  </ul>
+                </div>
+
+                <div className="revive-card guide-card">
+                  <h4>E-Poster Presentation</h4>
+                  <ul>
+                    <li>Email your presentation to{" "}
+                      <a href="mailto:rehabilitation@vaayuchest.com">rehabilitation@vaayuchest.com</a>{" "}
+                      before <strong>10th August 2026</strong>.</li>
+                    <li>Static PPT only, landscape format, max 500 MB. Animations, videos and sounds are not supported.</li>
+                    <li>7 minutes per presentation: 5 minutes presentation + 2 minutes Q&amp;A.</li>
+                    <li>First slide must carry the title and abstract number. Do not disclose your identity or institute.</li>
+                    <li>All abstracts are peer reviewed by a panel. Certificates are provided to the first author of selected abstracts.</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div className="cat-row">
+                {[
+                  ["Junior Category", "UG / PG students"],
+                  ["Senior Category", "Graduates, postgraduates, clinicians, academicians"],
+                  ["PhD Scholars", "Registered PhD candidates"],
+                ].map(([cat, who]) => (
+                  <div className="cat-chip" key={cat}>
+                    <strong>{cat}</strong>
+                    <span>{who}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div className="revive-card guide-card" style={{ marginTop: 22 }}>
+                <h4>Important Dates</h4>
+                <div className="dates-table-wrap">
+                  <table className="dates-table">
+                    <thead>
+                      <tr>
+                        <th>Date</th>
+                        <th>Activity</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {[
+                        ["18th July 2026", "Abstract submissions open"],
+                        ["5th August 2026", "Abstract submissions close"],
+                        ["10th August 2026", "Selected abstracts notified by email to corresponding authors"],
+                        ["18th August 2026", "Presentation date/time confirmed; final paper to be submitted"],
+                        ["20th August 2026", "E-Poster Presentation (virtual)"],
+                        ["23rd August 2026", "Conference — Hyatt Centric Hebbal, Bengaluru"],
+                      ].map(([date, act]) => (
+                        <tr key={date}>
+                          <td>{date}</td>
+                          <td>{act}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
           </div>
