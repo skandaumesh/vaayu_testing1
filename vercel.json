@@ -1,0 +1,6 @@
+{
+  "rewrites": [
+    { "source": "/revive-2026", "destination": "/revive-2026.html" },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}
