@@ -1141,6 +1141,46 @@ const Revive2026 = () => {
 
           .dates-table tbody tr:nth-child(even) { background: ${T.soft}; }
 
+          .workshop-wrap { max-width: 980px; margin: 0 auto; }
+
+          .workshop-table td { vertical-align: top; padding: 14px 20px; }
+          .workshop-table th { padding: 14px 20px; font-size: 15px; }
+
+          .workshop-table td:first-child {
+            width: 42%;
+            color: ${T.deep};
+            font-size: 15px;
+          }
+
+          .ws-num {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 23px;
+            height: 23px;
+            border-radius: 7px;
+            background: ${T.green};
+            color: #fff;
+            font-size: 12px;
+            font-weight: 700;
+            margin-right: 9px;
+            vertical-align: middle;
+          }
+
+          .ws-stations {
+            margin: 0;
+            padding-left: 18px;
+            display: grid;
+            gap: 5px;
+          }
+
+          .ws-stations li {
+            color: ${T.muted};
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 1.5;
+          }
+
           .faculty-card {
             position: relative;
             padding: 36px 26px 30px;
@@ -1551,6 +1591,65 @@ const Revive2026 = () => {
                 </SwiperSlide>
               ))}
             </Swiper>
+          </div>
+        </section>
+
+        {/* WORKSHOP SCHEDULE */}
+        <section className="revive-section white">
+          <div className="revive-wrap">
+            <div className="revive-center">
+              <p className="revive-eyebrow">23rd August 2026 · 03:00 PM – 05:00 PM</p>
+              <h2 className="revive-heading">Workshop Schedule</h2>
+            </div>
+
+            <div className="revive-card guide-card workshop-wrap">
+              <div className="dates-table-wrap">
+                <table className="dates-table workshop-table">
+                  <thead>
+                    <tr>
+                      <th>Topic</th>
+                      <th>Work Stations</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {[
+                      {
+                        topic: "Cardiopulmonary Exercise Testing (CPET)",
+                        stations: [
+                          "Live demonstration",
+                          "Equipment setup & calibration",
+                          "Test protocol selection",
+                          "Graph plotting & pattern recognition",
+                          "Breath-by-breath data analysis",
+                        ],
+                      },
+                      {
+                        topic: "Oxygen Therapy & Non-Invasive Ventilation (NIV)",
+                        stations: ["HFNC", "NIV"],
+                      },
+                      {
+                        topic: "Airway Clearance Therapy",
+                        stations: ["Cough Assist", "SIMEOX", "Acapella"],
+                      },
+                    ].map((row, i) => (
+                      <tr key={row.topic}>
+                        <td>
+                          <span className="ws-num">{i + 1}</span>
+                          {row.topic}
+                        </td>
+                        <td>
+                          <ol className="ws-stations">
+                            {row.stations.map((s) => (
+                              <li key={s}>{s}</li>
+                            ))}
+                          </ol>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
         </section>
 
