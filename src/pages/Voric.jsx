@@ -141,6 +141,25 @@ const RESEARCH = [
   },
 ];
 
+const PUBLICATIONS = [
+  {
+    title:
+      "Respiratory and Multimorbidity Analysis in 2,450 Traffic Police Personnel in Bangalore City",
+    venue:
+      "Presented at the European Respiratory Society (ERS) Congress 2025, Amsterdam · Published in Lung India (Indian Chest Society Journal)",
+  },
+  {
+    title:
+      "An Observational Study on Respiratory Morbidity and Lung Assessment in 2,450 Traffic Police Personnel in Bengaluru City — the largest occupational-health screening study of traffic police in India",
+    venue: "National Respiratory Meeting (NAPCON), Pune · August 2025",
+  },
+  {
+    title:
+      "The BREATHE Study — prevalence of respiratory symptoms, chronic health conditions and pulmonary function among bus drivers in Bengaluru and Karnataka",
+    venue: "National Respiratory Meeting (NAPCON), Pune · August 2025",
+  },
+];
+
 const NAV = [
   ["about", "About"],
   ["why", "Why VORIC"],
@@ -360,6 +379,42 @@ const Voric = () => {
             border-top: 1px solid ${T.border}; padding-top: 12px;
           }
 
+          /* BACKGROUND & AIM */
+          .bg-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 18px; margin-bottom: 34px;
+          }
+          .bg-stat {
+            padding: 28px 22px; text-align: center;
+            transition: transform .28s ease, box-shadow .28s ease;
+          }
+          .bg-stat:hover { transform: translateY(-5px); box-shadow: 0 24px 50px rgba(47,54,26,.14); }
+          .bg-num {
+            font-size: clamp(1.9rem, 3.6vw, 2.7rem); font-weight: 800;
+            color: ${T.green}; line-height: 1;
+          }
+          .bg-stat p { color: ${T.muted}; font-size: 13.5px; line-height: 1.55; margin: 12px 0 0; }
+          .bg-copy { max-width: 820px; margin: 0 auto; }
+          .bg-copy p { color: ${T.muted}; font-size: 15px; line-height: 1.8; margin: 0 0 16px; }
+          .bg-copy p:last-child { margin-bottom: 0; }
+          .bg-copy strong { color: ${T.deep}; }
+
+          /* PUBLICATIONS */
+          .pub-head {
+            text-align: center; color: ${T.green}; font-weight: 700;
+            font-size: 1.15rem; margin: 44px 0 20px;
+          }
+          .pub-list { max-width: 900px; margin: 0 auto; display: grid; gap: 14px; }
+          .pub {
+            padding: 20px 24px; display: flex; flex-direction: column; gap: 8px;
+            transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+          }
+          .pub:hover { transform: translateY(-3px); box-shadow: 0 18px 40px rgba(47,54,26,.12); border-color: rgba(233,196,106,.5); }
+          .pub h4 { color: ${T.text}; margin: 0; font-size: 1rem; font-weight: 700; line-height: 1.4; }
+          .pub .venue {
+            color: ${T.gold}; font-size: 12.5px; font-weight: 700;
+          }
+
           /* PLACEHOLDER + GALLERY */
           .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
           .ph {
@@ -501,8 +556,60 @@ const Voric = () => {
           </div>
         </section>
 
+        {/* BACKGROUND & AIM */}
+        <section id="background" className="vsection soft">
+          <div className="vwrap">
+            <div className="vcenter">
+              <p className="veyebrow">Background &amp; Aim</p>
+              <h2 className="vheading">Why occupational respiratory health matters</h2>
+            </div>
+
+            <div className="bg-grid">
+              <div className="bg-stat vcard">
+                <div className="bg-num">~30%</div>
+                <p>of urban air pollution comes from vehicular traffic emissions</p>
+              </div>
+              <div className="bg-stat vcard">
+                <div className="bg-num">Top 5</div>
+                <p>respiratory disease is among the leading causes of illness and death</p>
+              </div>
+              <div className="bg-stat vcard">
+                <div className="bg-num">Nov 2023</div>
+                <p>VORIC began as a movement to act on pollution and occupational health</p>
+              </div>
+            </div>
+
+            <div className="bg-copy">
+              <p>
+                Air pollution is rising with rapid urbanisation and
+                industrialisation, especially in the metros — and vehicular
+                traffic emissions are one of its biggest sources. Occupational
+                exposure to this pollution is a significant, often overlooked
+                health risk for traffic police, bus and transport staff,
+                construction and municipal workers, and professional drivers.
+              </p>
+              <p>
+                Constant exposure to exhaust fumes and particulate matter affects
+                far more than the lungs. Long-term exposure is linked to heart
+                disease, stroke, chronic obstructive pulmonary disease and other
+                conditions — the impact of respiratory disease is now recognised
+                as one of <strong>multimorbidity</strong>, affecting the lungs,
+                heart and virtually every organ in the body.
+              </p>
+              <p>
+                In November 2023, VAAYU Chest &amp; Sleep Specialists started a
+                movement to do something about pollution and occupational health —
+                the genesis of VORIC. It remains one of the few committed
+                occupational respiratory and general-health platforms addressing
+                both individual care and the larger issue of pollution: impacting
+                individuals, informing policy, and adding to science.
+              </p>
+            </div>
+          </div>
+        </section>
+
         {/* WHY */}
-        <section id="why" className="vsection soft">
+        <section id="why" className="vsection white">
           <div className="vwrap">
             <div className="vcenter">
               <p className="veyebrow">Why This Work Matters</p>
@@ -534,7 +641,7 @@ const Voric = () => {
         </section>
 
         {/* STEM */}
-        <section id="stem" className="vsection white">
+        <section id="stem" className="vsection soft">
           <div className="vwrap">
             <div className="vcenter">
               <p className="veyebrow">The VORIC Approach</p>
@@ -554,7 +661,7 @@ const Voric = () => {
         </section>
 
         {/* SERVICES */}
-        <section id="services" className="vsection soft">
+        <section id="services" className="vsection white">
           <div className="vwrap">
             <div className="vcenter">
               <p className="veyebrow">What Screening Includes</p>
@@ -577,7 +684,7 @@ const Voric = () => {
         </section>
 
         {/* COMMUNITIES */}
-        <section id="communities" className="vsection white">
+        <section id="communities" className="vsection soft">
           <div className="vwrap">
             <div className="vcenter">
               <p className="veyebrow">Who We Serve</p>
@@ -596,7 +703,7 @@ const Voric = () => {
         </section>
 
         {/* IMPACT */}
-        <section id="impact" className="vsection soft">
+        <section id="impact" className="vsection white">
           <div className="vwrap">
             <div className="vcenter">
               <p className="veyebrow">Our Impact</p>
@@ -627,7 +734,7 @@ const Voric = () => {
         </section>
 
         {/* HOW IT WORKS */}
-        <section id="how" className="vsection white">
+        <section id="how" className="vsection soft">
           <div className="vwrap">
             <div className="vcenter">
               <p className="veyebrow">How VORIC Works</p>
@@ -645,7 +752,7 @@ const Voric = () => {
         </section>
 
         {/* RESEARCH */}
-        <section id="research" className="vsection soft">
+        <section id="research" className="vsection white">
           <div className="vwrap">
             <div className="vcenter">
               <p className="veyebrow">Research &amp; Scientific Contribution</p>
@@ -665,11 +772,21 @@ const Voric = () => {
                 </div>
               ))}
             </div>
+
+            <h3 className="pub-head">Publications &amp; Presentations</h3>
+            <div className="pub-list">
+              {PUBLICATIONS.map((p) => (
+                <div className="pub vcard" key={p.title}>
+                  <h4>{p.title}</h4>
+                  <span className="venue">{p.venue}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
         {/* POLICY */}
-        <section id="policy" className="vsection white">
+        <section id="policy" className="vsection soft">
           <div className="vwrap">
             <div className="vcenter">
               <p className="veyebrow">Policy Engagement</p>
@@ -687,7 +804,7 @@ const Voric = () => {
         </section>
 
         {/* GALLERY */}
-        <section id="gallery" className="vsection soft">
+        <section id="gallery" className="vsection white">
           <div className="vwrap">
             <div className="vcenter">
               <p className="veyebrow">Gallery</p>
