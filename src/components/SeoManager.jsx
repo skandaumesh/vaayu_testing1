@@ -9,7 +9,7 @@ const BASE = "https://vaayuchest.com";
 const BRAND = "Vaayu Chest & Sleep Specialists, Bengaluru";
 
 // Event pages own their SEO (react-helmet-async with schema)
-const SKIP = ["/revive-2026", "/rehab-conference", "/capi-2025"];
+const SKIP = ["/revive-2026", "/rehab-conference", "/capi-2025", "/voric"];
 
 const META = {
   "/": {

@@ -25,6 +25,7 @@ import ClinicalYogaPage from "./pages/ClinicalYogaPage";
 
 import Rehabconference from "./pages/Rehabconference";
 import Revive2026 from "./pages/Revive2026";
+import Voric from "./pages/Voric";
 import Mediaspotlight from "./pages/Mediaspotlight";
 import ContactNEW from "./pages/ContactNEW";
 import Camp from "./pages/Camp.jsx";
@@ -176,6 +177,7 @@ const App = () => {
 <Route path="/" element={<Home />} />
           <Route path="/about" element={<AboutUs />} />
           <Route path="/social-impact" element={<SocialImpact />} />
+          <Route path="/voric" element={<Voric />} />
           <Route path="/capi-2025" element={<CAPI2025 />} />
           <Route path="/Procedural-Training" element={<ComplicationCasesPage />} />
           <Route path="/blogs" element={<Blogs />} />

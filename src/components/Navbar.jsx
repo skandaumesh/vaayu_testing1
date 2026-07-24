@@ -712,6 +712,7 @@ alt="Vaayu Chest and Sleep Specialists"
                 <div className="grid grid-cols-1 gap-2 pt-2">
                   <RouterLink to="/patient-resources/testimonials" onClick={closeAll} className="py-3 px-3 rounded-xl bg-[#f5f7ef] font-semibold">Testimonials</RouterLink>
                   <RouterLink to="/social-impact" onClick={closeAll} className="py-3 px-3 rounded-xl bg-[#f5f7ef] font-semibold">Social Impact</RouterLink>
+                  <RouterLink to="/voric" onClick={closeAll} className="py-3 px-3 rounded-xl bg-[#f5f7ef] font-semibold">VORIC</RouterLink>
                   <RouterLink to="/media-spotlight" onClick={closeAll} className="py-3 px-3 rounded-xl bg-[#f5f7ef] font-semibold">Media Spotlight</RouterLink>
                 </div>
               </div>
@@ -779,6 +780,7 @@ alt="Vaayu Chest and Sleep Specialists"
 
             <li><RouterLink to="/patient-resources/testimonials" className="hover:text-white" onClick={closeAll}>Testimonials</RouterLink></li>
             <li><RouterLink to="/social-impact" className="hover:text-white" onClick={closeAll}>Social Impact</RouterLink></li>
+            <li><RouterLink to="/voric" className="hover:text-white" onClick={closeAll}>VORIC</RouterLink></li>
             <li><RouterLink to="/media-spotlight" className="hover:text-white" onClick={closeAll}>Media Spotlight</RouterLink></li>
             <li><RouterLink to="/contact" className="hover:text-white" onClick={closeAll}>Contact</RouterLink></li>
           </ul>

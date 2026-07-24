@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import CountUp from "react-countup";
 
@@ -438,6 +439,27 @@ export default function SocialImpact() {
                     </p>
                   </div>
                 ))}
+              </div>
+
+              <div style={{ marginTop: 30 }}>
+                <Link
+                  to="/voric"
+                  style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: 8,
+                    background: T.green,
+                    color: "#fff",
+                    padding: "13px 28px",
+                    borderRadius: 999,
+                    fontWeight: 700,
+                    fontSize: 15,
+                    textDecoration: "none",
+                    boxShadow: "0 10px 26px rgba(47,54,26,.22)",
+                  }}
+                >
+                  Learn more about VORIC →
+                </Link>
               </div>
             </div>
           </div>

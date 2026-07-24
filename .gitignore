@@ -77,3 +77,4 @@ ehthumbs.db
 
 # REVIVE 2025 highlight originals (5-8 MB each; site uses compressed copies in web/)
 src/assets/highlights/*.jpeg
+VORIC.pdf
