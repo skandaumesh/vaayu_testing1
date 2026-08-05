@@ -102,7 +102,7 @@ export default function PublicationsPage() {
           {publications.map((pub, index) => (
             <div
               key={index}
-              className="group bg-white rounded-[2rem] border border-[#E3E8D7] p-6 md:p-7 shadow-[0_14px_45px_rgba(63,71,46,0.08)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_55px_rgba(63,71,46,0.14)]"
+              className="group flex h-full flex-col bg-white rounded-[2rem] border border-[#E3E8D7] p-6 md:p-7 shadow-[0_14px_45px_rgba(63,71,46,0.08)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_20px_55px_rgba(63,71,46,0.14)]"
             >
               <div className="mb-5 inline-flex h-11 w-11 items-center justify-center rounded-full bg-[#EEF2E4] text-[#5B6641] font-black">
                 {index + 1}
@@ -116,7 +116,7 @@ export default function PublicationsPage() {
                 href={pub.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center rounded-full bg-[#5B6641] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#4d5639]"
+                className="mt-auto inline-flex items-center justify-center self-start rounded-full bg-[#5B6641] px-5 py-3 text-sm font-bold text-white transition hover:bg-[#4d5639]"
               >
                 View Publication
               </a>

@@ -211,12 +211,12 @@ const LightboxModal = ({ title, images, startIndex = 0, onClose }) => {
 };
 
 /* ---------- Category card (single full cover photo) ---------- */
-const CategoryCard = ({ title, images, onOpen, aspect = "landscape" }) => {
+const CategoryCard = ({ title, images, onOpen, aspect = "landscape", className = "" }) => {
   const cover = images[0];
   const aspectClass = aspect === "portrait" ? "aspect-[3/4]" : "aspect-[4/3]";
 
   return (
-    <div className="rounded-lg bg-white shadow hover:shadow-md transition overflow-hidden">
+    <div className={`rounded-lg bg-white shadow hover:shadow-md transition overflow-hidden ${className}`}>
       <button
         type="button"
         onClick={() => onOpen(0)}
@@ -435,15 +435,24 @@ const Gallery = () => {
 
       {/* Cards grid */}
       <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 px-6 pb-16">
-        {categories.map((cat, ci) => (
-          <CategoryCard
-            key={ci}
-            title={cat.title}
-            images={cat.images}
-            aspect={cat.aspect}
-            onOpen={(startIndex) => openLightbox(cat.title, cat.images, startIndex)}
-          />
-        ))}
+        {categories.map((cat, ci) => {
+          // When the last row has a single leftover card at the md
+          // (3-column) breakpoint, center it instead of leaving it
+          // stranded on the left with two empty slots beside it.
+          const isLastOrphan =
+            ci === categories.length - 1 && categories.length % 3 === 1;
+
+          return (
+            <CategoryCard
+              key={ci}
+              title={cat.title}
+              images={cat.images}
+              aspect={cat.aspect}
+              onOpen={(startIndex) => openLightbox(cat.title, cat.images, startIndex)}
+              className={isLastOrphan ? "md:col-start-2" : ""}
+            />
+          );
+        })}
       </section>
 
       {/* Lightbox */}

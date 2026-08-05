@@ -1,4 +1,10 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, {
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { Link as RouterLink } from "react-router-dom";
 import { AiOutlineMail, AiOutlinePhone } from "react-icons/ai";
 import { FaBars, FaTimes, FaStethoscope } from "react-icons/fa";
@@ -17,13 +23,62 @@ const SERVICES_GAP = 12;
 
 const RESOURCES_PANEL_W = 260;
 const RESOURCES_SUB_PANEL_W = 300;
-const PATIENTS_SUB_PANEL_W = 340;
+const EDUCATION_PANEL_W = 560;
 const EVENTS_PANEL_W = 260;
+
+// Cascading panels sit flush against their parent so the columns read as one
+// menu and there is no dead gap for the pointer to cross.
+const FLYOUT_OVERLAP = 2;
+const VIEWPORT_MARGIN = 8;
+const FLYOUT_MAX_H = `calc(100vh - ${VIEWPORT_MARGIN * 2}px)`;
 
 const EMAIL = "admin@vaayuchest.com";
 const PHONE_1 = "+91 63649 28680";
 
 const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+
+// Positions a cascading panel against the row that opened it: top edges line
+// up, and it sits flush to the parent panel unless that would overflow right.
+const placeFlyout = (anchorEl, panelW) => {
+  const r = anchorEl.getBoundingClientRect();
+  let left = r.right - FLYOUT_OVERLAP;
+
+  if (left + panelW > window.innerWidth - VIEWPORT_MARGIN) {
+    left = Math.max(VIEWPORT_MARGIN, r.left - panelW + FLYOUT_OVERLAP);
+  }
+
+  return { top: r.top, left };
+};
+
+// Declared at module scope on purpose. Defining it inside Navbar would make it
+// a brand new component type on every state change, remounting the open panel
+// mid-hover.
+const Flyout = React.forwardRef(function Flyout(
+  { pos, width, children, onMouseEnter, onMouseLeave },
+  ref
+) {
+  return (
+    <div
+      className="fixed"
+      style={{ top: pos.top, left: pos.left, zIndex: Z_TOP }}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+    >
+      <div
+        ref={ref}
+        className="bg-[#78866B] rounded-[10px] shadow-lg overflow-x-hidden overflow-y-auto"
+        style={{ width, maxHeight: FLYOUT_MAX_H }}
+      >
+        {children}
+      </div>
+    </div>
+  );
+});
+
+const flyoutRowClass = (isActive) =>
+  `flex items-center justify-between w-full px-4 py-3 text-white cursor-default ${
+    isActive ? "bg-[#556B2F]" : "hover:bg-[#556B2F]"
+  }`;
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -39,14 +94,13 @@ const Navbar = () => {
   const [serviceCol3Top, setServiceCol3Top] = useState(0);
 
   const [resourcesOpen, setResourcesOpen] = useState(null);
-  const [patientsOpen, setPatientsOpen] = useState(null);
   const [resourcesSubPos, setResourcesSubPos] = useState({ top: 0, left: 0 });
-  const [patientsSubPos, setPatientsSubPos] = useState({ top: 0, left: 0 });
 
   const servicesBtnRef = useRef(null);
   const resourcesBtnRef = useRef(null);
   const eventsBtnRef = useRef(null);
   const closeTimerRef = useRef(null);
+  const resourcesSubRef = useRef(null);
 
   const clearCloseTimer = () => {
     if (closeTimerRef.current) {
@@ -62,7 +116,6 @@ const Navbar = () => {
       setActiveServiceIndex(null);
       setActiveServiceChildIndex(null);
       setResourcesOpen(null);
-      setPatientsOpen(null);
       setServiceCol2Top(0);
       setServiceCol3Top(0);
     }, 220);
@@ -81,7 +134,6 @@ const Navbar = () => {
     setActiveServiceIndex(null);
     setActiveServiceChildIndex(null);
     setResourcesOpen(null);
-    setPatientsOpen(null);
     setServiceCol2Top(0);
     setServiceCol3Top(0);
   };
@@ -296,7 +348,6 @@ const Navbar = () => {
     setActiveServiceIndex(null);
     setActiveServiceChildIndex(null);
     setResourcesOpen(null);
-    setPatientsOpen(null);
     setServiceCol2Top(0);
     setServiceCol3Top(0);
 
@@ -339,45 +390,34 @@ const Navbar = () => {
   const openResourcesSub = (key, anchorEl) => {
     clearCloseTimer();
     setResourcesOpen(key);
-    setPatientsOpen(null);
 
     if (!anchorEl) return;
 
-    const r = anchorEl.getBoundingClientRect();
-    let left = r.right + 12;
-    let top = r.top;
-
-    if (left + RESOURCES_SUB_PANEL_W > window.innerWidth - 8) {
-      left = r.left - RESOURCES_SUB_PANEL_W - 12;
-    }
-
-    if (top + 520 > window.innerHeight - 8) {
-      top = Math.max(8, window.innerHeight - 520 - 8);
-    }
-
-    setResourcesSubPos({ top, left });
+    const width = key === "patients" ? EDUCATION_PANEL_W : RESOURCES_SUB_PANEL_W;
+    setResourcesSubPos(placeFlyout(anchorEl, width));
   };
 
-  const openPatientsEducation = (anchorEl) => {
-    clearCloseTimer();
-    setPatientsOpen("education");
+  // A panel is aligned to its parent row first, then pulled up only by however
+  // much it actually overflows. Measuring beats guessing a height, since the
+  // two-column Education grid and the Professionals list are different heights.
+  const keepFlyoutOnScreen = (panelEl, setPos) => {
+    if (!panelEl) return;
 
-    if (!anchorEl) return;
+    const height = panelEl.offsetHeight;
 
-    const r = anchorEl.getBoundingClientRect();
-    let left = r.right + 12;
-    let top = r.top;
+    setPos((prev) => {
+      const maxTop = Math.max(
+        VIEWPORT_MARGIN,
+        window.innerHeight - height - VIEWPORT_MARGIN
+      );
 
-    if (left + PATIENTS_SUB_PANEL_W > window.innerWidth - 8) {
-      left = r.left - PATIENTS_SUB_PANEL_W - 12;
-    }
-
-    if (top + 520 > window.innerHeight - 8) {
-      top = Math.max(8, window.innerHeight - 520 - 8);
-    }
-
-    setPatientsSubPos({ top, left });
+      return prev.top > maxTop ? { ...prev, top: maxTop } : prev;
+    });
   };
+
+  useLayoutEffect(() => {
+    keepFlyoutOnScreen(resourcesSubRef.current, setResourcesSubPos);
+  }, [resourcesOpen, resourcesSubPos.top]);
 
   const servicesColumn2 =
     activeServiceIndex !== null
@@ -399,38 +439,6 @@ const Navbar = () => {
     menuPos.left,
     8,
     Math.max(8, window.innerWidth - servicesDropdownWidth - 8)
-  );
-
-  const DesktopShell = ({ children, width }) => (
-    <div
-      className="fixed"
-      style={{ top: menuPos.top, left: menuPos.left, zIndex: Z_TOP }}
-      onMouseEnter={clearCloseTimer}
-      onMouseLeave={scheduleClose}
-    >
-      <div
-        className="bg-[#78866B] rounded-[10px] shadow-lg overflow-hidden"
-        style={{ width }}
-      >
-        {children}
-      </div>
-    </div>
-  );
-
-  const FixedShell = ({ pos, children, width }) => (
-    <div
-      className="fixed"
-      style={{ top: pos.top, left: pos.left, zIndex: Z_TOP }}
-      onMouseEnter={clearCloseTimer}
-      onMouseLeave={scheduleClose}
-    >
-      <div
-        className="bg-[#78866B] rounded-[10px] shadow-lg overflow-hidden"
-        style={{ width }}
-      >
-        {children}
-      </div>
-    </div>
   );
 
   return (
@@ -658,21 +666,12 @@ alt="Vaayu Chest and Sleep Specialists"
                     </button>
 
                     {submenuOpen["res-patients"] && (
-                      <div className="ml-3 mt-1 space-y-1 text-sm">
-                        <button type="button" className="w-full flex justify-between items-center py-2 px-3 text-left rounded-lg bg-[#fafbf6]" onClick={() => toggle("res-education")}>
-                          <span>Education</span>
-                          <FiChevronDown className={`transition-transform ${submenuOpen["res-education"] ? "rotate-180" : ""}`} />
-                        </button>
-
-                        {submenuOpen["res-education"] && (
-                          <div className="ml-3 mt-1 space-y-1 text-sm">
-                            {patientEducationLinks.map((link) => (
-                              <RouterLink key={link.name} to={link.path} onClick={closeAll} className="block py-2 px-3 rounded-lg bg-[#f7f9f2]">
-                                {link.name}
-                              </RouterLink>
-                            ))}
-                          </div>
-                        )}
+                      <div className="ml-3 mt-1 grid grid-cols-2 gap-1 text-sm">
+                        {patientEducationLinks.map((link) => (
+                          <RouterLink key={link.name} to={link.path} onClick={closeAll} className="block py-2 px-3 rounded-lg border border-[#dfe6d4] bg-[#f7f9f2] leading-snug">
+                            {link.name}
+                          </RouterLink>
+                        ))}
                       </div>
                     )}
 
@@ -839,7 +838,7 @@ alt="Vaayu Chest and Sleep Specialists"
                           }}>
                             <RouterLink to={sub.path} className={`block px-4 py-3 text-white ${isActive ? "bg-[#556B2F]" : "hover:bg-[#556B2F]"}`} onClick={closeAll}>
                               <span className="flex items-center justify-between w-full">
-                                <span className="pr-2">{sub.name}{sub.highlight && <span className="text-[#d7dec9 font-semibold"> - Center of Excellence</span>}</span>
+                                <span className="pr-2">{sub.name}{sub.highlight && <span className="text-[#d7dec9] font-semibold"> - Center of Excellence</span>}</span>
                                 {hasChildSub && <FiChevronDown className="-rotate-90 opacity-80 shrink-0" />}
                               </span>
                             </RouterLink>
@@ -868,62 +867,87 @@ alt="Vaayu Chest and Sleep Specialists"
           )}
 
           {desktopOpen === "resources" && (
-            <DesktopShell width={RESOURCES_PANEL_W}>
+            <Flyout
+              pos={menuPos}
+              width={RESOURCES_PANEL_W}
+              onMouseEnter={clearCloseTimer}
+              onMouseLeave={scheduleClose}
+            >
               <ul className="divide-y divide-[#6A734F]">
-                <li className="px-4 py-3 text-white whitespace-nowrap cursor-default" onMouseEnter={(e) => openResourcesSub("patients", e.currentTarget)}>
-                  <span className="flex items-center justify-between w-full"><span className="pr-2">Patients</span><FiChevronDown className="-rotate-90 opacity-80 shrink-0" /></span>
+                <li className={flyoutRowClass(resourcesOpen === "patients")} onMouseEnter={(e) => openResourcesSub("patients", e.currentTarget)}>
+                  <span className="pr-2 whitespace-nowrap">Patients</span>
+                  <FiChevronDown className="-rotate-90 opacity-80 shrink-0" />
                 </li>
-                <li className="px-4 py-3 text-white whitespace-nowrap cursor-default" onMouseEnter={(e) => openResourcesSub("professionals", e.currentTarget)}>
-                  <span className="flex items-center justify-between w-full"><span className="pr-2">Professionals</span><FiChevronDown className="-rotate-90 opacity-80 shrink-0" /></span>
+                <li className={flyoutRowClass(resourcesOpen === "professionals")} onMouseEnter={(e) => openResourcesSub("professionals", e.currentTarget)}>
+                  <span className="pr-2 whitespace-nowrap">Professionals</span>
+                  <FiChevronDown className="-rotate-90 opacity-80 shrink-0" />
                 </li>
-                <li><RouterLink to="/blogs" className="block px-4 py-3 text-white hover:bg-[#556B2F]" onClick={closeAll}>Blogs</RouterLink></li>
-                <li><RouterLink to="/gallery" className="block px-4 py-3 text-white hover:bg-[#556B2F]" onClick={closeAll}>Gallery</RouterLink></li>
+                <li onMouseEnter={() => { clearCloseTimer(); setResourcesOpen(null); }}>
+                  <RouterLink to="/blogs" className="block px-4 py-3 text-white hover:bg-[#556B2F]" onClick={closeAll}>Blogs</RouterLink>
+                </li>
+                <li onMouseEnter={() => { clearCloseTimer(); setResourcesOpen(null); }}>
+                  <RouterLink to="/gallery" className="block px-4 py-3 text-white hover:bg-[#556B2F]" onClick={closeAll}>Gallery</RouterLink>
+                </li>
               </ul>
-            </DesktopShell>
+            </Flyout>
           )}
 
           {desktopOpen === "resources" && resourcesOpen === "patients" && (
-            <FixedShell pos={resourcesSubPos} width={RESOURCES_SUB_PANEL_W}>
-              <ul className="divide-y divide-[#6A734F]">
-                <li className="px-4 py-3 text-white whitespace-nowrap cursor-default" onMouseEnter={(e) => openPatientsEducation(e.currentTarget)}>
-                  <span className="flex items-center justify-between w-full"><span className="pr-2">Education</span><FiChevronDown className="-rotate-90 opacity-80 shrink-0" /></span>
-                </li>
-              </ul>
-            </FixedShell>
-          )}
-
-          {desktopOpen === "resources" && resourcesOpen === "patients" && patientsOpen === "education" && (
-            <FixedShell pos={patientsSubPos} width={PATIENTS_SUB_PANEL_W}>
-              <ul className="divide-y divide-[#6A734F]">
-                {patientEducationLinks.map((link) => (
-                  <li key={link.name}>
-                    <RouterLink to={link.path} className="block px-4 py-3 text-white hover:bg-[#556B2F]" onClick={closeAll}>{link.name}</RouterLink>
-                  </li>
+            <Flyout
+              ref={resourcesSubRef}
+              pos={resourcesSubPos}
+              width={EDUCATION_PANEL_W}
+              onMouseEnter={clearCloseTimer}
+              onMouseLeave={scheduleClose}
+            >
+              <div className="grid grid-cols-2">
+                {patientEducationLinks.map((link, i) => (
+                  <RouterLink
+                    key={link.name}
+                    to={link.path}
+                    className={`block border-[#6A734F] px-4 py-3 text-sm leading-snug text-white hover:bg-[#556B2F] ${
+                      i % 2 === 1 ? "border-l" : ""
+                    } ${i >= 2 ? "border-t" : ""}`}
+                    onClick={closeAll}
+                  >
+                    {link.name}
+                  </RouterLink>
                 ))}
-              </ul>
-            </FixedShell>
+              </div>
+            </Flyout>
           )}
 
           {desktopOpen === "resources" && resourcesOpen === "professionals" && (
-            <FixedShell pos={resourcesSubPos} width={RESOURCES_SUB_PANEL_W}>
+            <Flyout
+              ref={resourcesSubRef}
+              pos={resourcesSubPos}
+              width={RESOURCES_SUB_PANEL_W}
+              onMouseEnter={clearCloseTimer}
+              onMouseLeave={scheduleClose}
+            >
               <ul className="divide-y divide-[#6A734F]">
                 <li><RouterLink to="/Procedural-Training" className="block px-4 py-3 text-white hover:bg-[#556B2F]" onClick={closeAll}>Procedural Video&apos;s</RouterLink></li>
                 <li><RouterLink to="/resources/innovations" className="block px-4 py-3 text-white hover:bg-[#556B2F]" onClick={closeAll}>Our Innovations</RouterLink></li>
                 <li><RouterLink to="/resources/publications" className="block px-4 py-3 text-white hover:bg-[#556B2F]" onClick={closeAll}>Our Publications</RouterLink></li>
                 <li><RouterLink to="/resources/job-openings" className="block px-4 py-3 text-white hover:bg-[#556B2F]" onClick={closeAll}>Job Openings</RouterLink></li>
               </ul>
-            </FixedShell>
+            </Flyout>
           )}
 
           {desktopOpen === "events" && (
-            <DesktopShell width={EVENTS_PANEL_W}>
+            <Flyout
+              pos={menuPos}
+              width={EVENTS_PANEL_W}
+              onMouseEnter={clearCloseTimer}
+              onMouseLeave={scheduleClose}
+            >
               <ul className="divide-y divide-[#6A734F]">
                 <li><RouterLink to="/revive-2026" className="block px-4 py-3 text-white hover:bg-[#556B2F]" onClick={closeAll}>REVIVE 2026</RouterLink></li>
                 <li><RouterLink to="/capi-2025" className="block px-4 py-3 text-white hover:bg-[#556B2F]" onClick={closeAll}>CAPI 2025</RouterLink></li>
                 <li><RouterLink to="/rehab-conference" className="block px-4 py-3 text-white hover:bg-[#556B2F]" onClick={closeAll}>REVIVE 2025</RouterLink></li>
                 <li><RouterLink to="/camp" className="block px-4 py-3 text-white hover:bg-[#556B2F]" onClick={closeAll}>Camp</RouterLink></li>
               </ul>
-            </DesktopShell>
+            </Flyout>
           )}
         </div>
       </nav>

@@ -48,8 +48,9 @@ const T = {
 const STATS = [
   { n: "11,000+", label: "People screened" },
   { n: "3,287", label: "Traffic police personnel" },
-  { n: "4,389", label: "BMTC & KSRTC employees" },
+  { n: "4,389", label: "BMTC & KSRTC bus crew" },
   { n: "3,000+", label: "Construction workers" },
+  { n: "240+", label: "Paurakarmikas" },
 ];
 
 const STEM = [
@@ -91,7 +92,7 @@ const SERVICES = [
       "Symptom & exposure evaluation",
       "Doctor consultation",
       "Spirometry & Forced Oscillation Technique (FOT)",
-      "FeNO (where available) & chest radiograph",
+      "Fractional exhaled Nitric Oxide (FeNO), where available, & chest radiograph",
       "Relevant blood investigations for selected cohorts",
     ],
   },
@@ -99,7 +100,6 @@ const SERVICES = [
     head: "Treatment & Follow-up",
     items: [
       "Initial medication support, where feasible",
-      "Inhaler & medication counselling",
       "Referral for further evaluation",
       "Follow-up advice & preventive health education",
     ],
@@ -123,21 +123,16 @@ const STEPS = [
   ["Analyse & advocate", "De-identified data supports research, occupational-health planning and policy conversations."],
 ];
 
-const RESEARCH = [
+const COLLABORATIONS = [
   {
-    title: "Traffic Police Respiratory & Multimorbidity Study",
-    text: "Analysis of respiratory symptoms, chronic health conditions and lung function among traffic police personnel in Bengaluru.",
-    venue: "European Respiratory Society Congress 2025 · Lung India",
-  },
-  {
-    title: "Occupational Lung Health Study in Traffic Police",
-    text: "A large occupational-health screening study involving 2,450 traffic police personnel in Bengaluru.",
-    venue: "NAPCON, Pune · August 2025",
-  },
-  {
-    title: "The BREATHE Study",
-    text: "Respiratory symptoms, multimorbidity and pulmonary function among bus drivers and transport personnel in Bengaluru & Karnataka.",
-    venue: "NAPCON, Pune · August 2025",
+    title: "Indian Institute of Science & Public Health Foundation of India Partnership",
+    text: "A collaborative study with the Indian Institute of Science (IISc) and the Public Health Foundation of India (PHFI) on the impact of pollution on traffic police personnel.",
+    years: "5",
+    yearsLabel: "Year Longitudinal Study",
+    partners: [
+      { abbr: "IISc", full: "Indian Institute of Science" },
+      { abbr: "PHFI", full: "Public Health Foundation of India" },
+    ],
   },
 ];
 
@@ -229,10 +224,10 @@ const Voric = () => {
             background: ${T.white}; border: 1px solid ${T.border};
             border-radius: 22px; box-shadow: 0 16px 44px rgba(47,54,26,.07);
           }
-          .svc, .comm, .rcard, .stem-card {
+          .svc, .comm, .stem-card {
             transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease;
           }
-          .svc:hover, .comm:hover, .rcard:hover, .stem-card:hover {
+          .svc:hover, .comm:hover, .stem-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 24px 50px rgba(47,54,26,.14);
             border-color: rgba(233,196,106,.5);
@@ -247,7 +242,7 @@ const Voric = () => {
             padding: clamp(90px, 12vw, 140px) 0 clamp(56px, 7vw, 84px);
             position: relative;
           }
-          .vhero .veyebrow { color: #e9c46a; }
+          .vhero .veyebrow { color: #e9c46a; font-size: clamp(14px, 1.6vw, 17px); letter-spacing: .16em; }
           .vhero h1 {
             font-size: clamp(2.2rem, 5.4vw, 4rem); font-weight: 700;
             line-height: 1.08; margin: 14px 0 0; max-width: 760px;
@@ -257,7 +252,7 @@ const Voric = () => {
             line-height: 1.7; max-width: 680px; margin: 18px 0 0;
           }
           .stat-row {
-            display: grid; grid-template-columns: repeat(4, 1fr);
+            display: grid; grid-template-columns: repeat(5, 1fr);
             gap: 16px; margin-top: 40px;
           }
           .stat {
@@ -369,16 +364,6 @@ const Voric = () => {
           .step h4 { color: ${T.green}; margin: 0 0 4px; font-size: 1.05rem; }
           .step p { color: ${T.muted}; margin: 0; font-size: 13.5px; line-height: 1.55; }
 
-          /* RESEARCH */
-          .research-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-          .rcard { padding: 24px; display: flex; flex-direction: column; }
-          .rcard h4 { color: ${T.green}; margin: 0 0 10px; font-size: 1.05rem; line-height: 1.35; }
-          .rcard p { color: ${T.muted}; margin: 0 0 14px; font-size: 13.5px; line-height: 1.55; flex: 1; }
-          .rcard .venue {
-            color: ${T.gold}; font-size: 12px; font-weight: 700;
-            border-top: 1px solid ${T.border}; padding-top: 12px;
-          }
-
           /* BACKGROUND & AIM */
           .bg-grid {
             display: grid; grid-template-columns: repeat(3, 1fr);
@@ -413,6 +398,30 @@ const Voric = () => {
           .pub h4 { color: ${T.text}; margin: 0; font-size: 1rem; font-weight: 700; line-height: 1.4; }
           .pub .venue {
             color: ${T.gold}; font-size: 12.5px; font-weight: 700;
+          }
+
+          /* SCIENTIFIC COLLABORATIONS — minimal editorial */
+          .collab-list { max-width: 760px; margin: 0 auto 44px; }
+          .collab-minimal {
+            padding: 6px 0 6px 28px;
+            border-left: 2px solid ${T.gold};
+          }
+          .collab-minimal h4 {
+            color: ${T.text}; margin: 0 0 14px; font-size: 1.3rem; font-weight: 600; line-height: 1.4;
+          }
+          .collab-minimal p {
+            color: ${T.muted}; margin: 0 0 22px; font-size: 15px; line-height: 1.8; max-width: 620px;
+          }
+          .collab-meta {
+            display: flex; flex-wrap: wrap; row-gap: 8px;
+            padding-top: 18px; border-top: 1px solid ${T.border};
+          }
+          .collab-meta span {
+            color: ${T.gold}; font-size: 11.5px; font-weight: 700;
+            text-transform: uppercase; letter-spacing: .08em;
+          }
+          .collab-meta span:not(:last-child)::after {
+            content: "·"; color: ${T.border}; margin: 0 14px; font-weight: 400;
           }
 
           /* PLACEHOLDER + GALLERY */
@@ -476,12 +485,13 @@ const Voric = () => {
 
           @media (max-width: 960px) {
             .lead-grid, .contact-grid { grid-template-columns: 1fr; }
-            .stem-grid, .g3, .comm-grid, .research-grid, .team-grid { grid-template-columns: 1fr 1fr; }
+            .stem-grid, .g3, .comm-grid, .team-grid { grid-template-columns: 1fr 1fr; }
             .gallery-grid { grid-template-columns: 1fr 1fr; }
+            .stat-row { grid-template-columns: repeat(3, 1fr); }
           }
           @media (max-width: 640px) {
             .stat-row { grid-template-columns: 1fr 1fr; }
-            .stem-grid, .g3, .comm-grid, .research-grid, .team-grid { grid-template-columns: 1fr; }
+            .stem-grid, .g3, .comm-grid, .team-grid { grid-template-columns: 1fr; }
           }
         `}</style>
 
@@ -508,11 +518,6 @@ const Voric = () => {
               ))}
             </div>
 
-            <div className="cta-row">
-              <a className="btn solid" href="#partner">Partner With VORIC</a>
-              <a className="btn ghost" href="#partner">Organise a Screening Camp</a>
-              <a className="btn ghost" href="#contact">Support the Initiative</a>
-            </div>
           </div>
         </header>
 
@@ -540,8 +545,8 @@ const Voric = () => {
             </div>
             <div className="g3">
               {[
-                ["Preventive screening", "Comprehensive respiratory and general health assessment brought to the workplace."],
-                ["Advanced lung testing", "Spirometry and Forced Oscillation Technique with FeNO and chest radiograph where available."],
+                ["Preventive and Therapeutic Screening", "Comprehensive respiratory and general health assessment brought to the workplace."],
+                ["Advanced lung testing", "Spirometry and Forced Oscillation Technique with Fractional exhaled Nitric Oxide (FeNO) and chest radiograph where available."],
                 ["Care & follow-up", "Doctor consultation, early treatment, referral, education and long-term follow-up."],
                 ["Health education", "Practical guidance on lung health, pollution exposure and protective measures."],
                 ["Research & data", "Structured, de-identified data that builds occupational-health evidence."],
@@ -556,8 +561,40 @@ const Voric = () => {
           </div>
         </section>
 
+        {/* WHY */}
+        <section id="why" className="vsection soft">
+          <div className="vwrap">
+            <div className="vcenter">
+              <p className="veyebrow">Why This Work Matters</p>
+              <h2 className="vheading">Those who protect and build our cities often remain unprotected</h2>
+            </div>
+            <div className="lead-grid">
+              <div className="vcard svc">
+                <h4>Higher risk because of</h4>
+                <ul className="chip-list">
+                  <li>Daily exposure to dust and pollutants</li>
+                  <li>Long working hours in congested urban environments</li>
+                  <li>Limited access to routine preventive health screening</li>
+                  <li>Delayed recognition of respiratory symptoms</li>
+                  <li>Coexisting hypertension, diabetes and other risks</li>
+                </ul>
+              </div>
+              <div className="vcard svc">
+                <h4>Early detection can help</h4>
+                <ul className="chip-list">
+                  <li>Identify respiratory disease before irreversible damage</li>
+                  <li>Improve quality of life</li>
+                  <li>Reduce illness-related absenteeism</li>
+                  <li>Lower long-term healthcare expenditure</li>
+                  <li>Encourage timely treatment and protective practices</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* BACKGROUND & AIM */}
-        <section id="background" className="vsection soft">
+        <section id="background" className="vsection white">
           <div className="vwrap">
             <div className="vcenter">
               <p className="veyebrow">Background &amp; Aim</p>
@@ -608,38 +645,6 @@ const Voric = () => {
           </div>
         </section>
 
-        {/* WHY */}
-        <section id="why" className="vsection white">
-          <div className="vwrap">
-            <div className="vcenter">
-              <p className="veyebrow">Why This Work Matters</p>
-              <h2 className="vheading">Those who protect and build our cities often remain unprotected</h2>
-            </div>
-            <div className="lead-grid">
-              <div className="vcard svc">
-                <h4>Higher risk because of</h4>
-                <ul className="chip-list">
-                  <li>Daily exposure to dust and pollutants</li>
-                  <li>Long working hours in congested urban environments</li>
-                  <li>Limited access to routine preventive health screening</li>
-                  <li>Delayed recognition of respiratory symptoms</li>
-                  <li>Coexisting hypertension, diabetes and other risks</li>
-                </ul>
-              </div>
-              <div className="vcard svc">
-                <h4>Early detection can help</h4>
-                <ul className="chip-list">
-                  <li>Identify respiratory disease before irreversible damage</li>
-                  <li>Improve quality of life</li>
-                  <li>Reduce illness-related absenteeism</li>
-                  <li>Lower long-term healthcare expenditure</li>
-                  <li>Encourage timely treatment and protective practices</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* STEM */}
         <section id="stem" className="vsection soft">
           <div className="vwrap">
@@ -675,11 +680,6 @@ const Voric = () => {
                 </div>
               ))}
             </div>
-            <p className="svc-note">
-              Forced Oscillation Technique may help identify abnormalities in
-              airway mechanics, including changes that may not be apparent on
-              conventional spirometry.
-            </p>
           </div>
         </section>
 
@@ -714,9 +714,9 @@ const Voric = () => {
                 <thead><tr><th>Group</th><th style={{ textAlign: "right" }}>People screened</th></tr></thead>
                 <tbody>
                   <tr><td>Traffic police personnel</td><td>3,287</td></tr>
-                  <tr><td>BMTC &amp; KSRTC employees</td><td>4,389</td></tr>
+                  <tr><td>BMTC &amp; KSRTC bus crew</td><td>4,389</td></tr>
                   <tr><td>Construction workers</td><td>3,000+</td></tr>
-                  <tr><td>Municipal workers</td><td>100+</td></tr>
+                  <tr><td>Paurakarmikas</td><td>240+</td></tr>
                   <tr><td>Total reach</td><td>11,000+</td></tr>
                 </tbody>
               </table>
@@ -755,20 +755,22 @@ const Voric = () => {
         <section id="research" className="vsection white">
           <div className="vwrap">
             <div className="vcenter">
-              <p className="veyebrow">Research &amp; Scientific Contribution</p>
+              <p className="veyebrow">Achievements &amp; Collaborations</p>
               <h2 className="vheading">Turning frontline screening into evidence</h2>
-              <p className="vtext" style={{ marginTop: 14 }}>
-                In collaboration with the Indian Institute of Science and the
-                Public Health Foundation of India to study the longer-term health
-                effects of pollution exposure.
-              </p>
             </div>
-            <div className="research-grid">
-              {RESEARCH.map((r) => (
-                <div className="rcard vcard" key={r.title}>
-                  <h4>{r.title}</h4>
-                  <p>{r.text}</p>
-                  <div className="venue">{r.venue}</div>
+
+            <h3 className="pub-head" style={{ marginTop: 0 }}>Scientific Collaborations</h3>
+            <div className="collab-list">
+              {COLLABORATIONS.map((c) => (
+                <div className="collab-minimal" key={c.title}>
+                  <h4>{c.title}</h4>
+                  <p>{c.text}</p>
+                  <div className="collab-meta">
+                    <span>{c.years}-{c.yearsLabel}</span>
+                    {c.partners.map((p) => (
+                      <span key={p.abbr}>{p.abbr} — {p.full}</span>
+                    ))}
+                  </div>
                 </div>
               ))}
             </div>

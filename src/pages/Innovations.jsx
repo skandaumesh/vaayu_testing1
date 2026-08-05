@@ -16,7 +16,7 @@ const InnovationBlock = ({ title, points, img, reverse, link }) => (
   <div
     className={`grid grid-cols-1 md:grid-cols-2 ${
       reverse ? "md:[&>*:first-child]:order-2" : ""
-    } gap-8 md:gap-12 items-center py-12 md:py-16`}
+    } gap-8 md:gap-12 items-start py-12 md:py-16`}
   >
     <div className="bg-white rounded-[2rem] p-6 md:p-8 shadow-[0_16px_50px_rgba(63,71,46,0.10)] border border-[#E3E8D7]">
       <h3 className="text-2xl md:text-3xl font-black tracking-tight text-[#2f3722] mb-5 leading-tight">
@@ -224,6 +224,7 @@ const Innovations = () => {
           href="https://onlinelibrary.wiley.com/doi/abs/10.1002/ppul.23709"
           target="_blank"
           rel="noopener noreferrer"
+          className="block max-w-3xl mx-auto"
         >
           <img
             src={summaryImg}

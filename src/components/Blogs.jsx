@@ -585,7 +585,15 @@ const Blogspage = () => {
             </div>
 
             <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
-              {filteredBlogs.map((blog, index) => (
+              {filteredBlogs.map((blog, index) => {
+                // When the last row has a single leftover card at the xl
+                // (3-column) breakpoint, center it instead of leaving it
+                // stranded on the left with two empty slots beside it.
+                const isLastOrphanXl =
+                  index === filteredBlogs.length - 1 &&
+                  filteredBlogs.length % 3 === 1;
+
+                return (
                 <motion.article
                   key={blog.id}
                   variants={fadeUp}
@@ -593,7 +601,9 @@ const Blogspage = () => {
                   whileInView="show"
                   viewport={{ once: true, amount: 0.2 }}
                   transition={{ delay: index * 0.04 }}
-                  className="group overflow-hidden rounded-[1.8rem] border border-[#DDE3CF] bg-white shadow-[0_12px_40px_rgba(63,71,46,0.08)] transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_50px_rgba(63,71,46,0.14)]"
+                  className={`group overflow-hidden rounded-[1.8rem] border border-[#DDE3CF] bg-white shadow-[0_12px_40px_rgba(63,71,46,0.08)] transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_20px_50px_rgba(63,71,46,0.14)] ${
+                    isLastOrphanXl ? "xl:col-start-2" : ""
+                  }`}
                 >
                   <div className="relative h-56 overflow-hidden">
                     <img
@@ -628,7 +638,8 @@ const Blogspage = () => {
                     </button>
                   </div>
                 </motion.article>
-              ))}
+                );
+              })}
             </div>
 
             {filteredBlogs.length === 0 && (

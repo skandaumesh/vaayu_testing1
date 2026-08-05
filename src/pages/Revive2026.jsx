@@ -21,6 +21,16 @@ import sameerImg from "../assets/img/sameer.jpeg";
 import yogitaImg from "../assets/img/DR YOGITA HATMODE.jpg";
 import dhilipImg from "../assets/img/dr dilip.jpeg";
 import shradhaImg from "../assets/img/dr shradha.jpeg";
+import shivalingaswamyImg from "../assets/img/Dr. Shivalingaswamy.jpeg";
+import akashGopiImg from "../assets/img/Dr.Akash Gopi.jpeg";
+import vishwajeetImg from "../assets/img/Dr.Vishwajeet Murthy.jpeg";
+import sandeepaImg from "../assets/img/Dr. Sandeepa H S.jpeg";
+import bagirathImg from "../assets/img/Dr. Bagirath Raghuraman.jpeg";
+import sumaImg from "../assets/img/Dr. Suma P Kumar.jpeg";
+import davidArunImg from "../assets/img/Dr. David Arun Kumar.jpeg";
+import sreedharImg from "../assets/img/Dr.Sreedhar.jpeg";
+import chaitraImg from "../assets/img/Dr. Chaitra.jpeg";
+import tejasImg from "../assets/img/Dr. Tejas Jogi .jpeg";
 
 import hl1 from "../assets/highlights/web/h1.jpg";
 import hl2 from "../assets/highlights/web/h2.jpg";
@@ -117,6 +127,62 @@ const SPEAKERS = [
     name: "Dr. Shraddha S",
     role: "Specialist — Pulmonary Rehabilitation, Vaayu Chest & Sleep Specialists",
     img: shradhaImg,
+  },
+];
+
+const DIGNITARIES = [
+  {
+    name: "Dr. Shivalingaswamy Salimath",
+    role: "Interventional Pulmonologist, Trustwell Hospitals Pvt Ltd, Bangalore",
+    img: shivalingaswamyImg,
+  },
+  {
+    name: "Dr. Akash Gopi",
+    role: "Consultant Cardiologist, Fortis CG Road, Bangalore",
+    img: akashGopiImg,
+  },
+  {
+    name: "Dr. Vishwajeet Murthy",
+    role: "Senior Consultant Pulmonologist, Sagar Hospital, Bangalore",
+    img: vishwajeetImg,
+  },
+  {
+    name: "Dr. Sandeepa H S",
+    role: "Pulmonary Medicine & Critical Care Medicine Consultant, Interventional Pulmonologist, Sagar Hospital, Bangalore",
+    img: sandeepaImg,
+  },
+  {
+    name: "Dr. Bagirath Raghuraman",
+    role: "Senior Consultant Cardiologist, Director - Heart Transplant, Narayana Health City, Bangalore",
+    img: bagirathImg,
+  },
+  {
+    name: "Dr. Suma P Kumar",
+    role: "Medical Director & Senior Consultant Pulmonologist, Excel Care Hospital, Bangalore",
+    img: sumaImg,
+  },
+];
+
+const GUEST_FACULTY = [
+  {
+    name: "Dr. David Arun Kumar",
+    role: "Dean & Principal, Hillside College of Physiotherapy. HOD, Vasavi Hospitals",
+    img: davidArunImg,
+  },
+  {
+    name: "Dr. Sreedhar Kulkarni",
+    role: "Consultant Interventional Pulmonologist, Apollo Hospital, Bangalore",
+    img: sreedharImg,
+  },
+  {
+    name: "Dr. Chaitra",
+    role: "Assistant Professor, RV College of Physiotherapy",
+    img: chaitraImg,
+  },
+  {
+    name: "Dr. Tejas Jogi",
+    role: "Consultant Interventional Pulmonologist, Apollo Hospital, Bangalore",
+    img: tejasImg,
   },
 ];
 
@@ -717,6 +783,41 @@ const Revive2026 = () => {
           .speakers-full {
             width: 100%;
             padding: 0 18px;
+            -webkit-mask-image: linear-gradient(
+              90deg,
+              transparent 0,
+              #000 80px,
+              #000 calc(100% - 80px),
+              transparent 100%
+            );
+            mask-image: linear-gradient(
+              90deg,
+              transparent 0,
+              #000 80px,
+              #000 calc(100% - 80px),
+              transparent 100%
+            );
+          }
+
+          .dignitaries-heading.revive-center {
+            margin-bottom: 26px;
+          }
+
+          .dignitaries-heading .revive-heading {
+            font-size: clamp(1.4rem, 2.1vw, 1.9rem);
+          }
+
+          .speakers-row-divider {
+            width: 100%;
+            max-width: 1100px;
+            height: 1px;
+            margin: 34px auto;
+            background: linear-gradient(
+              90deg,
+              transparent 0,
+              rgba(233, 196, 106, 0.4) 50%,
+              transparent 100%
+            );
           }
 
           .speaker-slide {
@@ -1538,6 +1639,68 @@ const Revive2026 = () => {
               }}
             >
               {SPEAKERS.map((sp) => (
+                <SwiperSlide key={sp.name}>
+                  <SpeakerCard sp={sp} />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
+
+          <div className="revive-wrap">
+            <div className="revive-center dignitaries-heading" style={{ marginTop: 56, marginBottom: 30 }}>
+              <p className="revive-eyebrow">Distinguished Guests</p>
+              <h2 className="revive-heading">Eminent Dignitaries &amp; Chairpersons</h2>
+            </div>
+          </div>
+
+          <div className="speakers-full">
+            <Swiper
+              className="speakers-marquee"
+              modules={[Autoplay]}
+              autoplay={{
+                delay: 0,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true,
+                reverseDirection: true,
+              }}
+              loop
+              speed={11000}
+              spaceBetween={26}
+              slidesPerView={1}
+              breakpoints={{
+                640: { slidesPerView: 2 },
+                1024: { slidesPerView: 3 },
+              }}
+            >
+              {DIGNITARIES.map((sp) => (
+                <SwiperSlide key={sp.name}>
+                  <SpeakerCard sp={sp} />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
+
+          <div className="speakers-row-divider" />
+
+          <div className="speakers-full">
+            <Swiper
+              className="speakers-marquee"
+              modules={[Autoplay]}
+              autoplay={{
+                delay: 0,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true,
+              }}
+              loop
+              speed={11000}
+              spaceBetween={26}
+              slidesPerView={1}
+              breakpoints={{
+                640: { slidesPerView: 2 },
+                1024: { slidesPerView: 3 },
+              }}
+            >
+              {GUEST_FACULTY.map((sp) => (
                 <SwiperSlide key={sp.name}>
                   <SpeakerCard sp={sp} />
                 </SwiperSlide>
