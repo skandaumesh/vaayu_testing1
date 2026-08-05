@@ -31,6 +31,7 @@ import davidArunImg from "../assets/img/Dr. David Arun Kumar.jpeg";
 import sreedharImg from "../assets/img/Dr.Sreedhar.jpeg";
 import chaitraImg from "../assets/img/Dr. Chaitra.jpeg";
 import tejasImg from "../assets/img/Dr. Tejas Jogi .jpeg";
+import benditImg from "../assets/img/Dr. Joshua O Bendit.jpeg";
 
 import hl1 from "../assets/highlights/web/h1.jpg";
 import hl2 from "../assets/highlights/web/h2.jpg";
@@ -84,6 +85,11 @@ const KEYNOTE_SPEAKERS = [
     name: "Dr. Barry A. Franklin",
     role: "PhD, FACSM, MAACVPR, FAHA, FASPC, FPCNA (Hon) — Director (Emeritus), Preventive Cardiology and Cardiac Rehabilitation, Corewell Health East, William Beaumont University Hospital, Royal Oak",
     img: barryImg,
+  },
+  {
+    name: "Dr. Joshua O. Benditt",
+    role: "Professor, Division of Pulmonary, Critical Care and Sleep Medicine. Medical Director, Respiratory Care Services, University of Washington Medical Center. Medical Director, Northwest Assisted Breathing Center",
+    img: benditImg,
   },
   {
     name: "Dr. Waqar M. Naqvi",
@@ -573,7 +579,7 @@ const Revive2026 = () => {
 
           .grid-4 {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(178px, 1fr));
             gap: 22px;
           }
 
@@ -886,6 +892,7 @@ const Revive2026 = () => {
             background: linear-gradient(150deg, ${T.deep} 0%, ${T.green} 100%);
             border-radius: 20px;
             opacity: 0;
+            overflow: hidden;
             transform: translateY(14px);
             transition: opacity 0.3s ease, transform 0.3s ease;
             pointer-events: none;
@@ -929,10 +936,11 @@ const Revive2026 = () => {
           /* Keynote row: photo centered on top, name under it, info on hover */
           .speaker-slide.keynote {
             flex-direction: column;
-            justify-content: flex-start;
+            justify-content: center;
             text-align: center;
             gap: 14px;
-            padding: 30px 16px 26px;
+            aspect-ratio: 1 / 1;
+            padding: 26px 18px;
             background: linear-gradient(180deg, #ffffff 0%, #f5f8ef 100%);
             border: 1px solid rgba(233, 196, 106, 0.45) !important;
           }
@@ -951,8 +959,8 @@ const Revive2026 = () => {
 
           .speaker-slide.keynote .speaker-photo img,
           .speaker-slide.keynote .speaker-initial {
-            width: 118px;
-            height: 118px;
+            width: 108px;
+            height: 108px;
           }
 
           .speaker-slide.keynote .speaker-info h3 {
@@ -975,6 +983,13 @@ const Revive2026 = () => {
             justify-content: center;
             text-align: center;
             gap: 10px;
+          }
+
+          .speaker-slide.keynote .speaker-overlay .speaker-role {
+            display: -webkit-box;
+            -webkit-line-clamp: 8;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
           }
 
           /* marquee cards: tie into the gold accent language */
@@ -1607,7 +1622,7 @@ const Revive2026 = () => {
 
         {/* SPEAKERS SLIDER */}
         <section id="speakers" className="revive-section speakers-section" style={{ paddingBottom: 48 }}>
-          <div className="revive-wrap">
+          <div className="revive-wrap" style={{ width: "min(94%, 1400px)" }}>
             <div className="revive-center" style={{ marginBottom: 30 }}>
               <p className="revive-eyebrow">Faculty</p>
               <h2 className="revive-heading">Speakers &amp; Chairpersons</h2>
