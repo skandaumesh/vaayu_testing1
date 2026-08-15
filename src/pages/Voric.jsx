@@ -6,24 +6,32 @@
 import React, { useEffect, useState } from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 
-import g1 from "../assets/img/voric/g1.jpg";
-import g2 from "../assets/img/voric/g2.jpg";
-import g3 from "../assets/img/voric/g3.jpg";
-import g4 from "../assets/img/voric/g4.jpg";
-import g5 from "../assets/img/voric/g5.jpg";
-import g6 from "../assets/img/voric/g6.jpg";
-import g7 from "../assets/img/voric/g7.jpg";
-import g8 from "../assets/img/voric/g8.jpg";
+import gMobileCamp from "../assets/img/voric/mobile-screening-camp.jpg";
+import gDoctorConsult from "../assets/img/voric/doctor-consultation.jpg";
+import gHealthDesk from "../assets/img/voric/health-screening-desk.jpg";
+import gVitalsCheck from "../assets/img/voric/vitals-check.jpg";
+import gRegistration from "../assets/img/voric/screening-registration.jpg";
+import gSpirometry from "../assets/img/voric/spirometry-test.jpg";
+import gTrafficPoliceGroup from "../assets/img/voric/traffic-police-group.jpg";
+import gTrafficPoliceJC from "../assets/img/voric/traffic-police-jc.jpeg";
+import gBmtcKsrtc from "../assets/img/voric/bmtc-ksrtc-leadership.jpeg";
+import gBbmp from "../assets/img/voric/bbmp-chief-commissioner.jpeg";
+import gFelicitation1 from "../assets/img/voric/felicitation-1.jpg";
+import gFelicitation2 from "../assets/img/voric/felicitation-2.jpg";
 
 const GALLERY = [
-  [g1, "Mobile screening camp"],
-  [g2, "Doctor consultation"],
-  [g3, "Health screening in progress"],
-  [g4, "With Bengaluru City Police"],
-  [g5, "With BMTC & KSRTC leadership"],
-  [g6, "With Greater Bengaluru Authority"],
-  [g7, "Institutional engagement"],
-  [g8, "Government interaction"],
+  [gMobileCamp, "Mobile screening camp"],
+  [gDoctorConsult, "Doctor consultation"],
+  [gHealthDesk, "Health screening in progress"],
+  [gVitalsCheck, "Vitals & spirometry check"],
+  [gRegistration, "Screening registration"],
+  [gSpirometry, "Spirometry testing"],
+  [gTrafficPoliceGroup, "With Bengaluru Traffic Police"],
+  [gTrafficPoliceJC, "With the Joint Commissioner of Traffic Police"],
+  [gBmtcKsrtc, "With BMTC & KSRTC leadership"],
+  [gBbmp, "With the Chief Commissioner, BBMP"],
+  [gFelicitation1, "Felicitated for VORIC's community impact"],
+  [gFelicitation2, "Recognised alongside Bengaluru Traffic Police"],
 ];
 
 const BASE_URL = "https://vaayuchest.com";
@@ -441,15 +449,10 @@ const Voric = () => {
             box-shadow: 0 10px 28px rgba(47,54,26,.08); position: relative;
           }
           .gitem img {
-            width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block;
+            width: 100%; aspect-ratio: 4 / 3; object-fit: cover; object-position: center 20%; display: block;
             transition: transform .4s ease;
           }
           .gitem:hover img { transform: scale(1.05); }
-          .gitem figcaption {
-            position: absolute; left: 0; right: 0; bottom: 0;
-            padding: 18px 12px 10px; font-size: 12px; font-weight: 600; color: #fff;
-            background: linear-gradient(transparent, rgba(47,54,26,.82));
-          }
 
           .tavatar {
             width: 90px; height: 90px; margin: 0 auto 12px; border-radius: 50%;
@@ -816,7 +819,6 @@ const Voric = () => {
               {GALLERY.map(([src, cap]) => (
                 <figure className="gitem" key={cap}>
                   <img src={src} alt={cap} loading="lazy" />
-                  <figcaption>{cap}</figcaption>
                 </figure>
               ))}
             </div>
