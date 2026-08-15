@@ -32,6 +32,14 @@ import sreedharImg from "../assets/img/Dr.Sreedhar.jpeg";
 import chaitraImg from "../assets/img/Dr. Chaitra.jpeg";
 import tejasImg from "../assets/img/Dr. Tejas Jogi .jpeg";
 import benditImg from "../assets/img/Dr. Joshua O Bendit.jpeg";
+import ameetImg from "../assets/img/Dr. Ameet Oswal.png";
+import sridharDeshmukhImg from "../assets/img/Mr Sridhar Deshmukh.png";
+import karthikKavinImg from "../assets/img/Dr. Karthik Kavin.jpg";
+import rasheekaImg from "../assets/img/Dr. Rasheeka VP.jpg";
+import cherishmaImg from "../assets/img/Dr. Cherishma D’silva.png";
+import ramyaImg from "../assets/img/Ms. Ramya.jpg";
+import nandiniImg from "../assets/img/Dr. Nandini.jpg";
+import ashwiniImg from "../assets/img/Dr. Ashwini  Adkoli.png";
 
 import hl1 from "../assets/highlights/web/h1.jpg";
 import hl2 from "../assets/highlights/web/h2.jpg";
@@ -189,6 +197,49 @@ const GUEST_FACULTY = [
     name: "Dr. Tejas Jogi",
     role: "Consultant Interventional Pulmonologist, Apollo Hospital, Bangalore",
     img: tejasImg,
+  },
+];
+
+const MORE_FACULTY = [
+  {
+    name: "Dr. Ameet Oswal",
+    role: "Consultant, VAAYU Chest & Sleep Specialists, Bengaluru. Expert in Preventive Healthcare, Therapeutic Yoga & Respiratory Allergies. National-level Faculty & Guest Faculty at IIM Bangalore and ISB Hyderabad",
+    img: ameetImg,
+  },
+  {
+    name: "Mr. Sridhar Deshmukh",
+    role: "Chief Consultant Interventional Cardiologist, Trustwell Hospital, Bangalore. Associate Professor of Cardiology, KIMS Hospital, Bengaluru",
+    img: sridharDeshmukhImg,
+  },
+  {
+    name: "Dr. Karthik Kavin",
+    role: "CTVS Consultant, Cardiovascular & Thoracic Surgeon, Apollo Hospital, Chennai. Founder Director, Zhoosh Healthcare — Cardiac Rehab",
+    img: karthikKavinImg,
+  },
+  {
+    name: "Dr. Rasheeka VP",
+    role: "Consultant Pulmonologist, Apollo Hospital, Bangalore",
+    img: rasheekaImg,
+  },
+  {
+    name: "Dr. Cherishma D’silva",
+    role: "Principal, Father Muller College of Physiotherapy",
+    img: cherishmaImg,
+  },
+  {
+    name: "Ms. Ramya",
+    role: "Clinical Psychology, Vaayu Chest & Sleep Specialists",
+    img: ramyaImg,
+  },
+  {
+    name: "Dr. Nandini",
+    role: "Clinical Dietician, M.Sc. in Food & Nutrition. Founder, Savidha Wellness, Vaayu Chest & Sleep Specialists",
+    img: nandiniImg,
+  },
+  {
+    name: "Dr. Ashwini Adkoli",
+    role: "Wellness Consultant. Founder, Theraveda Wellness, Vaayu Chest & Sleep Specialists",
+    img: ashwiniImg,
   },
 ];
 
@@ -1654,6 +1705,35 @@ const Revive2026 = () => {
               }}
             >
               {SPEAKERS.map((sp) => (
+                <SwiperSlide key={sp.name}>
+                  <SpeakerCard sp={sp} />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
+
+          <div className="speakers-row-divider" />
+
+          <div className="speakers-full">
+            <Swiper
+              className="speakers-marquee"
+              modules={[Autoplay]}
+              autoplay={{
+                delay: 0,
+                disableOnInteraction: false,
+                pauseOnMouseEnter: true,
+                reverseDirection: true,
+              }}
+              loop
+              speed={11000}
+              spaceBetween={26}
+              slidesPerView={1}
+              breakpoints={{
+                640: { slidesPerView: 2 },
+                1024: { slidesPerView: 3 },
+              }}
+            >
+              {MORE_FACULTY.map((sp) => (
                 <SwiperSlide key={sp.name}>
                   <SpeakerCard sp={sp} />
                 </SwiperSlide>
