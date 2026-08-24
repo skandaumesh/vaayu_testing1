@@ -556,6 +556,7 @@ const Voric = () => {
           @media (max-width: 640px) {
             .stat-row { grid-template-columns: 1fr 1fr; }
             .stem-grid, .g3, .comm-grid, .team-grid { grid-template-columns: 1fr; }
+            .bg-grid { grid-template-columns: 1fr; }
           }
         `}</style>
 
