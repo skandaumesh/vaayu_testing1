@@ -37,9 +37,45 @@ const GALLERY = [
 const BASE_URL = "https://vaayuchest.com";
 
 const SEO_TITLE =
-  "VORIC — Occupational Respiratory Health Screening | VAAYU Bengaluru";
+  "VORIC — Impact of Air Pollution on Bengaluru's Traffic Police | VAAYU";
 const SEO_DESCRIPTION =
-  "VORIC by VAAYU provides respiratory and preventive health screening for traffic police, transport employees, construction workers, municipal workers and other high-risk occupations in Bengaluru. 11,000+ people screened.";
+  "VORIC studies the impact of pollution on Bengaluru's traffic police, BMTC & KSRTC staff, and other high-risk outdoor workers, with a 5-year IISc & PHFI research collaboration. Free respiratory screening for 11,000+ people since November 2023.";
+const SEO_KEYWORDS =
+  "impact of pollution on traffic police Bengaluru, traffic police health screening, occupational respiratory illness, VORIC, air pollution health effects Bengaluru";
+
+const VORIC_SCHEMA = {
+  "@context": "https://schema.org",
+  "@type": "MedicalWebPage",
+  name: SEO_TITLE,
+  description: SEO_DESCRIPTION,
+  url: `${BASE_URL}/voric`,
+  about: {
+    "@type": "MedicalCondition",
+    name: "Occupational respiratory illness from air pollution exposure",
+  },
+  audience: {
+    "@type": "Audience",
+    audienceType:
+      "Traffic police, BMTC & KSRTC staff, construction workers, municipal workers, professional drivers",
+  },
+  mainEntity: {
+    "@type": "Organization",
+    name: "VORIC — VAAYU Occupational Respiratory Illness Clinic",
+    description:
+      "Social-impact initiative of VAAYU Chest & Sleep Specialists studying and screening for the impact of air pollution on Bengaluru's traffic police and other high-risk outdoor workers since November 2023, in a 5-year research collaboration with the Indian Institute of Science (IISc) and the Public Health Foundation of India (PHFI).",
+    foundingDate: "2023-11",
+    parentOrganization: {
+      "@type": "MedicalOrganization",
+      name: "Vaayu Chest & Sleep Specialists",
+      url: BASE_URL,
+    },
+  },
+  publisher: {
+    "@type": "MedicalOrganization",
+    name: "Vaayu Chest & Sleep Specialists",
+    url: BASE_URL,
+  },
+};
 
 const T = {
   green: "#61724e",
@@ -188,12 +224,19 @@ const Voric = () => {
         <Helmet>
           <title>{SEO_TITLE}</title>
           <meta name="description" content={SEO_DESCRIPTION} />
+          <meta name="keywords" content={SEO_KEYWORDS} />
           <link rel="canonical" href={`${BASE_URL}/voric`} />
           <meta property="og:title" content={SEO_TITLE} />
           <meta property="og:description" content={SEO_DESCRIPTION} />
           <meta property="og:type" content="website" />
           <meta property="og:url" content={`${BASE_URL}/voric`} />
           <meta property="og:image" content={`${BASE_URL}/og-image.jpg`} />
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:title" content={SEO_TITLE} />
+          <meta name="twitter:description" content={SEO_DESCRIPTION} />
+          <script type="application/ld+json">
+            {JSON.stringify(VORIC_SCHEMA)}
+          </script>
         </Helmet>
 
         <style>{`
@@ -258,6 +301,24 @@ const Voric = () => {
           .vhero p.lead {
             color: rgba(255,255,255,.9); font-size: clamp(15px, 1.6vw, 18px);
             line-height: 1.7; max-width: 680px; margin: 18px 0 0;
+          }
+          .vhero-grid {
+            display: grid; grid-template-columns: 1.15fr 0.85fr;
+            gap: 40px; align-items: center;
+          }
+          .vhero-photo {
+            margin: 0; border-radius: 24px; overflow: hidden;
+            border: 1px solid rgba(255,255,255,.22);
+            box-shadow: 0 24px 60px rgba(0,0,0,.32);
+            aspect-ratio: 4 / 3;
+          }
+          .vhero-photo img {
+            width: 100%; height: 100%; object-fit: cover; object-position: center 25%;
+            display: block;
+          }
+          @media (max-width: 860px) {
+            .vhero-grid { grid-template-columns: 1fr; }
+            .vhero-photo { aspect-ratio: 16 / 9; order: -1; }
           }
           .stat-row {
             display: grid; grid-template-columns: repeat(5, 1fr);
@@ -501,16 +562,25 @@ const Voric = () => {
         {/* HERO */}
         <header className="vhero">
           <div className="vwrap">
-            <p className="veyebrow">VORIC · VAAYU Occupational Respiratory Illness Clinic</p>
-            <h1>Protecting Those Who Serve</h1>
-            <p className="lead">
-              Traffic police, public-transport employees, construction workers,
-              municipal workers and professional drivers face prolonged exposure
-              to pollution, dust and smoke. VORIC — a social-impact initiative of
-              VAAYU Chest &amp; Sleep Specialists and the VAAYU Respiratory
-              Foundation — brings comprehensive respiratory and preventive
-              healthcare closer to these high-risk communities.
-            </p>
+            <div className="vhero-grid">
+              <div className="vhero-copy">
+                <p className="veyebrow">VORIC · VAAYU Occupational Respiratory Illness Clinic</p>
+                <h1>Protecting Those Who Serve</h1>
+                <p className="lead">
+                  Traffic police, public-transport employees, construction workers,
+                  municipal workers and professional drivers face prolonged exposure
+                  to pollution, dust and smoke. Running since November 2023, VORIC —
+                  a social-impact initiative of VAAYU Chest &amp; Sleep Specialists
+                  and the VAAYU Respiratory Foundation — has brought comprehensive
+                  respiratory and preventive healthcare to over 11,000 of these
+                  high-risk workers across Bengaluru.
+                </p>
+              </div>
+
+              <figure className="vhero-photo">
+                <img src={gSpirometry} alt="A Bengaluru traffic police officer undergoing a spirometry lung-function test at a VORIC roadside screening camp" />
+              </figure>
+            </div>
 
             <div className="stat-row">
               {STATS.map((s) => (
@@ -520,7 +590,6 @@ const Voric = () => {
                 </div>
               ))}
             </div>
-
           </div>
         </header>
 
@@ -540,10 +609,12 @@ const Voric = () => {
               <p className="veyebrow">About VORIC</p>
               <h2 className="vheading">A continuing platform, not just a camp</h2>
               <p className="vtext" style={{ marginTop: 16 }}>
-                The VAAYU Occupational Respiratory Illness Clinic protects people
-                routinely exposed to air pollution, exhaust fumes, dust, smoke and
-                other workplace hazards — connecting workplace screening with
-                treatment, education, research and policy advocacy.
+                The VAAYU Occupational Respiratory Illness Clinic studies and
+                addresses the impact of pollution on Bengaluru's traffic police
+                and other people routinely exposed to air pollution, exhaust
+                fumes, dust, smoke and other workplace hazards — connecting
+                workplace screening with treatment, education, research and
+                policy advocacy.
               </p>
             </div>
             <div className="g3">
@@ -601,7 +672,7 @@ const Voric = () => {
           <div className="vwrap">
             <div className="vcenter">
               <p className="veyebrow">Background &amp; Aim</p>
-              <h2 className="vheading">Why occupational respiratory health matters</h2>
+              <h2 className="vheading">The impact of pollution on Bengaluru's traffic police</h2>
             </div>
 
             <div className="bg-grid">

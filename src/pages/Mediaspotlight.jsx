@@ -1,27 +1,28 @@
 import React from "react";
-import { FiPlay, FiArrowRight, FiExternalLink } from "react-icons/fi";
+import { FiPlay, FiArrowRight, FiDownload } from "react-icons/fi";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 
 import heroBg from "../assets/img/media/news-hero.jpg";
 import img1 from "../assets/img/media/WhatsApp Image 2026-01-21 at 4.13.06 PM.jpeg";
-import img2 from "../assets/img/media/media-2.jpg";
 import img3 from "../assets/img/media/media-3.jpg";
-import ndtvImg from "../assets/img/media/ndtv.jpg";
-import toiImg from "../assets/img/media/The Times of India, Pg2-All Karnataka Edition_12th Jan 2026.jpeg";
+import toiImg from "../assets/img/media/toi-jan12-2026-corrected.jpg";
 import raviMehtaImg from "../assets/img/DSC00661 (1).JPG";
 import toiFirewoodImg from "../assets/img/media/Dr Ravindra Mehta, interventional pulmonologist and founder & director, Vaayu Chest & Sleep Specialists quoted in The Times of India, Pg2.jpeg";
 import samyuktaKarnatakaImg from "../assets/img/media/samyukta-karnataka-pg2.jpeg";
 import sanjevaniImg from "../assets/img/media/Sanjevani.jpeg";
-import pniRoundtableThumb from "../assets/img/media/pni-roundtable.png";
 import apnRoundtableThumb from "../assets/img/media/apn-roundtable.png";
-import hansRoundtableThumb from "../assets/img/media/hans-roundtable.png";
-import breathlessImg from "../assets/img/breathless.png";
-import homeRehabImg from "../assets/img/rehab.jpg";
-import indianNewzImg from "../assets/img/bg-contact-homecare.png";
 import rehabLaunchPreview from "../assets/img/media/preview.png";
 import mediaVideo from "../assets/img/media/6036184_Bill_Dollar_3840x2160.mp4";
+
+import hansIndiaCapture from "../assets/img/media/captures/hans-india-roundtable.jpg";
+import pniRoundtableCapture from "../assets/img/media/captures/pni-news-roundtable.jpg";
+import indianNewzCapture from "../assets/img/media/captures/indiannewz-critical-patient.jpg";
+import pniCriticalCapture from "../assets/img/media/captures/pni-news-critical-patient.jpg";
+import southFirstCapture from "../assets/img/media/captures/south-first-breathless.jpg";
+import ndtvCapture from "../assets/img/media/captures/ndtv-copd.jpg";
+import pniInaugurationCapture from "../assets/img/media/captures/pni-news-inauguration.jpg";
 
 
 const font =
@@ -39,7 +40,9 @@ const mediaItems = [
     "The Hans India highlights Vaayu’s high-level health roundtable focused on India’s growing respiratory health burden, the importance of early intervention, pulmonary rehabilitation, and integrated long-term lung care.",
   author: "Vaayu Chest & Sleep Specialists",
   link: "https://www.thehansindia.com/karnataka/vaayu-chest-and-sleep-specialty-center-addresses-respiratory-health-crisis-at-high-level-health-roundtable-1053118",
-  image: hansRoundtableThumb,
+  archiveLink: "https://web.archive.org/web/20260312132046/https://www.thehansindia.com/karnataka/vaayu-chest-and-sleep-specialty-center-addresses-respiratory-health-crisis-at-high-level-health-roundtable-1053118",
+  pdf: "/media-pdfs/hans-india-roundtable.pdf",
+  image: hansIndiaCapture,
   type: "external",
 },
   {
@@ -53,6 +56,7 @@ const mediaItems = [
       "Dr. Ravindra Mehta of Vaayu Chest & Sleep Specialists was quoted in The Times of India on the health risks of firewood smoke, especially for households with poor ventilation and children.",
     author: "Dr. Ravindra Mehta",
     link: "https://timesofindia.indiatimes.com/city/bengaluru/planning-to-use-firewood-doctors-say-it-may-be-a-bad-idea/articleshow/129909837.cms",
+    archiveLink: "https://web.archive.org/web/20260331060410/https://timesofindia.indiatimes.com/city/bengaluru/planning-to-use-firewood-doctors-say-it-may-be-a-bad-idea/articleshow/129909837.cms",
     image: toiFirewoodImg,
     type: "external",
   },
@@ -68,7 +72,8 @@ const mediaItems = [
       "Coverage of Vaayu’s high-level health roundtable focused on the respiratory health crisis, pulmonary care priorities, and expert-led discussion around lung health in India.",
     author: "Vaayu Chest & Sleep Specialists",
     link: "https://www.pninews.com/vaayu-chest-and-sleep-specialty-center-addresses-the-respiratory-health-crisis-at-high-level-health-roundtable/",
-    image: pniRoundtableThumb,
+    pdf: "/media-pdfs/pni-news-roundtable.pdf",
+    image: pniRoundtableCapture,
     type: "external",
   },
   {
@@ -112,7 +117,8 @@ const mediaItems = [
       "The Hans India features Vaayu’s expert roundtable discussion on respiratory health challenges, awareness, early intervention, and structured pulmonary care.",
     author: "Vaayu Chest & Sleep Specialists",
     link: "https://www.thehansindia.com/karnataka/vaayu-chest-and-sleep-specialty-center-addresses-respiratory-health-crisis-at-high-level-health-roundtable-1053118",
-    image: hansRoundtableThumb,
+    pdf: "/media-pdfs/hans-india-roundtable.pdf",
+    image: hansIndiaCapture,
     type: "external",
   },
   {
@@ -155,7 +161,8 @@ const mediaItems = [
       "Vaayu Chest & Sleep Specialty Center reports a complete recovery of a critical patient through advanced pulmonary rehabilitation after a major lung surgery.",
     author: "Dr. Ravindra Mehta",
     link: "https://indiannewz.wordpress.com/2026/01/29/vaayu-chest-sleep-specialty-center-helps-a-critical-patient-completely-recover-with-state-of-the-art-pulmonary-rehabilitation-after-a-major-lung-surgery/",
-    image: indianNewzImg,
+    pdf: "/media-pdfs/indiannewz-critical-patient.pdf",
+    image: indianNewzCapture,
     type: "external",
   },
   {
@@ -170,7 +177,8 @@ const mediaItems = [
       "Under the leadership of Dr. Ravindra Mehta, Vaayu Chest & Sleep Specialty Center successfully enabled a critically ill patient to achieve complete recovery through advanced pulmonary rehabilitation following a major lung surgery.",
     author: "Dr. Ravindra Mehta",
     link: "https://www.pninews.com/amp/vaayu-chest-sleep-specialty-center-helps-a-critical-patient-completely-recover-with-state-of-the-art-pulmonary-rehabilitation-after-a-major-lung-surgery/",
-    image: homeRehabImg,
+    pdf: "/media-pdfs/pni-news-critical-patient.pdf",
+    image: pniCriticalCapture,
     type: "external",
   },
   {
@@ -185,7 +193,9 @@ const mediaItems = [
       "Breathlessness, frequent sighing, or the need to take deep breaths is not always a lung issue, and other causes must be considered.",
     author: "Dr.Sameer Bansal",
     link: "https://thesouthfirst.com/health/feeling-breathless-despite-normal-lung-reports-doctors-explain-possible-causes/",
-    image: breathlessImg,
+    archiveLink: "https://web.archive.org/web/20260127025003/https://thesouthfirst.com/health/feeling-breathless-despite-normal-lung-reports-doctors-explain-possible-causes/",
+    pdf: "/media-pdfs/south-first-breathless.pdf",
+    image: southFirstCapture,
     type: "external",
   },
   {
@@ -199,6 +209,7 @@ const mediaItems = [
     excerpt:
       "A state-of-the-art facility and a unique centre for holistic care of pulmonary health inaugurated in Jayanagar, Bengaluru.",
     link: "https://businesswebnews.blogspot.com/2023/10/vaayu-unique-centre-for-holistic-care.html?m=1",
+    archiveLink: "https://web.archive.org/web/20231226215740/https://businesswebnews.blogspot.com/2023/10/vaayu-unique-centre-for-holistic-care.html",
     image: img1,
     type: "external",
   },
@@ -212,20 +223,21 @@ const mediaItems = [
     excerpt:
       "VAAYU Chest and Sleep Services & VAAYU Pulmonary Wellness & Rehabilitation Centre inaugurated in Jayanagar, Bengaluru.",
     link: "https://www.pninews.com/vaayu-a-unique-centre-for-holistic-care-of-pulmonary-health/",
-    image: img2,
+    pdf: "/media-pdfs/pni-news-inauguration.pdf",
+    image: pniInaugurationCapture,
     type: "external",
   },
   {
     id: 3,
     featured: true,
-    source: "FM Live",
-    date: "05 Oct 2023",
+    source: "Deccan Herald",
+    date: "25 Sep 2023",
     category: "Inauguration",
-    title:
-      "Vaayu - A Unique Centre for Holistic Care of Pulmonary Health Inaugurated in Jayanagar, Bengaluru",
+    title: "VAAYU Pulmonary Wellness Services Launched Ahead of World Lung Day",
     excerpt:
-      "A state-of-the-art facility for pulmonary health launched with leading specialists in Bengaluru.",
-    link: "https://www.fmlive.in/vaayu-a-unique-centre-for-holistic-care-of-pulmonary-health-inaugurated-in-jayanagar-Bengaluru/",
+      "The centre will have experienced pulmonologists, speciality services for asthma and other lung disorders, advanced diagnostics, paediatric pulmonology treatment, and an allergy centre, among other services, under one roof.",
+    link: "https://www.deccanherald.com/india/karnataka/bengaluru/vaayu-pulmonary-wellness-services-launched-ahead-of-world-lung-day-2699287",
+    pdf: "/media-pdfs/deccan-herald-inauguration.pdf",
     image: img3,
     type: "external",
   },
@@ -240,7 +252,9 @@ const mediaItems = [
     excerpt:
       "Spokesperson: Dr. Ravindra Mehta, Chief of Pulmonary, Critical Care and Interventional Pulmonology, Bengaluru.",
     link: "https://www.ndtv.com/health/copd-signs-and-symptoms-understanding-the-importance-of-early-detection-and-timely-intervention-4589392",
-    image: ndtvImg,
+    archiveLink: "https://web.archive.org/web/20250718081024/https://www.ndtv.com/health/copd-signs-and-symptoms-understanding-the-importance-of-early-detection-and-timely-intervention-4589392",
+    pdf: "/media-pdfs/ndtv-copd.pdf",
+    image: ndtvCapture,
     type: "external",
   },
   {
@@ -249,12 +263,12 @@ const mediaItems = [
     source: "The Times of India",
     date: "12 Jan 2026",
     category: "Featured",
-    title: "Vaayu featured in The Times of India (All Karnataka Edition)",
+    title: "“The Air We Breathe” — Times of India (All Karnataka Edition)",
     excerpt:
-      "Vaayu Chest & Sleep Specialists featured in The Times of India – All Karnataka Edition.",
-    link: "#",
+      "Dr. Ravindra Mehta of Vaayu Chest & Sleep Specialists quoted on Bengaluru's air quality, traffic-linked pollution, and the rise in respiratory illness the clinic is seeing.",
+    pdf: "/media-pdfs/toi-jan12-2026.pdf",
     image: toiImg,
-    type: "external",
+    type: "image",
   },
 ];
 
@@ -268,61 +282,111 @@ const stagger = {
   show: { transition: { staggerChildren: 0.08 } },
 };
 
+const CATEGORY_STYLES = {
+  "Respiratory Health Roundtable": { bg: "bg-[#E7EFDD]", text: "text-[#4A5D32]" },
+  "Expert Insight": { bg: "bg-[#E3EEF5]", text: "text-[#2C5B77]" },
+  "Expert Article": { bg: "bg-[#E3EEF5]", text: "text-[#2C5B77]" },
+  "Pulmonary Rehab Program": { bg: "bg-[#EDE7F6]", text: "text-[#5B4B8A]" },
+  "Clinical Recovery": { bg: "bg-[#FBEAE0]", text: "text-[#A6563B]" },
+  Inauguration: { bg: "bg-[#FBF0D9]", text: "text-[#8A6D1D]" },
+  Featured: { bg: "bg-[#EEF2E4]", text: "text-[#3F4723]" },
+  "Rehab Launch 2.0": { bg: "bg-[#F5E6EA]", text: "text-[#8A3B54]" },
+};
+const categoryStyle = (cat) => CATEGORY_STYLES[cat] || { bg: "bg-[#EEF2E4]", text: "text-[#3F4723]" };
+
 const MediaCard = ({ item }) => {
+  const cat = categoryStyle(item.category);
   return (
-    <a
-      href={item.link}
-      target="_blank"
-      rel="noreferrer"
-      className="block h-full"
-      aria-label={`Open ${item.source} article: ${item.title}`}
-    >
-      <motion.article
-        className="group bg-white rounded-[1.8rem] border border-[#E3E8D7] p-6 shadow-[0_12px_35px_rgba(31,42,26,0.06)] h-full transition will-change-transform hover:-translate-y-1 hover:shadow-[0_18px_45px_rgba(31,42,26,0.10)]"
-        whileHover={{ y: -4 }}
-        transition={{ type: "spring", stiffness: 260, damping: 22 }}
-      >
-        <div className="flex items-start justify-between gap-4">
-          <span className="text-[11px] font-extrabold px-3 py-1.5 rounded-full bg-[#EEF2E4] text-[#1f2a1a]">
-            {item.category}
-          </span>
-
-          <p className="text-xs text-gray-500 shrink-0">
-            {item.date}
-          </p>
-        </div>
-
-        <div className="mt-5">
-          <p className="text-xs font-extrabold uppercase tracking-[0.12em] text-[#6A734F]">
-            {item.source}
-
-            {item.author && (
-              <span className="ml-1 normal-case tracking-normal text-gray-500 font-medium">
-                • By {item.author}
+    <motion.article className="group relative bg-white rounded-2xl border border-[#e2e8d8] shadow-[0_4px_16px_rgba(63,71,46,0.06)] p-5 h-full overflow-hidden transition duration-300 hover:shadow-[0_16px_40px_rgba(91,102,65,0.18)] hover:-translate-y-1.5 hover:border-[#c7d4b4] will-change-transform">
+      <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#8ba36b] via-[#5B6641] to-[#3F4723] scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300" />
+      {(() => {
+        const ImageWrap = item.link ? "a" : "div";
+        const imageWrapProps = item.link
+          ? { href: item.link, target: "_blank", rel: "noreferrer", "aria-label": `Open ${item.source} article: ${item.title}` }
+          : {};
+        return (
+          <ImageWrap {...imageWrapProps} className="block">
+            <div className="relative rounded-xl overflow-hidden mb-4 shadow-[0_10px_24px_rgba(63,71,46,0.18)] ring-1 ring-black/[0.06] bg-[#EEF2E4]">
+              <img
+                src={item.image}
+                alt={`${item.source} clipping — ${item.title}`}
+                className="w-full h-44 object-cover object-top transition duration-500 group-hover:scale-[1.05]"
+                loading="lazy"
+                decoding="async"
+              />
+              <span className={`absolute top-2.5 right-2.5 text-[10px] font-extrabold px-2.5 py-1 rounded-full shadow-sm ${cat.bg} ${cat.text}`}>
+                {item.category}
               </span>
-            )}
-          </p>
+            </div>
+          </ImageWrap>
+        );
+      })()}
 
-          <h3 className="mt-3 text-[22px] leading-[1.28] font-black tracking-tight text-[#1f2a1a]">
+      <p className="text-xs font-bold uppercase tracking-wide text-[#6A734F]">
+        {item.source} • {item.date}
+      </p>
+
+      {item.link ? (
+        <a href={item.link} target="_blank" rel="noreferrer" className="block">
+          <h3 className="mt-2 text-xl font-semibold text-[#3F4723] leading-snug group-hover:text-[#5B6641]">
             {item.title}
           </h3>
+        </a>
+      ) : (
+        <h3 className="mt-2 text-xl font-semibold text-[#3F4723] leading-snug">
+          {item.title}
+        </h3>
+      )}
 
-          <p className="text-[15px] leading-7 text-[#5c6651] mt-4 line-clamp-4">
-            {item.excerpt}
-          </p>
-        </div>
+      <p className="text-gray-700 mt-2 text-sm leading-relaxed line-clamp-3">
+        {item.excerpt}
+      </p>
 
-        <div className="mt-7 pt-5 border-t border-[#E8ECDD] flex items-center justify-between">
-          <span className="text-sm font-bold text-[#5B6641]">
-            Media Coverage
-          </span>
+      <div className="mt-4 flex items-center justify-between gap-3">
+        {item.link ? (
+          <a
+            href={item.link}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-1 text-sm font-semibold text-[#5B6641] hover:text-[#3F4723]"
+          >
+            Open Article <span className="inline-block transition-transform group-hover:translate-x-1">→</span>
+          </a>
+        ) : item.pdf ? (
+          <a
+            href={item.pdf}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-1 text-sm font-semibold text-[#5B6641] hover:text-[#3F4723]"
+            title="This ran in print with no matching online article — here's the saved page"
+          >
+            View Full Clipping <span className="inline-block transition-transform group-hover:translate-x-1">→</span>
+          </a>
+        ) : null}
 
-          <span className="inline-flex items-center gap-2 bg-[#1f2a1a] text-white px-5 py-2.5 rounded-full text-sm font-extrabold shadow-md">
-            Open Article <FiExternalLink />
-          </span>
-        </div>
-      </motion.article>
-    </a>
+        {item.link && item.pdf ? (
+          <a
+            href={item.pdf}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-1 text-xs font-semibold text-gray-500 hover:text-[#5B6641]"
+            title="Saved copy of the published page, in case the original link goes offline"
+          >
+            <FiDownload size={12} /> PDF
+          </a>
+        ) : item.link && item.archiveLink ? (
+          <a
+            href={item.archiveLink}
+            target="_blank"
+            rel="noreferrer"
+            className="text-xs font-semibold text-gray-500 hover:text-[#5B6641]"
+            title="Permanent archived copy, in case the original link goes offline"
+          >
+            Backup copy
+          </a>
+        ) : null}
+      </div>
+    </motion.article>
   );
 };
 
@@ -529,29 +593,42 @@ className="text-white/85 mt-5 max-w-2xl text-[15px] sm:text-[17px] leading-8 fon
   href={featured[0].link}
   target="_blank"
   rel="noreferrer"
-  className="group bg-white rounded-[2rem] border border-[#E3E8D7] p-7 md:p-9 shadow-[0_12px_35px_rgba(31,42,26,0.06)] block"
-  whileHover={{ y: -4 }}
-  transition={{ type: "spring", stiffness: 260, damping: 22 }}
+  className="group relative bg-white rounded-2xl border border-[#e2e8d8] shadow-[0_4px_16px_rgba(63,71,46,0.06)] p-5 block overflow-hidden transition duration-300 hover:shadow-[0_20px_48px_rgba(91,102,65,0.2)] hover:-translate-y-1.5 hover:border-[#c7d4b4]"
 >
-  <p className="text-xs font-extrabold uppercase tracking-[0.14em] text-[#6A734F]">
+  <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#8ba36b] via-[#5B6641] to-[#3F4723] scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300" />
+
+  <div className="relative rounded-xl overflow-hidden mb-4 shadow-[0_12px_32px_rgba(63,71,46,0.2)] ring-1 ring-black/[0.06] bg-[#EEF2E4]">
+    <img
+      src={featured[0].image}
+      alt={`${featured[0].source} clipping — ${featured[0].title}`}
+      className="w-full aspect-[16/9] sm:aspect-[2.2/1] object-cover object-top transition duration-500 group-hover:scale-[1.04]"
+      loading="lazy"
+      decoding="async"
+    />
+    <span className={`absolute top-3 right-3 text-[11px] font-extrabold px-3 py-1 rounded-full shadow-sm ${categoryStyle(featured[0].category).bg} ${categoryStyle(featured[0].category).text}`}>
+      {featured[0].category}
+    </span>
+  </div>
+
+  <p className="text-xs font-bold uppercase tracking-wide text-[#6A734F]">
     {featured[0].source} • {featured[0].date}
   </p>
 
-  <h2 className="mt-4 text-3xl md:text-5xl font-black tracking-tight leading-[1.05] text-[#1f2a1a]">
+  <h2 className="mt-2 text-2xl md:text-4xl font-semibold tracking-tight leading-tight text-[#3F4723] group-hover:text-[#5B6641]">
     {featured[0].title}
   </h2>
 
-  <p className="mt-5 text-[16px] md:text-[17px] leading-8 text-[#5c6651] max-w-3xl">
+  <p className="mt-4 text-[15px] md:text-base leading-7 text-gray-700 max-w-3xl">
     {featured[0].excerpt}
   </p>
 
-  <div className="mt-8 flex items-center justify-between border-t border-[#E8ECDD] pt-5">
-    <span className="text-sm font-bold text-[#5B6641]">
+  <div className="mt-6 flex items-center justify-between">
+    <span className="text-xs font-bold text-gray-500 uppercase tracking-wide">
       Featured Coverage
     </span>
 
-    <span className="inline-flex items-center gap-2 bg-[#1f2a1a] text-white px-5 py-3 rounded-full text-sm font-extrabold shadow-md">
-      Open Article <FiExternalLink />
+    <span className="inline-flex items-center gap-1 text-sm font-semibold text-[#5B6641] group-hover:text-[#3F4723]">
+      Open Article <span className="inline-block transition-transform group-hover:translate-x-1">→</span>
     </span>
   </div>
 </motion.a>
@@ -566,27 +643,30 @@ className="text-white/85 mt-5 max-w-2xl text-[15px] sm:text-[17px] leading-8 fon
                 target="_blank"
                 rel="noreferrer"
                 variants={fadeUp}
-                className="group relative rounded-2xl overflow-hidden shadow-lg"
-                whileHover={{ y: -6 }}
-                transition={{ type: "spring", stiffness: 260, damping: 22 }}
+                className="group relative bg-white rounded-2xl border border-[#e2e8d8] shadow-[0_4px_16px_rgba(63,71,46,0.06)] p-4 flex-1 flex flex-col overflow-hidden transition duration-300 hover:shadow-[0_16px_36px_rgba(91,102,65,0.18)] hover:-translate-y-1.5 hover:border-[#c7d4b4]"
               >
-                <img
-                  src={i.image}
-className="h-[180px] sm:h-[200px] w-full object-cover transition duration-500 group-hover:scale-[1.03]"                  loading="lazy"
-                  decoding="async"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/0 to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-4">
-                  <p className="text-white/80 text-xs font-bold">
-                    {i.source} • {i.date}
-                  </p>
-                  <p className="text-white font-extrabold mt-1 line-clamp-2">
-                    {i.title}
-                  </p>
-                  <span className="mt-3 inline-flex items-center gap-2 text-xs font-extrabold px-4 py-2 rounded-full bg-white text-[#1f2a1a] shadow">
-                    Open <FiExternalLink />
+                <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#8ba36b] via-[#5B6641] to-[#3F4723] scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300" />
+
+                <div className="relative rounded-xl overflow-hidden mb-3 shadow-[0_8px_20px_rgba(63,71,46,0.16)] ring-1 ring-black/[0.06]">
+                  <img
+                    src={i.image}
+                    className="h-[140px] w-full object-cover object-top transition duration-500 group-hover:scale-[1.05]"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <span className={`absolute top-2 right-2 text-[10px] font-extrabold px-2 py-0.5 rounded-full shadow-sm ${categoryStyle(i.category).bg} ${categoryStyle(i.category).text}`}>
+                    {i.category}
                   </span>
                 </div>
+                <p className="text-[11px] font-bold uppercase tracking-wide text-[#6A734F]">
+                  {i.source} • {i.date}
+                </p>
+                <p className="text-[#3F4723] font-semibold mt-1 line-clamp-2 group-hover:text-[#5B6641]">
+                  {i.title}
+                </p>
+                <span className="mt-auto pt-3 inline-flex items-center gap-1 text-sm font-semibold text-[#5B6641] group-hover:text-[#3F4723]">
+                  Open <span className="inline-block transition-transform group-hover:translate-x-1">→</span>
+                </span>
               </motion.a>
             ))}
           </div>

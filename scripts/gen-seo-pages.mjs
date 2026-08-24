@@ -121,3 +121,93 @@ html = html.replace(/<div id="root">\s*<\/div>/, staticSummary);
 
 writeFileSync(join(root, "dist", "revive-2026.html"), html);
 console.log("generated dist/revive-2026.html");
+
+// ---------------------------------------------------------------------------
+// dist/voric.html — same technique for the VORIC occupational-health page.
+// Targets "impact of pollution on traffic police Bengaluru" and related
+// long-tail searches; served for /voric via an .htaccess rewrite.
+// ---------------------------------------------------------------------------
+
+const V_TITLE =
+  "VORIC — Impact of Air Pollution on Bengaluru's Traffic Police | VAAYU";
+const V_DESC =
+  "VORIC studies the impact of pollution on Bengaluru's traffic police, BMTC & KSRTC staff, and other high-risk outdoor workers, with a 5-year IISc & PHFI research collaboration. Free respiratory screening for 11,000+ people since November 2023.";
+const V_KEYWORDS =
+  "impact of pollution on traffic police Bengaluru, traffic police health screening, occupational respiratory illness, VORIC, air pollution health effects Bengaluru";
+const V_URL = `${BASE}/voric`;
+const V_OG_IMG = `${BASE}/og-image.jpg`;
+
+const V_SCHEMA = {
+  "@context": "https://schema.org",
+  "@type": "MedicalWebPage",
+  name: V_TITLE,
+  description: V_DESC,
+  url: V_URL,
+  about: {
+    "@type": "MedicalCondition",
+    name: "Occupational respiratory illness from air pollution exposure",
+  },
+  audience: {
+    "@type": "Audience",
+    audienceType:
+      "Traffic police, BMTC & KSRTC staff, construction workers, municipal workers, professional drivers",
+  },
+  mainEntity: {
+    "@type": "Organization",
+    name: "VORIC — VAAYU Occupational Respiratory Illness Clinic",
+    description:
+      "Social-impact initiative of VAAYU Chest & Sleep Specialists studying and screening for the impact of air pollution on Bengaluru's traffic police and other high-risk outdoor workers since November 2023, in a 5-year research collaboration with the Indian Institute of Science (IISc) and the Public Health Foundation of India (PHFI).",
+    foundingDate: "2023-11",
+    parentOrganization: {
+      "@type": "MedicalOrganization",
+      name: "Vaayu Chest & Sleep Specialists",
+      url: BASE,
+    },
+  },
+  publisher: {
+    "@type": "MedicalOrganization",
+    name: "Vaayu Chest & Sleep Specialists",
+    url: BASE,
+  },
+};
+
+let vHtml = readFileSync(distIndex, "utf8");
+
+vHtml = vHtml.replace(/<title>[\s\S]*?<\/title>/, `<title>${V_TITLE}</title>`);
+vHtml = vHtml.replace(
+  /(<meta\s+name="description"\s+content=")[^"]*(")/,
+  `$1${V_DESC}$2`
+);
+vHtml = vHtml
+  .replace(/(<meta property="og:title" content=")[^"]*(")/, `$1${V_TITLE}$2`)
+  .replace(/(<meta\s+property="og:description"[\s\S]*?content=")[^"]*(")/, `$1${V_DESC}$2`)
+  .replace(/(<meta property="og:image" content=")[^"]*(")/, `$1${V_OG_IMG}$2`)
+  .replace(/(<meta property="og:url" content=")[^"]*(")/, `$1${V_URL}$2`)
+  .replace(/(<meta property="og:type" content=")[^"]*(")/, `$1website$2`)
+  .replace(/(<link rel="canonical" href=")[^"]*(")/, `$1${V_URL}$2`);
+
+const vHeadExtras = `
+    <meta name="keywords" content="${V_KEYWORDS}" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="${V_TITLE}" />
+    <meta name="twitter:description" content="${V_DESC}" />
+    <meta name="twitter:image" content="${V_OG_IMG}" />
+    <script type="application/ld+json">${JSON.stringify(V_SCHEMA)}</script>
+  </head>`;
+vHtml = vHtml.replace("</head>", vHeadExtras);
+
+const vStaticSummary = `<div id="root"><main style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">
+  <h1>VORIC — The Impact of Pollution on Bengaluru's Traffic Police</h1>
+  <p>The VAAYU Occupational Respiratory Illness Clinic (VORIC) is a social-impact initiative of Vaayu Chest &amp; Sleep Specialists, running since November 2023, that studies and addresses the impact of air pollution on Bengaluru's traffic police, BMTC &amp; KSRTC staff, construction workers, municipal workers and professional drivers.</p>
+  <h2>What VORIC Does</h2>
+  <p>Free preventive and therapeutic respiratory screening, advanced lung testing (spirometry, Forced Oscillation Technique, Fractional exhaled Nitric Oxide), doctor consultation, treatment and follow-up, and health education &mdash; brought directly to high-risk workplaces across Bengaluru.</p>
+  <h2>Scientific Collaboration</h2>
+  <p>A 5-year longitudinal research collaboration with the Indian Institute of Science (IISc) and the Public Health Foundation of India (PHFI) studying the long-term health effects of pollution exposure on Bengaluru's traffic police personnel.</p>
+  <h2>Impact So Far</h2>
+  <p>11,000+ people screened, including 3,287 traffic police personnel, 4,389 BMTC &amp; KSRTC bus crew, 3,000+ construction workers and 240+ Paurakarmikas.</p>
+  <p><a href="${BASE}/contact">Contact Vaayu Chest &amp; Sleep Specialists</a> &middot; +91 63649 28680 &middot; admin@vaayuchest.com</p>
+</main></div>`;
+vHtml = vHtml.replace(/<div id="root">\s*<\/div>/, vStaticSummary);
+
+writeFileSync(join(root, "dist", "voric.html"), vHtml);
+console.log("generated dist/voric.html");
