@@ -23,11 +23,27 @@ import pniCriticalCapture from "../assets/img/media/captures/pni-news-critical-p
 import southFirstCapture from "../assets/img/media/captures/south-first-breathless.jpg";
 import ndtvCapture from "../assets/img/media/captures/ndtv-copd.jpg";
 import pniInaugurationCapture from "../assets/img/media/captures/pni-news-inauguration.jpg";
+import hinduSurveillanceCapture from "../assets/img/media/captures/the-hindu-traffic-police-surveillance.jpg";
 
 
 const font =
   "'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif";
 const mediaItems = [
+  {
+    id: 17,
+    featured: true,
+    source: "The Hindu",
+    date: "02 May 2026",
+    category: "Featured",
+    title: "Karnataka Launches Statewide Respiratory Surveillance for Traffic Police",
+    excerpt:
+      "The Hindu reports on Karnataka's Home Department launching a first-of-its-kind statewide respiratory health surveillance and research programme for traffic police, following VORIC's two-year screening of 3,287 traffic police personnel in Bengaluru — with Vaayu Respiratory Foundation as the technical implementation partner.",
+    author: "Afshan Yasmeen",
+    link: "https://www.thehindu.com/news/national/karnataka/karnataka-launches-statewide-respiratory-surveillance-for-traffic-police/article70929118.ece",
+    pdf: "/media-pdfs/the-hindu-traffic-police-surveillance.pdf",
+    image: hinduSurveillanceCapture,
+    type: "external",
+  },
   {
   id: 16,
   featured: false,
@@ -392,7 +408,8 @@ const MediaCard = ({ item }) => {
 
 const Mediaspotlight = () => {
   const featured = mediaItems.filter((x) => x.featured).slice(0, 3);
-  const recent = mediaItems;
+  const featuredIds = new Set(featured.map((x) => x.id));
+  const recent = mediaItems.filter((x) => !featuredIds.has(x.id));
 
   const { scrollY } = useScroll();
   const heroY = useTransform(scrollY, [0, 500], [0, 80]);

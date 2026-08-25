@@ -19,19 +19,21 @@ import gBbmp from "../assets/img/voric/bbmp-chief-commissioner.jpeg";
 import gFelicitation1 from "../assets/img/voric/felicitation-1.jpg";
 import gFelicitation2 from "../assets/img/voric/felicitation-2.jpg";
 
+const GALLERY_TABS = ["All", "Screening Camps", "Dignitaries & Officials"];
+
 const GALLERY = [
-  [gMobileCamp, "Mobile screening camp"],
-  [gDoctorConsult, "Doctor consultation"],
-  [gHealthDesk, "Health screening in progress"],
-  [gVitalsCheck, "Vitals & spirometry check"],
-  [gRegistration, "Screening registration"],
-  [gSpirometry, "Spirometry testing"],
-  [gTrafficPoliceGroup, "With Bengaluru Traffic Police"],
-  [gTrafficPoliceJC, "With the Joint Commissioner of Traffic Police"],
-  [gBmtcKsrtc, "With BMTC & KSRTC leadership"],
-  [gBbmp, "With the Chief Commissioner, BBMP"],
-  [gFelicitation1, "Felicitated for VORIC's community impact"],
-  [gFelicitation2, "Recognised alongside Bengaluru Traffic Police"],
+  { src: gMobileCamp, cap: "Mobile screening camp", category: "Screening Camps" },
+  { src: gDoctorConsult, cap: "Doctor consultation", category: "Screening Camps" },
+  { src: gHealthDesk, cap: "Health screening in progress", category: "Screening Camps" },
+  { src: gVitalsCheck, cap: "Vitals & spirometry check", category: "Screening Camps" },
+  { src: gRegistration, cap: "Screening registration", category: "Screening Camps" },
+  { src: gSpirometry, cap: "Spirometry testing", category: "Screening Camps" },
+  { src: gTrafficPoliceGroup, cap: "With Bengaluru Traffic Police", category: "Dignitaries & Officials" },
+  { src: gTrafficPoliceJC, cap: "With the Joint Commissioner of Traffic Police", category: "Dignitaries & Officials" },
+  { src: gBmtcKsrtc, cap: "With BMTC & KSRTC leadership", category: "Dignitaries & Officials" },
+  { src: gBbmp, cap: "With the Chief Commissioner, BBMP", category: "Dignitaries & Officials" },
+  { src: gFelicitation1, cap: "Felicitated for VORIC's community impact", category: "Dignitaries & Officials" },
+  { src: gFelicitation2, cap: "Recognised alongside Bengaluru Traffic Police", category: "Dignitaries & Officials" },
 ];
 
 const BASE_URL = "https://vaayuchest.com";
@@ -136,7 +138,8 @@ const SERVICES = [
       "Symptom & exposure evaluation",
       "Doctor consultation",
       "Spirometry & Forced Oscillation Technique (FOT)",
-      "Fractional exhaled Nitric Oxide (FeNO), where available, & chest radiograph",
+      "Fractional exhaled Nitric Oxide (FeNO), where available",
+      "Chest radiograph (X-ray)",
       "Relevant blood investigations for selected cohorts",
     ],
   },
@@ -213,6 +216,7 @@ const NAV = [
 
 const Voric = () => {
   const [open, setOpen] = useState(false);
+  const [galleryTab, setGalleryTab] = useState("All");
 
   useEffect(() => {
     document.title = SEO_TITLE;
@@ -494,6 +498,20 @@ const Voric = () => {
           }
 
           /* PLACEHOLDER + GALLERY */
+          .gallery-tabs {
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;
+            margin-bottom: 30px;
+          }
+          .gallery-tab {
+            padding: 10px 22px; border-radius: 999px; font-size: 14px; font-weight: 700;
+            font-family: inherit; cursor: pointer;
+            color: ${T.green}; background: ${T.soft}; border: 1px solid ${T.border};
+            transition: background .2s ease, color .2s ease, border-color .2s ease, transform .2s ease;
+          }
+          .gallery-tab:hover { transform: translateY(-1px); }
+          .gallery-tab.active {
+            color: #fff; background: ${T.green}; border-color: ${T.green};
+          }
           .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
           .ph {
             aspect-ratio: 4 / 3; border-radius: 16px;
@@ -887,10 +905,22 @@ const Voric = () => {
               <p className="veyebrow">Gallery</p>
               <h2 className="vheading">VORIC in action</h2>
             </div>
+            <div className="gallery-tabs">
+              {GALLERY_TABS.map((tab) => (
+                <button
+                  key={tab}
+                  type="button"
+                  className={`gallery-tab${galleryTab === tab ? " active" : ""}`}
+                  onClick={() => setGalleryTab(tab)}
+                >
+                  {tab}
+                </button>
+              ))}
+            </div>
             <div className="gallery-grid">
-              {GALLERY.map(([src, cap]) => (
-                <figure className="gitem" key={cap}>
-                  <img src={src} alt={cap} loading="lazy" />
+              {GALLERY.filter((g) => galleryTab === "All" || g.category === galleryTab).map((g) => (
+                <figure className="gitem" key={g.cap}>
+                  <img src={g.src} alt={g.cap} loading="lazy" />
                 </figure>
               ))}
             </div>
@@ -935,6 +965,7 @@ const Voric = () => {
                 <h4>Reach Us</h4>
                 <p>Phone: <a href="tel:+916364928680">+91 63649 28680</a></p>
                 <p>Email: <a href="mailto:admin@vaayuchest.com">admin@vaayuchest.com</a></p>
+                <p>Email: <a href="mailto:anmol@vaayuchest.com">anmol@vaayuchest.com</a></p>
                 <p>
                   <a href="https://maps.google.com/?q=VAAYU+Chest+and+Sleep+Specialists+Jayanagar+Bengaluru" target="_blank" rel="noopener noreferrer">
                     View on Google Maps →
