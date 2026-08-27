@@ -126,18 +126,23 @@ const SERVICES = [
   {
     head: "General Health",
     items: [
-      "Blood pressure, heart rate & oxygen saturation",
+      "Blood pressure",
+      "Heart rate",
+      "Oxygen saturation",
       "Body mass index (BMI)",
       "Random blood sugar",
-      "Screening for hypertension & diabetes",
+      "Screening for hypertension",
+      "Screening for diabetes",
     ],
   },
   {
     head: "Respiratory Assessment",
     items: [
-      "Symptom & exposure evaluation",
+      "Symptom evaluation",
+      "Exposure evaluation",
       "Doctor consultation",
-      "Spirometry & Forced Oscillation Technique (FOT)",
+      "Spirometry",
+      "Forced Oscillation Technique (FOT)",
       "Fractional exhaled Nitric Oxide (FeNO), where available",
       "Chest radiograph (X-ray)",
       "Relevant blood investigations for selected cohorts",
@@ -148,7 +153,8 @@ const SERVICES = [
     items: [
       "Initial medication support, where feasible",
       "Referral for further evaluation",
-      "Follow-up advice & preventive health education",
+      "Follow-up advice",
+      "Preventive health education",
     ],
   },
 ];
@@ -168,6 +174,7 @@ const STEPS = [
   ["Assess & counsel", "Doctors and trained healthcare personnel evaluate participants and give individual advice."],
   ["Treat & follow up", "People needing treatment or detailed assessment are guided towards appropriate care."],
   ["Analyse & advocate", "De-identified data supports research, occupational-health planning and policy conversations."],
+  ["Research & publications", "Findings are compiled into research papers and publications to build the wider evidence base."],
 ];
 
 const COLLABORATIONS = [
@@ -210,7 +217,7 @@ const NAV = [
   ["impact", "Impact"],
   ["research", "Research"],
   ["gallery", "Gallery"],
-  ["partner", "Partner"],
+  ["partner", "Support Us"],
   ["contact", "Contact"],
 ];
 
@@ -298,9 +305,14 @@ const Voric = () => {
             position: relative;
           }
           .vhero .veyebrow { color: #e9c46a; font-size: clamp(14px, 1.6vw, 17px); letter-spacing: .16em; }
-          .vhero h1 {
-            font-size: clamp(2.2rem, 5.4vw, 4rem); font-weight: 700;
-            line-height: 1.08; margin: 14px 0 0; max-width: 760px;
+          .vhero-brand {
+            color: #e9c46a; font-weight: 800; letter-spacing: .04em;
+            font-size: clamp(2.6rem, 6vw, 4.6rem); line-height: 1; margin: 0;
+          }
+          .vhero-tagline {
+            color: #fff; font-weight: 600;
+            font-size: clamp(1.1rem, 2vw, 1.5rem); line-height: 1.3;
+            margin: 14px 0 0; max-width: 640px;
           }
           .vhero p.lead {
             color: rgba(255,255,255,.9); font-size: clamp(15px, 1.6vw, 18px);
@@ -583,8 +595,9 @@ const Voric = () => {
           <div className="vwrap">
             <div className="vhero-grid">
               <div className="vhero-copy">
-                <p className="veyebrow">VORIC · VAAYU Occupational Respiratory Illness Clinic</p>
-                <h1>Protecting Those Who Serve</h1>
+                <h1 className="vhero-brand">VORIC</h1>
+                <p className="veyebrow" style={{ marginTop: 6 }}>VAAYU Occupational Respiratory Illness Clinic</p>
+                <p className="vhero-tagline">Protecting Those Who Serve</p>
                 <p className="lead">
                   Traffic police, public-transport employees, construction workers,
                   municipal workers and professional drivers face prolonged exposure
@@ -628,8 +641,8 @@ const Voric = () => {
               <p className="veyebrow">About VORIC</p>
               <h2 className="vheading">A continuing platform, not just a camp</h2>
               <p className="vtext" style={{ marginTop: 16 }}>
-                The VAAYU Occupational Respiratory Illness Clinic studies and
-                addresses the impact of pollution on Bengaluru's traffic police
+                The VORIC Occupational Respiratory Illness Clinic studies and
+                addresses the impact of pollution on traffic police
                 and other people routinely exposed to air pollution, exhaust
                 fumes, dust, smoke and other workplace hazards — connecting
                 workplace screening with treatment, education, research and
@@ -798,22 +811,6 @@ const Voric = () => {
         {/* IMPACT */}
         <section id="impact" className="vsection white">
           <div className="vwrap">
-            <div className="vcenter">
-              <p className="veyebrow">Our Impact</p>
-              <h2 className="vheading">11,000+ people reached — and growing</h2>
-            </div>
-            <div className="vcard svc" style={{ maxWidth: 720, margin: "0 auto 26px", padding: 0, overflow: "hidden" }}>
-              <table className="impact-table">
-                <thead><tr><th>Group</th><th style={{ textAlign: "right" }}>People screened</th></tr></thead>
-                <tbody>
-                  <tr><td>Traffic police personnel</td><td>3,287</td></tr>
-                  <tr><td>BMTC &amp; KSRTC bus crew</td><td>4,389</td></tr>
-                  <tr><td>Construction workers</td><td>3,000+</td></tr>
-                  <tr><td>Paurakarmikas</td><td>240+</td></tr>
-                  <tr><td>Total reach</td><td>11,000+</td></tr>
-                </tbody>
-              </table>
-            </div>
             <div className="vcenter" style={{ margin: "0 auto", maxWidth: 820 }}>
               <p className="vtext">
                 VORIC has helped identify previously undiagnosed respiratory
@@ -888,7 +885,7 @@ const Voric = () => {
               <h2 className="vheading">Evidence that can influence healthier systems</h2>
               <p className="vtext" style={{ marginTop: 14 }}>
                 VORIC has shared screening findings and programme proposals with
-                the Bengaluru Traffic Police, BMTC and KSRTC, the Greater
+                the Traffic Police, BMTC and KSRTC, the Greater
                 Bengaluru Authority, public-health authorities and state-government
                 representatives — encouraging regular occupational-health
                 screening, longitudinal follow-up, better protective measures and
@@ -940,8 +937,8 @@ const Voric = () => {
                 education and research collaboration.
               </p>
               <div className="cta-row" style={{ justifyContent: "center" }}>
-                <a className="btn solid" href="#contact">Request a Screening Camp</a>
-                <a className="btn ghost" href="#contact">Explore a CSR Partnership</a>
+                <a className="btn solid" href="#contact">Request a Screening</a>
+                <a className="btn ghost" href="#contact">Explore a CSR Support</a>
                 <a className="btn ghost" href="#contact">Collaborate on Research</a>
               </div>
             </div>
@@ -964,7 +961,6 @@ const Voric = () => {
               <div className="contact-card vcard">
                 <h4>Reach Us</h4>
                 <p>Phone: <a href="tel:+916364928680">+91 63649 28680</a></p>
-                <p>Email: <a href="mailto:admin@vaayuchest.com">admin@vaayuchest.com</a></p>
                 <p>Email: <a href="mailto:anmol@vaayuchest.com">anmol@vaayuchest.com</a></p>
                 <p>
                   <a href="https://maps.google.com/?q=VAAYU+Chest+and+Sleep+Specialists+Jayanagar+Bengaluru" target="_blank" rel="noopener noreferrer">
