@@ -93,7 +93,7 @@ export default function SocialImpact() {
         }
 
         .section {
-          padding: clamp(64px, 7vw, 96px) 0;
+          padding: clamp(40px, 4.5vw, 60px) 0;
         }
 
         .hero-section {

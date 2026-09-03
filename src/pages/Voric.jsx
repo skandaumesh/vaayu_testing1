@@ -5,6 +5,7 @@
 // src/assets/img/voric/ (then swap the <div class="ph"> for <img>).
 import React, { useEffect, useState } from "react";
 import { Helmet, HelmetProvider } from "react-helmet-async";
+import { FaLungs, FaArrowTrendDown, FaVirus, FaHeartPulse, FaBatteryHalf, FaTrafficLight, FaBus, FaHelmetSafety, FaBroom, FaTaxi, FaIndustry } from "react-icons/fa6";
 
 import gMobileCamp from "../assets/img/voric/mobile-screening-camp.jpg";
 import gDoctorConsult from "../assets/img/voric/doctor-consultation.jpg";
@@ -160,12 +161,12 @@ const SERVICES = [
 ];
 
 const COMMUNITIES = [
-  ["🚦", "Traffic Police", "Repeated exposure to vehicular exhaust, particulate matter and prolonged outdoor duty."],
-  ["🚌", "Bus & Transport Staff", "Long hours in traffic-heavy environments, diesel exhaust and irregular schedules."],
-  ["🏗️", "Construction Workers", "Cement dust, silica, particulate matter, paint fumes and other site hazards."],
-  ["🧹", "Municipal & Sanitation", "Dust, waste, bioaerosols, smoke and poorly controlled work environments."],
-  ["🚕", "Auto, Cab & Drivers", "Extended exposure to traffic emissions and poor cabin-air quality."],
-  ["🏭", "Other Exposed Workers", "Factory personnel, security staff and industrial workers exposed to dust or fumes."],
+  [FaTrafficLight, "Traffic Police", "Repeated exposure to vehicular exhaust, particulate matter and prolonged outdoor duty."],
+  [FaBus, "Bus & Transport Staff", "Long hours in traffic-heavy environments, diesel exhaust and irregular schedules."],
+  [FaHelmetSafety, "Construction Workers", "Cement dust, silica, particulate matter, paint fumes and other site hazards."],
+  [FaBroom, "Municipal & Sanitation", "Dust, waste, bioaerosols, smoke and poorly controlled work environments."],
+  [FaTaxi, "Auto, Cab & Drivers", "Extended exposure to traffic emissions and poor cabin-air quality."],
+  [FaIndustry, "Other Exposed Workers", "Factory personnel, security staff and industrial workers exposed to dust or fumes."],
 ];
 
 const STEPS = [
@@ -426,8 +427,8 @@ const Voric = () => {
           .comm { padding: 24px; }
           .comm-icon {
             display: inline-flex; align-items: center; justify-content: center;
-            width: 52px; height: 52px; border-radius: 15px; font-size: 26px;
-            background: ${T.light}; margin-bottom: 14px;
+            width: 52px; height: 52px; border-radius: 15px; font-size: 22px;
+            background: ${T.light}; color: ${T.green}; margin-bottom: 14px;
           }
           .comm h4 { color: ${T.deep}; margin: 0 0 8px; font-size: 1.05rem; }
           .comm p { color: ${T.muted}; margin: 0; font-size: 13.5px; line-height: 1.55; }
@@ -468,6 +469,55 @@ const Voric = () => {
           .bg-copy p { color: ${T.muted}; font-size: 15px; line-height: 1.8; margin: 0 0 16px; }
           .bg-copy p:last-child { margin-bottom: 0; }
           .bg-copy strong { color: ${T.deep}; }
+
+          /* AWARENESS */
+          .pollutant-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 18px; max-width: 900px; margin: 38px auto 0;
+          }
+          .pollutant-card {
+            padding: 26px 22px; text-align: center;
+            transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease;
+          }
+          .pollutant-card:hover {
+            transform: translateY(-5px); box-shadow: 0 24px 50px rgba(47,54,26,.14);
+            border-color: rgba(233,196,106,.5);
+          }
+          .pollutant-tag {
+            display: inline-flex; align-items: center; justify-content: center;
+            padding: 6px 16px; border-radius: 999px; font-weight: 800;
+            font-size: 15px; letter-spacing: .03em;
+            color: #fff; background: linear-gradient(135deg, #e9c46a, ${T.green});
+            margin-bottom: 14px;
+          }
+          .pollutant-card p { color: ${T.muted}; font-size: 13.5px; line-height: 1.6; margin: 0; }
+
+          .awareness-sub {
+            text-align: center; color: ${T.green}; font-weight: 700;
+            font-size: 1.05rem; margin: 46px 0 0;
+          }
+          .impact-icon-grid {
+            display: grid; grid-template-columns: repeat(5, 1fr);
+            gap: 14px; max-width: 1000px; margin: 22px auto 0;
+          }
+          .impact-chip {
+            background: #fff; border: 1px solid ${T.border}; border-radius: 18px;
+            padding: 22px 14px; text-align: center;
+            transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease;
+          }
+          .impact-chip:hover {
+            transform: translateY(-5px); box-shadow: 0 24px 50px rgba(47,54,26,.14);
+            border-color: rgba(233,196,106,.5);
+          }
+          .impact-icon { font-size: 26px; color: ${T.gold}; display: block; margin: 0 auto 12px; }
+          .impact-chip p { margin: 0; color: ${T.deep}; font-size: 12.5px; font-weight: 700; line-height: 1.4; }
+
+          .awareness-quote {
+            max-width: 760px; margin: 44px auto 30px; padding: 2px 0 2px 26px;
+            border-left: 3px solid ${T.gold}; color: ${T.green};
+            font-size: clamp(1.05rem, 1.8vw, 1.3rem); font-weight: 600;
+            line-height: 1.6; font-style: normal;
+          }
 
           /* PUBLICATIONS */
           .pub-head {
@@ -582,11 +632,14 @@ const Voric = () => {
             .stem-grid, .g3, .comm-grid, .team-grid { grid-template-columns: 1fr 1fr; }
             .gallery-grid { grid-template-columns: 1fr 1fr; }
             .stat-row { grid-template-columns: repeat(3, 1fr); }
+            .pollutant-grid { grid-template-columns: 1fr; }
+            .impact-icon-grid { grid-template-columns: repeat(3, 1fr); }
           }
           @media (max-width: 640px) {
             .stat-row { grid-template-columns: 1fr 1fr; }
             .stem-grid, .g3, .comm-grid, .team-grid { grid-template-columns: 1fr; }
             .bg-grid { grid-template-columns: 1fr; }
+            .impact-icon-grid { grid-template-columns: 1fr 1fr; }
           }
         `}</style>
 
@@ -751,6 +804,87 @@ const Voric = () => {
           </div>
         </section>
 
+        {/* AWARENESS */}
+        <section id="awareness" className="vsection soft awareness-section">
+          <div className="vwrap">
+            <div className="vcenter">
+              <p className="veyebrow">Air Quality &amp; Health</p>
+              <h2 className="vheading">The Air We Breathe Matters</h2>
+              <p className="vtext" style={{ marginTop: 16 }}>
+                Air pollution is one of India's biggest public health
+                challenges. From traffic emissions and construction dust to
+                industrial pollution and indoor smoke, millions of people are
+                exposed to harmful pollutants every day — often without
+                realising their impact.
+              </p>
+            </div>
+
+            <div className="pollutant-grid">
+              <div className="pollutant-card vcard">
+                <div className="pollutant-tag">PM2.5</div>
+                <p>
+                  Fine particles that travel deep into the lungs and enter
+                  the bloodstream.
+                </p>
+              </div>
+              <div className="pollutant-card vcard">
+                <div className="pollutant-tag">PM10</div>
+                <p>
+                  Coarser particulate matter that contributes significantly
+                  to poor air quality.
+                </p>
+              </div>
+              <div className="pollutant-card vcard">
+                <div className="pollutant-tag">AQI</div>
+                <p>
+                  The Air Quality Index — the everyday measure of how
+                  polluted the air around us is.
+                </p>
+              </div>
+            </div>
+
+            <p className="awareness-sub">Long-term exposure to polluted air has been linked to</p>
+
+            <div className="impact-icon-grid">
+              {[
+                [FaLungs, "Asthma & COPD"],
+                [FaArrowTrendDown, "Reduced lung function"],
+                [FaVirus, "Respiratory infections"],
+                [FaHeartPulse, "Heart disease & stroke"],
+                [FaBatteryHalf, "Reduced productivity & quality of life"],
+              ].map(([Icon, label]) => (
+                <div className="impact-chip" key={label}>
+                  <Icon className="impact-icon" />
+                  <p>{label}</p>
+                </div>
+              ))}
+            </div>
+
+            <blockquote className="awareness-quote">
+              Cleaner air begins with awareness. Understanding the risks
+              around us is the first step toward protecting our lungs,
+              improving quality of life, and building healthier communities.
+            </blockquote>
+
+            <div className="bg-copy" style={{ marginTop: 8 }}>
+              <p>
+                At <strong>VORIC</strong>, the VAAYU Occupational Respiratory
+                Illness Clinic, we focus on understanding how environmental
+                and occupational exposures affect respiratory health. Through
+                community screening, clinical care, research and long-term
+                cohort studies, we work to identify those at risk, generate
+                evidence, and support solutions that improve lung health.
+              </p>
+              <p>
+                Whether you are a traffic police officer, construction
+                worker, driver, sanitation worker, or an urban resident
+                exposed to polluted air, environmental exposure can have
+                lasting effects on your health.
+              </p>
+            </div>
+          </div>
+        </section>
+
         {/* STEM */}
         <section id="stem" className="vsection soft">
           <div className="vwrap">
@@ -797,9 +931,9 @@ const Voric = () => {
               <h2 className="vheading">High-risk occupational communities</h2>
             </div>
             <div className="comm-grid">
-              {COMMUNITIES.map(([icon, h, t]) => (
+              {COMMUNITIES.map(([Icon, h, t]) => (
                 <div className="comm vcard" key={h}>
-                  <span className="comm-icon">{icon}</span>
+                  <span className="comm-icon"><Icon /></span>
                   <h4>{h}</h4>
                   <p>{t}</p>
                 </div>
