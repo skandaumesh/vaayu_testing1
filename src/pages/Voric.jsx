@@ -46,39 +46,6 @@ const SEO_DESCRIPTION =
 const SEO_KEYWORDS =
   "impact of pollution on traffic police Bengaluru, traffic police health screening, occupational respiratory illness, VORIC, air pollution health effects Bengaluru";
 
-const VORIC_SCHEMA = {
-  "@context": "https://schema.org",
-  "@type": "MedicalWebPage",
-  name: SEO_TITLE,
-  description: SEO_DESCRIPTION,
-  url: `${BASE_URL}/voric`,
-  about: {
-    "@type": "MedicalCondition",
-    name: "Occupational respiratory illness from air pollution exposure",
-  },
-  audience: {
-    "@type": "Audience",
-    audienceType:
-      "Traffic police, BMTC & KSRTC staff, construction workers, municipal workers, professional drivers",
-  },
-  mainEntity: {
-    "@type": "Organization",
-    name: "VORIC — VAAYU Occupational Respiratory Illness Clinic",
-    description:
-      "Social-impact initiative of VAAYU Chest & Sleep Specialists studying and screening for the impact of air pollution on Bengaluru's traffic police and other high-risk outdoor workers since November 2023, in a 5-year research collaboration with the Indian Institute of Science (IISc) and the Public Health Foundation of India (PHFI).",
-    foundingDate: "2023-11",
-    parentOrganization: {
-      "@type": "MedicalOrganization",
-      name: "Vaayu Chest & Sleep Specialists",
-      url: BASE_URL,
-    },
-  },
-  publisher: {
-    "@type": "MedicalOrganization",
-    name: "Vaayu Chest & Sleep Specialists",
-    url: BASE_URL,
-  },
-};
 
 const T = {
   green: "#61724e",
@@ -210,6 +177,119 @@ const PUBLICATIONS = [
   },
 ];
 
+// Phrased the way people (and AI assistants) actually ask these questions —
+// each answer is self-contained so it can be quoted without the surrounding page.
+const FAQS = [
+  {
+    q: "How does air pollution affect traffic police in Bengaluru?",
+    a: "Traffic police in Bengaluru spend long hours at busy junctions, directly exposed to vehicular exhaust and particulate matter (PM2.5 and PM10). VORIC screening of 3,287 traffic police personnel has found reduced lung function, respiratory symptoms and previously undiagnosed conditions such as asthma and COPD, alongside metabolic conditions like hypertension and diabetes. Long-term exposure is also linked to heart disease and stroke, which is why respiratory disease in this group is treated as multimorbidity affecting the lungs, heart and other organs.",
+  },
+  {
+    q: "What is VORIC?",
+    a: "VORIC is the VAAYU Occupational Respiratory Illness Clinic, a social-impact initiative of Vaayu Chest & Sleep Specialists and the VAAYU Respiratory Foundation in Bengaluru. Running since November 2023, it studies and addresses the impact of air pollution on traffic police and other people routinely exposed to exhaust fumes, dust and smoke at work, combining free workplace screening with treatment, education, research and policy advocacy.",
+  },
+  {
+    q: "How many people has VORIC screened?",
+    a: "VORIC has screened more than 11,000 high-risk workers since November 2023, including 3,287 traffic police personnel, 4,389 BMTC and KSRTC bus crew, over 3,000 construction workers and more than 240 Paurakarmikas (municipal sanitation workers).",
+  },
+  {
+    q: "Which workers are most at risk of occupational respiratory illness from air pollution?",
+    a: "The highest-risk groups are those with prolonged outdoor or traffic-adjacent exposure: traffic police, bus and transport staff, construction workers, municipal and sanitation workers, auto and cab drivers, and factory, security and industrial personnel exposed to dust or fumes.",
+  },
+  {
+    q: "What tests are included in a VORIC screening camp?",
+    a: "Each camp includes general health checks (blood pressure, heart rate, oxygen saturation, BMI, random blood sugar, and screening for hypertension and diabetes) and a respiratory assessment (symptom and exposure evaluation, doctor consultation, spirometry, Forced Oscillation Technique, Fractional exhaled Nitric Oxide where available, chest radiograph, and relevant blood investigations). Initial medication support, referral and follow-up advice are provided wherever feasible.",
+  },
+  {
+    q: "Is VORIC screening free for workers?",
+    a: "Yes. VORIC screening camps are provided free of cost to participating workers, funded as a social-impact initiative of Vaayu Chest & Sleep Specialists and the VAAYU Respiratory Foundation, and supported by partner organisations and CSR contributions.",
+  },
+  {
+    q: "What research is VORIC doing on pollution and traffic police health?",
+    a: "VORIC runs a five-year longitudinal research collaboration with the Indian Institute of Science (IISc) and the Public Health Foundation of India (PHFI) on the impact of pollution on traffic police personnel. Its study of 2,450 traffic police personnel in Bengaluru, the largest occupational-health screening study of traffic police in India, was presented at the European Respiratory Society (ERS) Congress 2025 in Amsterdam and published in Lung India. The BREATHE study on bus drivers was presented at NAPCON 2025 in Pune.",
+  },
+  {
+    q: "How can an organisation request a VORIC screening camp?",
+    a: "Government departments, transport organisations, construction companies, municipal bodies, corporates, industrial units, foundations, CSR teams and academic institutions can request a camp by contacting Vaayu Chest & Sleep Specialists at +91 63649 28680 or anmol@vaayuchest.com. VORIC supports one-time camps, periodic screening, follow-up programmes, health education and research collaboration.",
+  },
+];
+
+const VORIC_SCHEMA = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "MedicalWebPage",
+      "@id": `${BASE_URL}/voric#page`,
+      name: SEO_TITLE,
+      description: SEO_DESCRIPTION,
+      url: `${BASE_URL}/voric`,
+      inLanguage: "en-IN",
+      about: {
+        "@type": "MedicalCondition",
+        name: "Occupational respiratory illness from air pollution exposure",
+        associatedAnatomy: { "@type": "AnatomicalStructure", name: "Lung" },
+        riskFactor: [
+          { "@type": "MedicalRiskFactor", name: "Vehicular exhaust and particulate matter (PM2.5, PM10) exposure" },
+          { "@type": "MedicalRiskFactor", name: "Prolonged outdoor occupational exposure to traffic emissions" },
+          { "@type": "MedicalRiskFactor", name: "Construction dust, silica and industrial fumes" },
+        ],
+      },
+      audience: {
+        "@type": "Audience",
+        audienceType:
+          "Traffic police, BMTC & KSRTC staff, construction workers, municipal workers, professional drivers",
+        geographicArea: { "@type": "City", name: "Bengaluru" },
+      },
+      mainEntity: { "@id": `${BASE_URL}/voric#organization` },
+      publisher: { "@id": `${BASE_URL}/#clinic` },
+      isPartOf: { "@id": `${BASE_URL}/#clinic` },
+    },
+    {
+      "@type": ["Organization", "MedicalOrganization"],
+      "@id": `${BASE_URL}/voric#organization`,
+      name: "VORIC — VAAYU Occupational Respiratory Illness Clinic",
+      alternateName: ["VORIC", "Vaayu Occupational Respiratory Illness Clinic"],
+      url: `${BASE_URL}/voric`,
+      description:
+        "Social-impact initiative of VAAYU Chest & Sleep Specialists studying and screening for the impact of air pollution on Bengaluru's traffic police and other high-risk outdoor workers since November 2023, in a 5-year research collaboration with the Indian Institute of Science (IISc) and the Public Health Foundation of India (PHFI).",
+      foundingDate: "2023-11",
+      areaServed: { "@type": "City", name: "Bengaluru", containedInPlace: { "@type": "State", name: "Karnataka" } },
+      telephone: "+91 63649 28680",
+      email: "anmol@vaayuchest.com",
+      parentOrganization: { "@id": `${BASE_URL}/#clinic` },
+      knowsAbout: [
+        "Impact of air pollution on traffic police",
+        "Occupational respiratory illness",
+        "Spirometry and lung function testing",
+        "PM2.5 and PM10 exposure",
+        "Occupational health screening",
+      ],
+      memberOf: [
+        { "@type": "Organization", name: "Indian Institute of Science (IISc)" },
+        { "@type": "Organization", name: "Public Health Foundation of India (PHFI)" },
+      ],
+    },
+    {
+      "@type": "FAQPage",
+      "@id": `${BASE_URL}/voric#faq`,
+      mainEntity: FAQS.map((f) => ({
+        "@type": "Question",
+        name: f.q,
+        acceptedAnswer: { "@type": "Answer", text: f.a },
+      })),
+    },
+    ...PUBLICATIONS.map((p, i) => ({
+      "@type": "MedicalScholarlyArticle",
+      "@id": `${BASE_URL}/voric#study-${i + 1}`,
+      headline: p.title,
+      publication: p.venue,
+      about: "Impact of air pollution on occupational respiratory health in Bengaluru",
+      author: { "@id": `${BASE_URL}/voric#organization` },
+      publisher: { "@id": `${BASE_URL}/#clinic` },
+    })),
+  ],
+};
+
 const NAV = [
   ["about", "About"],
   ["why", "Why VORIC"],
@@ -218,6 +298,7 @@ const NAV = [
   ["impact", "Impact"],
   ["research", "Research"],
   ["gallery", "Gallery"],
+  ["faq", "FAQ"],
   ["partner", "Support Us"],
   ["contact", "Contact"],
 ];
@@ -618,6 +699,31 @@ const Voric = () => {
           .tcard .ph.tall { width: 96px; height: 96px; margin: 0 auto 12px; }
           .tcard h4 { color: ${T.text}; margin: 0; font-size: 1.05rem; font-weight: 700; }
           .tcard p { color: ${T.muted}; margin: 6px 0 0; font-size: 12.5px; line-height: 1.45; }
+
+          /* FAQ */
+          .faq-list { max-width: 860px; margin: 0 auto; display: grid; gap: 12px; }
+          .faq-item { padding: 0; overflow: hidden; }
+          .faq-item summary {
+            list-style: none; cursor: pointer; padding: 20px 24px;
+            display: flex; align-items: center; justify-content: space-between; gap: 16px;
+            color: ${T.deep}; font-weight: 700; font-size: 15.5px; line-height: 1.45;
+          }
+          .faq-item summary::-webkit-details-marker { display: none; }
+          .faq-mark {
+            flex: none; position: relative; width: 18px; height: 18px;
+          }
+          .faq-mark::before, .faq-mark::after {
+            content: ""; position: absolute; background: ${T.gold};
+            border-radius: 2px; transition: transform .25s ease, opacity .25s ease;
+          }
+          .faq-mark::before { top: 8px; left: 0; width: 18px; height: 2px; }
+          .faq-mark::after { top: 0; left: 8px; width: 2px; height: 18px; }
+          .faq-item[open] .faq-mark::after { transform: rotate(90deg); opacity: 0; }
+          .faq-item[open] summary { color: ${T.green}; padding-bottom: 8px; }
+          .faq-item p {
+            margin: 0; padding: 0 24px 22px; color: ${T.muted};
+            font-size: 14.5px; line-height: 1.75;
+          }
 
           /* PARTNER CTA */
           .partner {
@@ -1069,8 +1175,29 @@ const Voric = () => {
           </div>
         </section>
 
+        {/* FAQ */}
+        <section id="faq" className="vsection soft">
+          <div className="vwrap">
+            <div className="vcenter">
+              <p className="veyebrow">Frequently Asked Questions</p>
+              <h2 className="vheading">Pollution, occupational health &amp; VORIC</h2>
+            </div>
+            <div className="faq-list">
+              {FAQS.map((f) => (
+                <details className="faq-item vcard" key={f.q}>
+                  <summary>
+                    <span>{f.q}</span>
+                    <span className="faq-mark" aria-hidden="true" />
+                  </summary>
+                  <p>{f.a}</p>
+                </details>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* PARTNER */}
-        <section id="partner" className="vsection soft">
+        <section id="partner" className="vsection white">
           <div className="vwrap">
             <div className="partner">
               <h2>Bring occupational-health screening to your workforce</h2>

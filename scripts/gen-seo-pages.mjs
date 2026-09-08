@@ -137,38 +137,132 @@ const V_KEYWORDS =
 const V_URL = `${BASE}/voric`;
 const V_OG_IMG = `${BASE}/og-image.jpg`;
 
+// Q&A phrased the way people and AI assistants actually ask. Kept in sync with
+// the FAQS array in src/pages/Voric.jsx — the schema must match visible content.
+const V_FAQS = [
+  [
+    "How does air pollution affect traffic police in Bengaluru?",
+    "Traffic police in Bengaluru spend long hours at busy junctions, directly exposed to vehicular exhaust and particulate matter (PM2.5 and PM10). VORIC screening of 3,287 traffic police personnel has found reduced lung function, respiratory symptoms and previously undiagnosed conditions such as asthma and COPD, alongside metabolic conditions like hypertension and diabetes. Long-term exposure is also linked to heart disease and stroke, which is why respiratory disease in this group is treated as multimorbidity affecting the lungs, heart and other organs.",
+  ],
+  [
+    "What is VORIC?",
+    "VORIC is the VAAYU Occupational Respiratory Illness Clinic, a social-impact initiative of Vaayu Chest & Sleep Specialists and the VAAYU Respiratory Foundation in Bengaluru. Running since November 2023, it studies and addresses the impact of air pollution on traffic police and other people routinely exposed to exhaust fumes, dust and smoke at work, combining free workplace screening with treatment, education, research and policy advocacy.",
+  ],
+  [
+    "How many people has VORIC screened?",
+    "VORIC has screened more than 11,000 high-risk workers since November 2023, including 3,287 traffic police personnel, 4,389 BMTC and KSRTC bus crew, over 3,000 construction workers and more than 240 Paurakarmikas (municipal sanitation workers).",
+  ],
+  [
+    "Which workers are most at risk of occupational respiratory illness from air pollution?",
+    "The highest-risk groups are those with prolonged outdoor or traffic-adjacent exposure: traffic police, bus and transport staff, construction workers, municipal and sanitation workers, auto and cab drivers, and factory, security and industrial personnel exposed to dust or fumes.",
+  ],
+  [
+    "What tests are included in a VORIC screening camp?",
+    "Each camp includes general health checks (blood pressure, heart rate, oxygen saturation, BMI, random blood sugar, and screening for hypertension and diabetes) and a respiratory assessment (symptom and exposure evaluation, doctor consultation, spirometry, Forced Oscillation Technique, Fractional exhaled Nitric Oxide where available, chest radiograph, and relevant blood investigations). Initial medication support, referral and follow-up advice are provided wherever feasible.",
+  ],
+  [
+    "Is VORIC screening free for workers?",
+    "Yes. VORIC screening camps are provided free of cost to participating workers, funded as a social-impact initiative of Vaayu Chest & Sleep Specialists and the VAAYU Respiratory Foundation, and supported by partner organisations and CSR contributions.",
+  ],
+  [
+    "What research is VORIC doing on pollution and traffic police health?",
+    "VORIC runs a five-year longitudinal research collaboration with the Indian Institute of Science (IISc) and the Public Health Foundation of India (PHFI) on the impact of pollution on traffic police personnel. Its study of 2,450 traffic police personnel in Bengaluru, the largest occupational-health screening study of traffic police in India, was presented at the European Respiratory Society (ERS) Congress 2025 in Amsterdam and published in Lung India. The BREATHE study on bus drivers was presented at NAPCON 2025 in Pune.",
+  ],
+  [
+    "How can an organisation request a VORIC screening camp?",
+    "Government departments, transport organisations, construction companies, municipal bodies, corporates, industrial units, foundations, CSR teams and academic institutions can request a camp by contacting Vaayu Chest & Sleep Specialists at +91 63649 28680 or anmol@vaayuchest.com. VORIC supports one-time camps, periodic screening, follow-up programmes, health education and research collaboration.",
+  ],
+];
+
+const V_STUDIES = [
+  [
+    "Respiratory and Multimorbidity Analysis in 2,450 Traffic Police Personnel in Bangalore City",
+    "Presented at the European Respiratory Society (ERS) Congress 2025, Amsterdam · Published in Lung India (Indian Chest Society Journal)",
+  ],
+  [
+    "An Observational Study on Respiratory Morbidity and Lung Assessment in 2,450 Traffic Police Personnel in Bengaluru City — the largest occupational-health screening study of traffic police in India",
+    "National Respiratory Meeting (NAPCON), Pune · August 2025",
+  ],
+  [
+    "The BREATHE Study — prevalence of respiratory symptoms, chronic health conditions and pulmonary function among bus drivers in Bengaluru and Karnataka",
+    "National Respiratory Meeting (NAPCON), Pune · August 2025",
+  ],
+];
+
 const V_SCHEMA = {
   "@context": "https://schema.org",
-  "@type": "MedicalWebPage",
-  name: V_TITLE,
-  description: V_DESC,
-  url: V_URL,
-  about: {
-    "@type": "MedicalCondition",
-    name: "Occupational respiratory illness from air pollution exposure",
-  },
-  audience: {
-    "@type": "Audience",
-    audienceType:
-      "Traffic police, BMTC & KSRTC staff, construction workers, municipal workers, professional drivers",
-  },
-  mainEntity: {
-    "@type": "Organization",
-    name: "VORIC — VAAYU Occupational Respiratory Illness Clinic",
-    description:
-      "Social-impact initiative of VAAYU Chest & Sleep Specialists studying and screening for the impact of air pollution on Bengaluru's traffic police and other high-risk outdoor workers since November 2023, in a 5-year research collaboration with the Indian Institute of Science (IISc) and the Public Health Foundation of India (PHFI).",
-    foundingDate: "2023-11",
-    parentOrganization: {
-      "@type": "MedicalOrganization",
-      name: "Vaayu Chest & Sleep Specialists",
-      url: BASE,
+  "@graph": [
+    {
+      "@type": "MedicalWebPage",
+      "@id": `${V_URL}#page`,
+      name: V_TITLE,
+      description: V_DESC,
+      url: V_URL,
+      inLanguage: "en-IN",
+      about: {
+        "@type": "MedicalCondition",
+        name: "Occupational respiratory illness from air pollution exposure",
+        associatedAnatomy: { "@type": "AnatomicalStructure", name: "Lung" },
+        riskFactor: [
+          { "@type": "MedicalRiskFactor", name: "Vehicular exhaust and particulate matter (PM2.5, PM10) exposure" },
+          { "@type": "MedicalRiskFactor", name: "Prolonged outdoor occupational exposure to traffic emissions" },
+          { "@type": "MedicalRiskFactor", name: "Construction dust, silica and industrial fumes" },
+        ],
+      },
+      audience: {
+        "@type": "Audience",
+        audienceType:
+          "Traffic police, BMTC & KSRTC staff, construction workers, municipal workers, professional drivers",
+        geographicArea: { "@type": "City", name: "Bengaluru" },
+      },
+      mainEntity: { "@id": `${V_URL}#organization` },
+      publisher: { "@id": `${BASE}/#clinic` },
+      isPartOf: { "@id": `${BASE}/#clinic` },
     },
-  },
-  publisher: {
-    "@type": "MedicalOrganization",
-    name: "Vaayu Chest & Sleep Specialists",
-    url: BASE,
-  },
+    {
+      "@type": ["Organization", "MedicalOrganization"],
+      "@id": `${V_URL}#organization`,
+      name: "VORIC — VAAYU Occupational Respiratory Illness Clinic",
+      alternateName: ["VORIC", "Vaayu Occupational Respiratory Illness Clinic"],
+      url: V_URL,
+      description:
+        "Social-impact initiative of VAAYU Chest & Sleep Specialists studying and screening for the impact of air pollution on Bengaluru's traffic police and other high-risk outdoor workers since November 2023, in a 5-year research collaboration with the Indian Institute of Science (IISc) and the Public Health Foundation of India (PHFI).",
+      foundingDate: "2023-11",
+      areaServed: { "@type": "City", name: "Bengaluru", containedInPlace: { "@type": "State", name: "Karnataka" } },
+      telephone: "+91 63649 28680",
+      email: "anmol@vaayuchest.com",
+      parentOrganization: { "@id": `${BASE}/#clinic` },
+      knowsAbout: [
+        "Impact of air pollution on traffic police",
+        "Occupational respiratory illness",
+        "Spirometry and lung function testing",
+        "PM2.5 and PM10 exposure",
+        "Occupational health screening",
+      ],
+      memberOf: [
+        { "@type": "Organization", name: "Indian Institute of Science (IISc)" },
+        { "@type": "Organization", name: "Public Health Foundation of India (PHFI)" },
+      ],
+    },
+    {
+      "@type": "FAQPage",
+      "@id": `${V_URL}#faq`,
+      mainEntity: V_FAQS.map(([q, a]) => ({
+        "@type": "Question",
+        name: q,
+        acceptedAnswer: { "@type": "Answer", text: a },
+      })),
+    },
+    ...V_STUDIES.map(([headline, venue], i) => ({
+      "@type": "MedicalScholarlyArticle",
+      "@id": `${V_URL}#study-${i + 1}`,
+      headline,
+      publication: venue,
+      about: "Impact of air pollution on occupational respiratory health in Bengaluru",
+      author: { "@id": `${V_URL}#organization` },
+      publisher: { "@id": `${BASE}/#clinic` },
+    })),
+  ],
 };
 
 let vHtml = readFileSync(distIndex, "utf8");
@@ -196,16 +290,50 @@ const vHeadExtras = `
   </head>`;
 vHtml = vHtml.replace("</head>", vHeadExtras);
 
+// Full-text fallback rendered inside #root. React replaces it the moment it
+// mounts, so browsers never see it — but AI crawlers (GPTBot, PerplexityBot,
+// ClaudeBot) and first-wave search indexing don't execute JavaScript, so this
+// is the only VORIC content they can read. It mirrors the visible page.
 const vStaticSummary = `<div id="root"><main style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">
-  <h1>VORIC — The Impact of Pollution on Bengaluru's Traffic Police</h1>
-  <p>The VAAYU Occupational Respiratory Illness Clinic (VORIC) is a social-impact initiative of Vaayu Chest &amp; Sleep Specialists, running since November 2023, that studies and addresses the impact of air pollution on Bengaluru's traffic police, BMTC &amp; KSRTC staff, construction workers, municipal workers and professional drivers.</p>
-  <h2>What VORIC Does</h2>
-  <p>Free preventive and therapeutic respiratory screening, advanced lung testing (spirometry, Forced Oscillation Technique, Fractional exhaled Nitric Oxide), doctor consultation, treatment and follow-up, and health education &mdash; brought directly to high-risk workplaces across Bengaluru.</p>
-  <h2>Scientific Collaboration</h2>
-  <p>A 5-year longitudinal research collaboration with the Indian Institute of Science (IISc) and the Public Health Foundation of India (PHFI) studying the long-term health effects of pollution exposure on Bengaluru's traffic police personnel.</p>
-  <h2>Impact So Far</h2>
-  <p>11,000+ people screened, including 3,287 traffic police personnel, 4,389 BMTC &amp; KSRTC bus crew, 3,000+ construction workers and 240+ Paurakarmikas.</p>
-  <p><a href="${BASE}/contact">Contact Vaayu Chest &amp; Sleep Specialists</a> &middot; +91 63649 28680 &middot; admin@vaayuchest.com</p>
+  <h1>VORIC: The Impact of Air Pollution on Bengaluru's Traffic Police</h1>
+  <p>The VAAYU Occupational Respiratory Illness Clinic (VORIC) is a social-impact initiative of Vaayu Chest &amp; Sleep Specialists and the VAAYU Respiratory Foundation, Bengaluru. Running since November 2023, VORIC studies and addresses the impact of air pollution on Bengaluru's traffic police, BMTC &amp; KSRTC bus crew, construction workers, municipal and sanitation workers (Paurakarmikas) and professional drivers, connecting free workplace screening with treatment, education, research and policy advocacy.</p>
+
+  <h2>The impact of pollution on traffic police in Bengaluru</h2>
+  <p>Traffic police personnel in Bengaluru work long hours at congested junctions, directly exposed to vehicular exhaust and particulate matter. Around 30% of urban air pollution comes from vehicular traffic emissions, and respiratory disease is among the leading causes of illness and death in India. Constant exposure to exhaust fumes, PM2.5 and PM10 affects far more than the lungs: long-term exposure is linked to asthma and chronic obstructive pulmonary disease (COPD), reduced lung function, respiratory infections, heart disease and stroke, and reduced productivity and quality of life. The impact of respiratory disease in this population is now recognised as one of multimorbidity, affecting the lungs, heart and virtually every organ in the body.</p>
+
+  <h2>Air quality: PM2.5, PM10 and AQI</h2>
+  <p>PM2.5 refers to fine particles that travel deep into the lungs and enter the bloodstream. PM10 is coarser particulate matter that contributes significantly to poor air quality. Both are reflected in the Air Quality Index (AQI), the everyday measure of how polluted the air around us is. From traffic emissions and construction dust to industrial pollution and indoor smoke, millions of people in India are exposed to harmful pollutants every day, often without realising the impact.</p>
+
+  <h2>Who VORIC serves</h2>
+  <ul>
+    <li>Traffic police: repeated exposure to vehicular exhaust, particulate matter and prolonged outdoor duty</li>
+    <li>Bus &amp; transport staff (BMTC, KSRTC): long hours in traffic-heavy environments, diesel exhaust and irregular schedules</li>
+    <li>Construction workers: cement dust, silica, particulate matter, paint fumes and other site hazards</li>
+    <li>Municipal &amp; sanitation workers (Paurakarmikas): dust, waste, bioaerosols and smoke</li>
+    <li>Auto, cab and professional drivers: extended exposure to traffic emissions and poor cabin-air quality</li>
+    <li>Other exposed workers: factory personnel, security staff and industrial workers exposed to dust or fumes</li>
+  </ul>
+
+  <h2>What a VORIC screening camp includes</h2>
+  <p>VORIC follows the STEM model: Screen, Test, Educate, Medicate. General health assessment covers blood pressure, heart rate, oxygen saturation, body mass index (BMI), random blood sugar and screening for hypertension and diabetes. Respiratory assessment covers symptom and exposure evaluation, doctor consultation, spirometry, Forced Oscillation Technique (FOT), Fractional exhaled Nitric Oxide (FeNO) where available, chest radiograph (X-ray) and relevant blood investigations for selected cohorts. Treatment and follow-up include initial medication support where feasible, referral for further evaluation, follow-up advice and preventive health education. Screening is provided free of cost to participating workers and is brought directly to workplaces.</p>
+
+  <h2>Impact so far</h2>
+  <p>More than 11,000 people screened since November 2023, including 3,287 traffic police personnel, 4,389 BMTC &amp; KSRTC bus crew, over 3,000 construction workers and more than 240 Paurakarmikas. VORIC has helped identify previously undiagnosed respiratory conditions, detect metabolic concerns such as hypertension and diabetes, initiate early treatment, improve awareness of lung health, and build a foundation for long-term follow-up and preventive policy.</p>
+
+  <h2>Research and scientific collaboration</h2>
+  <p>VORIC runs a five-year longitudinal research collaboration with the Indian Institute of Science (IISc) and the Public Health Foundation of India (PHFI) on the impact of pollution on traffic police personnel. Published and presented work includes:</p>
+  <ul>
+${V_STUDIES.map(([t, v]) => `    <li>${t}. ${v}</li>`).join("\n")}
+  </ul>
+
+  <h2>Policy engagement</h2>
+  <p>VORIC has shared screening findings and programme proposals with the Traffic Police, BMTC and KSRTC, the Greater Bengaluru Authority, public-health authorities and state-government representatives, encouraging regular occupational-health screening, longitudinal follow-up, better protective measures and evidence-based preventive programmes.</p>
+
+  <h2>Frequently asked questions</h2>
+${V_FAQS.map(([q, a]) => `  <h3>${q}</h3>\n  <p>${a.replace(/&/g, "&amp;")}</p>`).join("\n")}
+
+  <h2>Contact VORIC</h2>
+  <p>VAAYU Respiratory Foundation, Ground &amp; 3rd Floor, 37/17, 10th Main Road, 5th Block, Jayanagar, Bengaluru 560041, Karnataka, India. Telephone +91 63649 28680. Email anmol@vaayuchest.com. <a href="${BASE}/contact">Contact Vaayu Chest &amp; Sleep Specialists</a> to request a screening camp, explore CSR support or collaborate on research.</p>
 </main></div>`;
 vHtml = vHtml.replace(/<div id="root">\s*<\/div>/, vStaticSummary);
 

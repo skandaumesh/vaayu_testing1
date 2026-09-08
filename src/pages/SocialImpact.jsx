@@ -395,6 +395,20 @@ export default function SocialImpact() {
                   to air pollution, dust, chemicals, or smoke through their
                   work—like traffic police, mechanics, painters, and more.
                 </p>
+                <p
+                  style={{
+                    color: T.muted,
+                    fontSize: 15.5,
+                    lineHeight: 1.8,
+                    marginTop: 14,
+                  }}
+                >
+                  Read more about{" "}
+                  <Link to="/voric" style={{ color: T.green, fontWeight: 700 }}>
+                    the impact of air pollution on Bengaluru's traffic police
+                  </Link>{" "}
+                  and the research behind VORIC.
+                </p>
               </div>
 
               <motion.img
