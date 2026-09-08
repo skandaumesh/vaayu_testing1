@@ -34,7 +34,7 @@ const GALLERY = [
   { src: gBmtcKsrtc, cap: "With BMTC & KSRTC leadership", category: "Dignitaries & Officials" },
   { src: gBbmp, cap: "With the Chief Commissioner, BBMP", category: "Dignitaries & Officials" },
   { src: gFelicitation1, cap: "Felicitated for VORIC's community impact", category: "Dignitaries & Officials" },
-  { src: gFelicitation2, cap: "Recognised alongside Bengaluru Traffic Police", category: "Dignitaries & Officials" },
+  { src: gFelicitation2, cap: "Felicitated during a VORIC outreach visit", category: "Dignitaries & Officials" },
 ];
 
 const BASE_URL = "https://vaayuchest.com";
@@ -594,6 +594,16 @@ const Voric = () => {
             transition: transform .4s ease;
           }
           .gitem:hover img { transform: scale(1.05); }
+          .gitem-cap {
+            position: absolute; left: 0; right: 0; bottom: 0;
+            padding: 22px 14px 12px;
+            background: linear-gradient(180deg, rgba(30,36,18,0) 0%, rgba(30,36,18,.82) 100%);
+            color: #fff; font-size: 12.5px; font-weight: 600; line-height: 1.4;
+            opacity: 0; transform: translateY(6px);
+            transition: opacity .25s ease, transform .25s ease;
+            pointer-events: none;
+          }
+          .gitem:hover .gitem-cap { opacity: 1; transform: translateY(0); }
 
           .tavatar {
             width: 90px; height: 90px; margin: 0 auto 12px; border-radius: 50%;
@@ -1052,6 +1062,7 @@ const Voric = () => {
               {GALLERY.filter((g) => galleryTab === "All" || g.category === galleryTab).map((g) => (
                 <figure className="gitem" key={g.cap}>
                   <img src={g.src} alt={g.cap} loading="lazy" />
+                  <figcaption className="gitem-cap">{g.cap}</figcaption>
                 </figure>
               ))}
             </div>
