@@ -51,6 +51,21 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^ - [R=404,L]
 
+# Compression. The server was serving JavaScript and CSS uncompressed, so the
+# main bundle went out at 630 KB when it gzips to roughly 207 KB. Brotli first
+# where available, gzip otherwise.
+<IfModule mod_brotli.c>
+  AddOutputFilterByType BROTLI_COMPRESS text/html text/plain text/xml text/css
+  AddOutputFilterByType BROTLI_COMPRESS application/javascript application/json
+  AddOutputFilterByType BROTLI_COMPRESS application/xml image/svg+xml
+</IfModule>
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css
+  AddOutputFilterByType DEFLATE application/javascript application/x-javascript
+  AddOutputFilterByType DEFLATE application/json application/xml image/svg+xml
+  AddOutputFilterByType DEFLATE font/ttf font/otf
+</IfModule>
+
 # Cache static assets aggressively (Vite fingerprints them)
 <IfModule mod_expires.c>
   ExpiresActive On
