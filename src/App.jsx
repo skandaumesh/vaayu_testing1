@@ -14,6 +14,8 @@ import NotFound from "./pages/NotFound";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import SeoManager from "./components/SeoManager";
+import MobileContactBar from "./components/MobileContactBar";
+import { initConversionTracking } from "./analytics/track";
 import Home from "./pages/Home";
 import Services from "./components/Services";
 import DoctorsAndTeam from "./components/DoctorsAndTeam";
@@ -148,6 +150,7 @@ const AnalyticsTracker = () => {
 const App = () => {
   useEffect(() => {
     AOS.init({ duration: 800, once: true });
+    initConversionTracking();
   }, []);
 
   return (
@@ -340,6 +343,7 @@ const App = () => {
       </main>
 
       <Footer />
+      <MobileContactBar />
     </Router>
   );
 };
