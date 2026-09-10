@@ -218,6 +218,14 @@ const V_SCHEMA = {
       mainEntity: { "@id": `${V_URL}#organization` },
       publisher: { "@id": `${BASE}/#clinic` },
       isPartOf: { "@id": `${BASE}/#clinic` },
+      breadcrumb: { "@id": `${V_URL}#breadcrumb` },
+      // Conditions this work is about, tied to the pages that treat them, so
+      // the topic and the clinical service resolve to the same entity.
+      mentions: [
+        { "@type": "MedicalCondition", name: "Chronic obstructive pulmonary disease (COPD)", url: `${BASE}/specialty-clinic/copd` },
+        { "@type": "MedicalCondition", name: "Asthma", url: `${BASE}/specialty-clinic/asthma` },
+        { "@type": "MedicalCondition", name: "Interstitial lung disease", url: `${BASE}/specialty-clinic/ild` },
+      ],
     },
     {
       "@type": ["Organization", "MedicalOrganization"],
@@ -252,6 +260,20 @@ const V_SCHEMA = {
         name: q,
         acceptedAnswer: { "@type": "Answer", text: a },
       })),
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": `${V_URL}#breadcrumb`,
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: `${BASE}/` },
+        { "@type": "ListItem", position: 2, name: "Social impact", item: `${BASE}/social-impact` },
+        {
+          "@type": "ListItem",
+          position: 3,
+          name: "VORIC: impact of air pollution on traffic police",
+          item: V_URL,
+        },
+      ],
     },
     ...V_STUDIES.map(([headline, venue], i) => ({
       "@type": "MedicalScholarlyArticle",
@@ -332,8 +354,20 @@ ${V_STUDIES.map(([t, v]) => `    <li>${t}. ${v}</li>`).join("\n")}
   <h2>Frequently asked questions</h2>
 ${V_FAQS.map(([q, a]) => `  <h3>${q}</h3>\n  <p>${a.replace(/&/g, "&amp;")}</p>`).join("\n")}
 
+  <h2>Related care at Vaayu</h2>
+  <p>Workers found to have a respiratory condition during VORIC screening are referred into specialist care at Vaayu Chest &amp; Sleep Specialists in Jayanagar, Bengaluru:</p>
+  <ul>
+    <li><a href="${BASE}/specialty-clinic/copd">COPD clinic and treatment in Bengaluru</a>, for chronic obstructive pulmonary disease found on screening</li>
+    <li><a href="${BASE}/specialty-clinic/asthma">Asthma clinic and treatment in Bengaluru</a>, including occupational and pollution-triggered asthma</li>
+    <li><a href="${BASE}/specialty-clinic/ild">Interstitial lung disease (ILD) clinic</a>, for scarring and fibrosis of the lungs</li>
+    <li><a href="${BASE}/pulmonary-rehab">Pulmonary rehabilitation</a>, for breathlessness and reduced exercise capacity</li>
+    <li><a href="${BASE}/preventive-clinics">Preventive lung health checks</a> and <a href="${BASE}/general-opd">general chest OPD</a></li>
+    <li><a href="${BASE}/resources/publications">Research and publications</a> from the Vaayu team</li>
+    <li><a href="${BASE}/social-impact">Social impact programmes</a> and <a href="${BASE}/media-spotlight">media coverage</a></li>
+  </ul>
+
   <h2>Contact VORIC</h2>
-  <p>VAAYU Respiratory Foundation, Ground &amp; 3rd Floor, 37/17, 10th Main Road, 5th Block, Jayanagar, Bengaluru 560041, Karnataka, India. Telephone +91 63649 28680. Email anmol@vaayuchest.com. <a href="${BASE}/contact">Contact Vaayu Chest &amp; Sleep Specialists</a> to request a screening camp, explore CSR support or collaborate on research.</p>
+  <p>VAAYU Respiratory Foundation, Ground &amp; 3rd Floor, 37/17, 10th Main Road, 5th Block, Jayanagar, Bengaluru 560041, Karnataka, India. Telephone +91 63649 28680. Email anmol@vaayuchest.com. <a href="${BASE}/contact">Contact Vaayu Chest &amp; Sleep Specialists</a> to request a screening camp, explore CSR support or collaborate on research. <a href="${BASE}/appointment">Book an appointment</a>.</p>
 </main></div>`;
 vHtml = vHtml.replace(/<div id="root">\s*<\/div>/, vStaticSummary);
 

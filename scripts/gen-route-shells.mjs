@@ -31,6 +31,24 @@ const EMAIL = "admin@vaayuchest.com";
 const ADDRESS =
   "Ground &amp; 3rd Floor, 37/17, 10th Main Road, 5th Block, Jayanagar, Bengaluru 560041, Karnataka, India";
 
+// Mirrors the primary navigation rendered by Navbar.jsx. Descriptive labels
+// rather than bare section names, since the anchor text is what tells a
+// crawler and an AI model what the destination is about.
+const MAIN_NAV = [
+  ["/", "Vaayu Chest & Sleep Specialists, Bengaluru"],
+  ["/specialty-clinic", "Specialty chest clinics: asthma, COPD, ILD"],
+  ["/sleep-clinic", "Sleep clinic: sleep apnea, snoring, insomnia"],
+  ["/pulmonary-rehab", "Pulmonary and cardiac rehabilitation"],
+  ["/allergy-immunology", "Allergy and immunology"],
+  ["/preventive-clinics", "Preventive lung health checks"],
+  ["/voric", "VORIC: impact of air pollution on traffic police in Bengaluru"],
+  ["/social-impact", "Social impact and community screening"],
+  ["/resources/publications", "Research and publications"],
+  ["/media-spotlight", "Media coverage"],
+  ["/about", "About Vaayu"],
+  ["/contact", "Contact and appointments"],
+];
+
 const esc = (s) =>
   String(s)
     .replace(/&/g, "&amp;")
@@ -206,6 +224,14 @@ ${kids.map((k) => `    <li><a href="${BASE}${k}">${esc(labelFor(k))}</a></li>`).
     .map((c, i) => (i === crumbs.length - 1 ? esc(c.label) : `<a href="${c.url}">${esc(c.label)}</a>`))
     .join(" &rsaquo; ");
 
+  // The site's main navigation, mirrored into the crawler summary. The real
+  // page renders this nav via JavaScript, so without it the served HTML has
+  // no internal links at all and non-rendering crawlers cannot walk the site.
+  // This is parity with what a browser sees, not extra linking.
+  const siteNav = MAIN_NAV.filter(([href]) => href !== path)
+    .map(([href, label]) => `<li><a href="${BASE}${href}">${esc(label)}</a></li>`)
+    .join("\n    ");
+
   const summary = `<div id="root"><main style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">
   <nav>${trail}</nav>
   <h1>${esc(heading)}</h1>
@@ -213,6 +239,10 @@ ${kids.map((k) => `    <li><a href="${BASE}${k}">${esc(labelFor(k))}</a></li>`).
 ${childList}  <h2>Vaayu Chest &amp; Sleep Specialists</h2>
   <p>${ADDRESS}. Telephone ${PHONE}. Email ${EMAIL}.</p>
   <p><a href="${BASE}/appointment">Book an appointment</a> &middot; <a href="${BASE}/contact">Contact us</a> &middot; <a href="${BASE}/doctors/dr-ravindra-mehta">Our specialists</a></p>
+  <h2>Explore Vaayu</h2>
+  <ul>
+    ${siteNav}
+  </ul>
 </main></div>`;
 
   html = html.replace(/<div id="root">\s*<\/div>/, summary);
