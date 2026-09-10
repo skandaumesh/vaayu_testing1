@@ -267,6 +267,32 @@ for (const path of routes) {
 console.log(`generated ${written} route shells`);
 
 // ---------------------------------------------------------------------------
+// Homepage. Vite emits dist/index.html with an empty #root, so the site's most
+// authoritative page shipped no readable content and no outbound links at all.
+// It is rewritten last, after the template has already been read into memory.
+// ---------------------------------------------------------------------------
+const homeMeta = META["/"];
+const homeNav = MAIN_NAV.filter(([href]) => href !== "/")
+  .map(([href, label]) => `    <li><a href="${BASE}${href}">${esc(label)}</a></li>`)
+  .join("\n");
+
+const homeSummary = `<div id="root"><main style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">
+  <h1>Vaayu Chest &amp; Sleep Specialists, Bengaluru</h1>
+  <p>${esc(homeMeta.d)}</p>
+  <h2>Our clinics and services</h2>
+  <ul>
+${homeNav}
+  </ul>
+  <h2>Visit us</h2>
+  <p>${ADDRESS}. Telephone ${PHONE}. Email ${EMAIL}.</p>
+  <p><a href="${BASE}/appointment">Book an appointment</a> &middot; <a href="${BASE}/contact">Contact us</a></p>
+</main></div>`;
+
+const home = template.replace(/<div id="root">\s*<\/div>/, homeSummary);
+writeFileSync(join(dist, "index.html"), home);
+console.log("rewrote dist/index.html with a crawler-readable summary");
+
+// ---------------------------------------------------------------------------
 // 404 page. Apache serves this with a real 404 status for unknown paths, so the
 // site stops answering 200 for every URL that has ever been guessed at.
 // ---------------------------------------------------------------------------
