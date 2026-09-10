@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, lazy, Suspense } from "react";
 import ReactGA from "react-ga4";
 import {
   BrowserRouter as Router,
@@ -22,95 +22,80 @@ import DoctorsAndTeam from "./components/DoctorsAndTeam";
 import Blogs from "./components/Blogs";
 import FaqAndAppointment from "./components/FaqAndAppointment";
 
-import ClinicalYogaPage from "./pages/ClinicalYogaPage";
-
-
-import Rehabconference from "./pages/Rehabconference";
-import Revive2026 from "./pages/Revive2026";
-import Voric from "./pages/Voric";
-import Mediaspotlight from "./pages/Mediaspotlight";
-import ContactNEW from "./pages/ContactNEW";
-import Camp from "./pages/Camp.jsx";
-import Gallery from "./pages/Gallery";
-import CAPI2025 from "./pages/CAPI2025";
-import ComplicationCasesPage from "./pages/ComplicationCasesPage";
-import AboutUs from "./pages/AboutUs";
-import SocialImpact from "./pages/SocialImpact";
-import Testimonials from "./pages/Testimonials";
-import DrRavindraMehtaTOI from "./pages/DrRavindraMehtaTOI";
-import RehabWellness from "./pages/RehabWellness";
-
-import Sameer from "./pages/Doctors/Sameer";
-import Ajitha from "./pages/Doctors/Ajitha";
-import Nandini from "./pages/Doctors/Nandini";
-import Ravindra from "./pages/Doctors/Ravindra.jsx";
-import Rasheeka from "./pages/Doctors/Rasheeka";
-import PainManagement from "./pages/PainManagement";
-import OccupationalTherapyPage from "./pages/OccupationalTherapyPage";
-import CancerRehabPage from "./pages/CancerRehabPage";
-import IntegratedCardioPulmonaryPage from "./pages/IntegratedCardioPulmonaryPage";
-import SarcoidosisClinic from "./pages/SarcoidosisClinic";
-import PulmonaryHypertensionClinic from "./pages/PulmonaryHypertensionClinic";
-import WellnessPage from "./pages/WellnessPage";
-import TherapyPainManagement from "./pages/TherapyPainManagement";
-import StressManagementPage from "./pages/StressManagementPage";
-
-import SnoringClinic from "./pages/SnoringClinic";
-import ObstructiveSleepApnea from "./pages/ObstructiveSleepApnea";
-import Insomnia from "./pages/insomnia";
-import Parasomnias from "./pages/Parasomnias";
-
-import ILDClinic from "./pages/ILDClinic";
-import COPDClinic from "./pages/COPDClinic";
-import AsthmaClinic from "./pages/AsthmaClinic";
-import LungCancer from "./pages/LungCancerClinic";
-
-import PulmonarySub from "./pages/PulmonarySub";
-import CardiacSub from "./pages/CardiacSub";
-import PulmonaryHypertensionRehab from "./pages/PulmonaryHypertensionRehab";
-
-import GeneralOPD from "./pages/GeneralOPD";
-import SpecialtyClinic from "./pages/SpecialtyClinic";
-import PreventiveClinics from "./pages/PreventiveClinics";
-import PulmonaryRehab from "./pages/PulmonaryRehab";
-import SleepClinic from "./pages/SleepClinic";
-import AlliedServices from "./pages/Alliedservices";
-import AppointmentForm from "./pages/AppointmentForm";
-
-import AllergyImmunology from "./pages/AllergyImmunology";
-import AllergyTesting from "./pages/AllergyTesting";
-import ImmunotherapyPage from "./pages/ImmunotherapyPage";
-
-import PediatricPulmonology from "./pages/PediatricPulmonology";
-import ClinicalPsychology from "./pages/ClinicalPsychology";
-import WeightManagement from "./pages/WeightManagement";
-import VaayuNutritionPage from "./pages/Diet";
-import ENTServices from "./pages/ENT";
-
-import HomeCareOverview from "./pages/HomeCareOverview";
-import HomeNursing from "./pages/HomeNursing";
-import HomeTesting from "./pages/HomeTesting";
-import HomeRehab from "./pages/HomeRehab";
-import HomeMedications from "./pages/Medications";
-import HomeInjections from "./pages/InjectionsAntibiotics";
-
-import TobaccoCessation from "./pages/TobaccoCessation";
-import HealthChecks from "./pages/HealthChecks";
-
-import Innovations from "./pages/Innovations";
-import JobOpenings from "./pages/JobOpenings";
-import PublicationsPage from "./pages/PublicationsPage.jsx";
-
-import Bronchiectasis from "./pages/Bronchiectasis";
-import Tuberculosis from "./pages/Tuberculosis";
-import LungTransplant from "./pages/LungTransplant";
-
-import CriticalCare from "./pages/CriticalCare";
-import OxygenTherapy from "./pages/OxygenTherapy";
-import ICUBronchoscopy from "./pages/ICUBronchoscopy";
-import RespiratoryTherapy from "./pages/RespiratoryTherapy";
-import ECMOProgram from "./pages/ECMOProgram";
-
+const ClinicalYogaPage = lazy(() => import("./pages/ClinicalYogaPage"));
+const Rehabconference = lazy(() => import("./pages/Rehabconference"));
+const Revive2026 = lazy(() => import("./pages/Revive2026"));
+const Voric = lazy(() => import("./pages/Voric"));
+const Mediaspotlight = lazy(() => import("./pages/Mediaspotlight"));
+const ContactNEW = lazy(() => import("./pages/ContactNEW"));
+const Camp = lazy(() => import("./pages/Camp.jsx"));
+const Gallery = lazy(() => import("./pages/Gallery"));
+const CAPI2025 = lazy(() => import("./pages/CAPI2025"));
+const ComplicationCasesPage = lazy(() => import("./pages/ComplicationCasesPage"));
+const AboutUs = lazy(() => import("./pages/AboutUs"));
+const SocialImpact = lazy(() => import("./pages/SocialImpact"));
+const Testimonials = lazy(() => import("./pages/Testimonials"));
+const DrRavindraMehtaTOI = lazy(() => import("./pages/DrRavindraMehtaTOI"));
+const RehabWellness = lazy(() => import("./pages/RehabWellness"));
+const Sameer = lazy(() => import("./pages/Doctors/Sameer"));
+const Ajitha = lazy(() => import("./pages/Doctors/Ajitha"));
+const Nandini = lazy(() => import("./pages/Doctors/Nandini"));
+const Ravindra = lazy(() => import("./pages/Doctors/Ravindra.jsx"));
+const Rasheeka = lazy(() => import("./pages/Doctors/Rasheeka"));
+const PainManagement = lazy(() => import("./pages/PainManagement"));
+const OccupationalTherapyPage = lazy(() => import("./pages/OccupationalTherapyPage"));
+const CancerRehabPage = lazy(() => import("./pages/CancerRehabPage"));
+const IntegratedCardioPulmonaryPage = lazy(() => import("./pages/IntegratedCardioPulmonaryPage"));
+const SarcoidosisClinic = lazy(() => import("./pages/SarcoidosisClinic"));
+const PulmonaryHypertensionClinic = lazy(() => import("./pages/PulmonaryHypertensionClinic"));
+const WellnessPage = lazy(() => import("./pages/WellnessPage"));
+const TherapyPainManagement = lazy(() => import("./pages/TherapyPainManagement"));
+const StressManagementPage = lazy(() => import("./pages/StressManagementPage"));
+const SnoringClinic = lazy(() => import("./pages/SnoringClinic"));
+const ObstructiveSleepApnea = lazy(() => import("./pages/ObstructiveSleepApnea"));
+const Insomnia = lazy(() => import("./pages/insomnia"));
+const Parasomnias = lazy(() => import("./pages/Parasomnias"));
+const ILDClinic = lazy(() => import("./pages/ILDClinic"));
+const COPDClinic = lazy(() => import("./pages/COPDClinic"));
+const AsthmaClinic = lazy(() => import("./pages/AsthmaClinic"));
+const LungCancer = lazy(() => import("./pages/LungCancerClinic"));
+const PulmonarySub = lazy(() => import("./pages/PulmonarySub"));
+const CardiacSub = lazy(() => import("./pages/CardiacSub"));
+const PulmonaryHypertensionRehab = lazy(() => import("./pages/PulmonaryHypertensionRehab"));
+const GeneralOPD = lazy(() => import("./pages/GeneralOPD"));
+const SpecialtyClinic = lazy(() => import("./pages/SpecialtyClinic"));
+const PreventiveClinics = lazy(() => import("./pages/PreventiveClinics"));
+const PulmonaryRehab = lazy(() => import("./pages/PulmonaryRehab"));
+const SleepClinic = lazy(() => import("./pages/SleepClinic"));
+const AlliedServices = lazy(() => import("./pages/Alliedservices"));
+const AppointmentForm = lazy(() => import("./pages/AppointmentForm"));
+const AllergyImmunology = lazy(() => import("./pages/AllergyImmunology"));
+const AllergyTesting = lazy(() => import("./pages/AllergyTesting"));
+const ImmunotherapyPage = lazy(() => import("./pages/ImmunotherapyPage"));
+const PediatricPulmonology = lazy(() => import("./pages/PediatricPulmonology"));
+const ClinicalPsychology = lazy(() => import("./pages/ClinicalPsychology"));
+const WeightManagement = lazy(() => import("./pages/WeightManagement"));
+const VaayuNutritionPage = lazy(() => import("./pages/Diet"));
+const ENTServices = lazy(() => import("./pages/ENT"));
+const HomeCareOverview = lazy(() => import("./pages/HomeCareOverview"));
+const HomeNursing = lazy(() => import("./pages/HomeNursing"));
+const HomeTesting = lazy(() => import("./pages/HomeTesting"));
+const HomeRehab = lazy(() => import("./pages/HomeRehab"));
+const HomeMedications = lazy(() => import("./pages/Medications"));
+const HomeInjections = lazy(() => import("./pages/InjectionsAntibiotics"));
+const TobaccoCessation = lazy(() => import("./pages/TobaccoCessation"));
+const HealthChecks = lazy(() => import("./pages/HealthChecks"));
+const Innovations = lazy(() => import("./pages/Innovations"));
+const JobOpenings = lazy(() => import("./pages/JobOpenings"));
+const PublicationsPage = lazy(() => import("./pages/PublicationsPage.jsx"));
+const Bronchiectasis = lazy(() => import("./pages/Bronchiectasis"));
+const Tuberculosis = lazy(() => import("./pages/Tuberculosis"));
+const LungTransplant = lazy(() => import("./pages/LungTransplant"));
+const CriticalCare = lazy(() => import("./pages/CriticalCare"));
+const OxygenTherapy = lazy(() => import("./pages/OxygenTherapy"));
+const ICUBronchoscopy = lazy(() => import("./pages/ICUBronchoscopy"));
+const RespiratoryTherapy = lazy(() => import("./pages/RespiratoryTherapy"));
+const ECMOProgram = lazy(() => import("./pages/ECMOProgram"));
 import AOS from "aos";
 import "aos/dist/aos.css";
 
@@ -129,6 +114,41 @@ const ScrollToTop = () => {
 
   return null;
 };
+
+// Shown while a route's chunk downloads. Reserves a tall block so the footer
+// does not jump up and then back down as the page arrives.
+const RouteLoader = () => (
+  <div
+    style={{
+      minHeight: "70vh",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+    }}
+    role="status"
+    aria-live="polite"
+  >
+    <span
+      style={{
+        width: 34,
+        height: 34,
+        border: "3px solid #e2e8d8",
+        borderTopColor: "#61724e",
+        borderRadius: "50%",
+        animation: "vaayu-spin .8s linear infinite",
+      }}
+    />
+    <style>{`
+      @keyframes vaayu-spin { to { transform: rotate(360deg); } }
+      @media (prefers-reduced-motion: reduce) {
+        [role="status"] span { animation-duration: 2.4s; }
+      }
+    `}</style>
+    <span style={{ position: "absolute", width: 1, height: 1, overflow: "hidden", clip: "rect(0 0 0 0)" }}>
+      Loading
+    </span>
+  </div>
+);
 
 const AnalyticsTracker = () => {
   const location = useLocation();
@@ -162,6 +182,7 @@ const App = () => {
       <Navbar />
 
       <main className="pt-[100px]">
+        <Suspense fallback={<RouteLoader />}>
         <Routes>
           <Route
             path="/"
@@ -340,6 +361,7 @@ const App = () => {
       
           <Route path="*" element={<NotFound />} />
         </Routes>
+        </Suspense>
       </main>
 
       <Footer />
