@@ -16,11 +16,11 @@ export const CUSTOM_PRERENDER = ["/revive-2026", "/voric"];
 export const META = {
   "/": {
     t: "Vaayu Chest & Sleep Specialists | Pulmonologist & Sleep Clinic in Bengaluru",
-    d: "Chest, sleep and rehabilitation specialty centre in Bengaluru — asthma, COPD, ILD, sleep apnea, allergy testing and pulmonary & cardiac rehab under one roof. Book an appointment.",
+    d: "Chest, sleep and rehabilitation specialty centre in Bengaluru: asthma, COPD, ILD, sleep apnea, allergy testing and pulmonary & cardiac rehab under one roof. Book an appointment.",
   },
   "/about": {
     t: "About Us | Vaayu Chest & Sleep Specialists, Bengaluru",
-    d: "Meet the team behind Vaayu Chest & Sleep Specialists — Bengaluru's dedicated centre for respiratory medicine, sleep disorders and rehabilitation.",
+    d: "Meet the team behind Vaayu Chest & Sleep Specialists: Bengaluru's dedicated centre for respiratory medicine, sleep disorders and rehabilitation.",
   },
   "/contact": {
     t: "Contact & Appointments | Vaayu Chest & Sleep Specialists, Bengaluru",
@@ -32,7 +32,7 @@ export const META = {
   },
   "/general-opd": {
     t: "General Chest OPD in Bengaluru | Vaayu Chest & Sleep Specialists",
-    d: "Walk-in chest OPD in Bengaluru for cough, breathlessness, wheezing and chest infections — evaluation by experienced pulmonologists.",
+    d: "Walk-in chest OPD in Bengaluru for cough, breathlessness, wheezing and chest infections, evaluated by experienced pulmonologists.",
   },
   "/specialty-clinic": {
     t: "Specialty Chest Clinics in Bengaluru | Asthma, COPD, ILD | Vaayu",
@@ -40,15 +40,15 @@ export const META = {
   },
   "/specialty-clinic/asthma": {
     t: "Asthma Clinic & Treatment in Bengaluru | Vaayu Chest Specialists",
-    d: "Asthma diagnosis and long-term control in Bengaluru — spirometry, inhaler technique training and personalised action plans.",
+    d: "Asthma diagnosis and long-term control in Bengaluru: spirometry, inhaler technique training and personalised action plans.",
   },
   "/specialty-clinic/copd": {
     t: "COPD Clinic & Treatment in Bengaluru | Vaayu Chest Specialists",
-    d: "COPD assessment and management in Bengaluru — lung function testing, inhaler therapy, pulmonary rehabilitation and flare-up prevention.",
+    d: "COPD assessment and management in Bengaluru: lung function testing, inhaler therapy, pulmonary rehabilitation and flare-up prevention.",
   },
   "/specialty-clinic/ild": {
     t: "ILD (Interstitial Lung Disease) Clinic in Bengaluru | Vaayu",
-    d: "Interstitial lung disease and pulmonary fibrosis clinic in Bengaluru — HRCT review, antifibrotic therapy and rehabilitation support.",
+    d: "Interstitial lung disease and pulmonary fibrosis clinic in Bengaluru: HRCT review, antifibrotic therapy and rehabilitation support.",
   },
   "/specialty-clinic/sarcoidosis": {
     t: "Sarcoidosis Clinic in Bengaluru | Vaayu Chest Specialists",
@@ -56,19 +56,19 @@ export const META = {
   },
   "/specialty-clinic/pulmonary-hypertension": {
     t: "Pulmonary Hypertension Clinic in Bengaluru | Vaayu",
-    d: "Pulmonary hypertension diagnosis and management in Bengaluru — echo-based screening, therapy and rehabilitation.",
+    d: "Pulmonary hypertension diagnosis and management in Bengaluru: echo-based screening, therapy and rehabilitation.",
   },
   "/sleep-clinic": {
     t: "Sleep Clinic in Bengaluru | Sleep Study & Apnea Treatment | Vaayu",
-    d: "Comprehensive sleep clinic in Bengaluru — sleep studies, sleep apnea (OSA) treatment, CPAP titration, insomnia and snoring care.",
+    d: "Comprehensive sleep clinic in Bengaluru: sleep studies, sleep apnea (OSA) treatment, CPAP titration, insomnia and snoring care.",
   },
   "/sleep-clinic/osa": {
     t: "Sleep Apnea (OSA) Treatment in Bengaluru | Vaayu Sleep Clinic",
-    d: "Obstructive sleep apnea diagnosis and CPAP treatment in Bengaluru — home and in-lab sleep studies with specialist follow-up.",
+    d: "Obstructive sleep apnea diagnosis and CPAP treatment in Bengaluru, home and in-lab sleep studies with specialist follow-up.",
   },
   "/sleep-clinic/snoring": {
     t: "Snoring Treatment in Bengaluru | Vaayu Sleep Clinic",
-    d: "Snoring evaluation in Bengaluru — identify the cause with a sleep study and get targeted treatment options.",
+    d: "Snoring evaluation in Bengaluru, identify the cause with a sleep study and get targeted treatment options.",
   },
   "/sleep-clinic/insomnia": {
     t: "Insomnia Treatment in Bengaluru | Vaayu Sleep Clinic",
@@ -80,11 +80,11 @@ export const META = {
   },
   "/allergy-immunology": {
     t: "Allergy & Immunology Clinic in Bengaluru | Vaayu",
-    d: "Allergy and immunology care in Bengaluru — skin prick testing, allergic rhinitis and asthma allergy management.",
+    d: "Allergy and immunology care in Bengaluru: skin prick testing, allergic rhinitis and asthma allergy management.",
   },
   "/allergy-immunology/allergy-testing": {
     t: "Allergy Testing in Bengaluru | Skin Prick Test | Vaayu",
-    d: "Comprehensive allergy testing in Bengaluru — skin prick tests and specific IgE panels with specialist interpretation.",
+    d: "Comprehensive allergy testing in Bengaluru, skin prick tests and specific IgE panels with specialist interpretation.",
   },
   "/allergy-immunology/immunotherapy": {
     t: "Allergen Immunotherapy in Bengaluru | Vaayu",
@@ -92,15 +92,15 @@ export const META = {
   },
   "/pulmonary-rehab": {
     t: "Pulmonary Rehabilitation in Bengaluru | Vaayu Chest Specialists",
-    d: "Structured pulmonary rehabilitation programs in Bengaluru for COPD, ILD, post-COVID and chronic lung disease — supervised by specialists.",
+    d: "Structured pulmonary rehabilitation programs in Bengaluru for COPD, ILD, post-COVID and chronic lung disease, supervised by specialists.",
   },
   "/pulmonary-rehab/cardiac": {
     t: "Cardiac Rehabilitation in Bengaluru | Vaayu",
-    d: "Medically supervised cardiac rehabilitation in Bengaluru — exercise training, risk-factor management and recovery after cardiac events.",
+    d: "Medically supervised cardiac rehabilitation in Bengaluru: exercise training, risk-factor management and recovery after cardiac events.",
   },
   "/pulmonary-rehab/pulmonary": {
     t: "Lung Rehabilitation Program in Bengaluru | Vaayu",
-    d: "Personalised lung rehabilitation in Bengaluru — breathing retraining, exercise conditioning and education for chronic lung disease.",
+    d: "Personalised lung rehabilitation in Bengaluru: breathing retraining, exercise conditioning and education for chronic lung disease.",
   },
   "/pulmonary-rehab/pulmonaryhypertensionrehab": {
     t: "Pulmonary Hypertension Rehabilitation in Bengaluru | Vaayu",
@@ -112,7 +112,7 @@ export const META = {
   },
   "/rehab-wellness": {
     t: "Rehabilitation & Wellness Centre in Bengaluru | Vaayu",
-    d: "Rehabilitation and wellness programs in Bengaluru — physiotherapy, clinical yoga, occupational therapy and stress management.",
+    d: "Rehabilitation and wellness programs in Bengaluru: physiotherapy, clinical yoga, occupational therapy and stress management.",
   },
   "/rehab-wellness/clinical-yoga": {
     t: "Clinical Yoga for Lung Health in Bengaluru | Vaayu",
@@ -120,7 +120,7 @@ export const META = {
   },
   "/rehab-wellness/cancer-rehab": {
     t: "Cancer Rehabilitation in Bengaluru | Vaayu",
-    d: "Onco-rehabilitation in Bengaluru — regain strength, function and quality of life during and after cancer treatment.",
+    d: "Onco-rehabilitation in Bengaluru: regain strength, function and quality of life during and after cancer treatment.",
   },
   "/rehab-wellness/occupational-therapy": {
     t: "Occupational Therapy in Bengaluru | Vaayu",
@@ -140,11 +140,11 @@ export const META = {
   },
   "/rehab-wellness/wellness": {
     t: "Wellness Programs in Bengaluru | Vaayu",
-    d: "Preventive wellness programs in Bengaluru — breathe easy, sleep well, live well with Vaayu's specialist-led plans.",
+    d: "Preventive wellness programs in Bengaluru: breathe easy, sleep well, live well with Vaayu's specialist-led plans.",
   },
   "/home-care": {
     t: "Home Care Services in Bengaluru | Nursing, Testing, Rehab | Vaayu",
-    d: "Medical home care in Bengaluru — home nursing, home sleep testing, physiotherapy at home, medications and injections.",
+    d: "Medical home care in Bengaluru: home nursing, home sleep testing, physiotherapy at home, medications and injections.",
   },
   "/home-care/home-nursing": {
     t: "Home Nursing Services in Bengaluru | Vaayu",
@@ -152,11 +152,11 @@ export const META = {
   },
   "/home-care/home-testing": {
     t: "Home Sleep Study & Lab Tests in Bengaluru | Vaayu",
-    d: "Home-based diagnostics in Bengaluru — sleep studies, blood tests and monitoring without visiting the clinic.",
+    d: "Home-based diagnostics in Bengaluru: sleep studies, blood tests and monitoring without visiting the clinic.",
   },
   "/home-care/home-rehab": {
     t: "Home Physiotherapy & Rehab in Bengaluru | Vaayu",
-    d: "Rehabilitation at home in Bengaluru — physiotherapy and breathing exercises supervised by Vaayu's rehab team.",
+    d: "Rehabilitation at home in Bengaluru, physiotherapy and breathing exercises supervised by Vaayu's rehab team.",
   },
   "/home-care/medications": {
     t: "Home Medication Support in Bengaluru | Vaayu",
@@ -168,19 +168,19 @@ export const META = {
   },
   "/preventive-clinics": {
     t: "Preventive Health Clinics in Bengaluru | Vaayu",
-    d: "Preventive care in Bengaluru — lung health checks and tobacco cessation programs by chest specialists.",
+    d: "Preventive care in Bengaluru, lung health checks and tobacco cessation programs by chest specialists.",
   },
   "/preventive-clinics/health-checks": {
     t: "Lung Health Check Packages in Bengaluru | Vaayu",
-    d: "Comprehensive lung and sleep health check packages in Bengaluru — spirometry, imaging and specialist consult.",
+    d: "Comprehensive lung and sleep health check packages in Bengaluru: spirometry, imaging and specialist consult.",
   },
   "/preventive-clinics/tobacco-cessation": {
     t: "Tobacco & Smoking Cessation Clinic in Bengaluru | Vaayu",
-    d: "Quit smoking with Bengaluru's specialist-led tobacco cessation clinic — counselling, medication and follow-up.",
+    d: "Quit smoking with Bengaluru's specialist-led tobacco cessation clinic: counselling, medication and follow-up.",
   },
   "/allied-services": {
     t: "Allied Specialty Services in Bengaluru | ENT, Diet, Psychology | Vaayu",
-    d: "Allied care at Vaayu Bengaluru — ENT, pediatric pulmonology, clinical psychology, diet and weight management.",
+    d: "Allied care at Vaayu Bengaluru: ENT, pediatric pulmonology, clinical psychology, diet and weight management.",
   },
   "/allied-services/ent": {
     t: "ENT Services in Bengaluru | Vaayu",
@@ -188,7 +188,7 @@ export const META = {
   },
   "/allied-services/pediatric-pulmonology": {
     t: "Pediatric Pulmonology in Bengaluru | Child Chest Specialist | Vaayu",
-    d: "Child chest specialists in Bengaluru — asthma, recurrent cough and breathing problems in children.",
+    d: "Child chest specialists in Bengaluru: asthma, recurrent cough and breathing problems in children.",
   },
   "/allied-services/clinical-psychology": {
     t: "Clinical Psychology Services in Bengaluru | Vaayu",
@@ -200,7 +200,7 @@ export const META = {
   },
   "/allied-services/weight-management": {
     t: "Weight Management Program in Bengaluru | Vaayu",
-    d: "Medically supervised weight management in Bengaluru — important for sleep apnea and breathing health.",
+    d: "Medically supervised weight management in Bengaluru, important for sleep apnea and breathing health.",
   },
   "/patient-resources/education": {
     t: "Patient Education | Lung & Sleep Health Guides | Vaayu Bengaluru",
@@ -208,7 +208,7 @@ export const META = {
   },
   "/patient-resources/education/tuberculosis": {
     t: "Tuberculosis (TB): Symptoms & Treatment Guide | Vaayu Bengaluru",
-    d: "Understand TB — symptoms, diagnosis, treatment and recovery — from Bengaluru chest specialists.",
+    d: "Understand TB: symptoms, diagnosis, treatment and recovery, from Bengaluru chest specialists.",
   },
   "/patient-resources/education/lung-cancer": {
     t: "Lung Cancer: Early Signs & Diagnosis Guide | Vaayu Bengaluru",
@@ -216,31 +216,31 @@ export const META = {
   },
   "/patient-resources/education/bronchiectasis": {
     t: "Bronchiectasis Guide: Symptoms & Care | Vaayu Bengaluru",
-    d: "Bronchiectasis explained — causes, airway clearance and long-term management from chest specialists.",
+    d: "Bronchiectasis explained: causes, airway clearance and long-term management from chest specialists.",
   },
   "/patient-resources/education/lung-transplant": {
     t: "Lung Transplant: Patient Guide | Vaayu Bengaluru",
-    d: "When lung transplant is considered, evaluation steps and life after transplant — specialist guide.",
+    d: "When lung transplant is considered, evaluation steps and life after transplant, specialist guide.",
   },
   "/patient-resources/education/critical-care": {
     t: "Respiratory Critical Care Guide | Vaayu Bengaluru",
-    d: "Understanding respiratory ICU care — ventilation, monitoring and recovery — for patients and families.",
+    d: "Understanding respiratory ICU care: ventilation, monitoring and recovery, explained for patients and families.",
   },
   "/patient-resources/critical-care/ecmo": {
     t: "ECMO: What Patients & Families Should Know | Vaayu Bengaluru",
-    d: "ECMO life support explained by critical-care specialists — when it's used and what to expect.",
+    d: "ECMO life support explained by critical-care specialists, when it's used and what to expect.",
   },
   "/patient-resources/critical-care/icu-bronchoscopy": {
     t: "ICU Bronchoscopy Explained | Vaayu Bengaluru",
-    d: "How bronchoscopy is used in intensive care — procedure, safety and recovery.",
+    d: "How bronchoscopy is used in intensive care: procedure, safety and recovery.",
   },
   "/patient-resources/critical-care/oxygen-therapy": {
     t: "Oxygen Therapy at Home & Hospital | Vaayu Bengaluru",
-    d: "Oxygen therapy explained — who needs it, devices, and safe home use, by Bengaluru chest specialists.",
+    d: "Oxygen therapy explained: who needs it, devices, and safe home use, by Bengaluru chest specialists.",
   },
   "/patient-resources/critical-care/respiratory-therapy": {
     t: "Respiratory Therapy Services | Vaayu Bengaluru",
-    d: "Respiratory therapy in Bengaluru — airway clearance, nebulisation and ventilator care by trained therapists.",
+    d: "Respiratory therapy in Bengaluru: airway clearance, nebulisation and ventilator care by trained therapists.",
   },
   "/patient-resources/testimonials": {
     t: "Patient Testimonials | Vaayu Chest & Sleep Specialists, Bengaluru",
@@ -248,11 +248,11 @@ export const META = {
   },
   "/doctors/dr-ravindra-mehta": {
     t: "Dr. Ravindra Mehta | Senior Pulmonologist, Bengaluru | Vaayu",
-    d: "Profile of Dr. Ravindra Mehta — senior interventional pulmonologist and critical care specialist at Vaayu, Bengaluru.",
+    d: "Profile of Dr. Ravindra Mehta, senior interventional pulmonologist and critical care specialist at Vaayu, Bengaluru.",
   },
   "/doctors/dr-sameer-bansal": {
     t: "Dr. Sameer Bansal | Consultant Pulmonologist, Bengaluru | Vaayu",
-    d: "Profile of Dr. Sameer Bansal — consultant pulmonologist and clinical head at Vaayu Chest & Sleep Specialists, Bengaluru.",
+    d: "Profile of Dr. Sameer Bansal, consultant pulmonologist and clinical head at Vaayu Chest & Sleep Specialists, Bengaluru.",
   },
   "/doctors/dr-ajitha": {
     t: "Dr. Ajitha | Vaayu Chest & Sleep Specialists, Bengaluru",
@@ -272,7 +272,7 @@ export const META = {
   },
   "/gallery": {
     t: "Gallery | Vaayu Chest & Sleep Specialists, Bengaluru",
-    d: "Photos from Vaayu Chest & Sleep Specialists — clinic, events and community programs in Bengaluru.",
+    d: "Photos from Vaayu Chest & Sleep Specialists: clinic, events and community programs in Bengaluru.",
   },
   "/camp": {
     t: "Health Camps in Bengaluru | Vaayu Chest & Sleep Specialists",
@@ -280,11 +280,11 @@ export const META = {
   },
   "/social-impact": {
     t: "Social Impact & Community Health | Vaayu Bengaluru",
-    d: "Vaayu's community health initiatives — camps, education and outreach across Bengaluru.",
+    d: "Vaayu's community health initiatives: camps, education and outreach across Bengaluru.",
   },
   "/media-spotlight": {
     t: "Media Coverage | Vaayu Chest & Sleep Specialists, Bengaluru",
-    d: "Vaayu Chest & Sleep Specialists in the news — media features and expert commentary.",
+    d: "Vaayu Chest & Sleep Specialists in the news, media features and expert commentary.",
   },
   "/resources/publications": {
     t: "Research & Publications | Vaayu Chest & Sleep Specialists",
@@ -296,7 +296,7 @@ export const META = {
   },
   "/resources/job-openings": {
     t: "Careers & Job Openings | Vaayu Chest & Sleep Specialists, Bengaluru",
-    d: "Join the Vaayu team — current openings for clinical and allied health roles in Bengaluru.",
+    d: "Join the Vaayu team, current openings for clinical and allied health roles in Bengaluru.",
   },
   "/procedural-training": {
     t: "Procedural Training Programs | Vaayu Chest & Sleep Specialists",

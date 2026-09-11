@@ -288,9 +288,37 @@ ${homeNav}
   <p><a href="${BASE}/appointment">Book an appointment</a> &middot; <a href="${BASE}/contact">Contact us</a></p>
 </main></div>`;
 
-const home = template.replace(/<div id="root">\s*<\/div>/, homeSummary);
+// The built index.html carried a title with no "pulmonologist" in it and no
+// meta description at all, so Google had to invent its own snippet for the
+// site's most competitive page. SeoManager sets both correctly, but only after
+// React mounts. Apply the same values server side.
+let home = template.replace(/<div id="root">\s*<\/div>/, homeSummary);
+
+home = home.replace(/<title>[\s\S]*?<\/title>/, `<title>${esc(homeMeta.t)}</title>`);
+
+// The built file has no description tag at all, so replacing is not enough:
+// insert one when it is missing.
+if (/<meta\s+name="description"/.test(home)) {
+  home = home.replace(
+    /(<meta\s+name="description"\s+content=")[^"]*(")/,
+    `$1${esc(homeMeta.d)}$2`
+  );
+} else {
+  home = home.replace(
+    /<\/title>/,
+    `</title>\n    <meta name="description" content="${esc(homeMeta.d)}" />`
+  );
+}
+
+home = home
+  .replace(/(<meta property="og:title" content=")[^"]*(")/, `$1${esc(homeMeta.t)}$2`)
+  .replace(
+    /(<meta\s+property="og:description"[\s\S]*?content=")[^"]*(")/,
+    `$1${esc(homeMeta.d)}$2`
+  );
+
 writeFileSync(join(dist, "index.html"), home);
-console.log("rewrote dist/index.html with a crawler-readable summary");
+console.log("rewrote dist/index.html with head tags and a crawler summary");
 
 // ---------------------------------------------------------------------------
 // 404 page. Apache serves this with a real 404 status for unknown paths, so the
