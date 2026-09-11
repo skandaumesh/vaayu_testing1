@@ -4,7 +4,7 @@
 // (WhatsApp/Facebook link previews, GPTBot, ClaudeBot, PerplexityBot, etc.).
 // Served for /revive-2026 requests via an .htaccess rewrite; React still
 // mounts and renders the real page for browsers.
-import { readFileSync, writeFileSync } from "node:fs";
+import { readFileSync, writeFileSync, readdirSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 
@@ -174,6 +174,34 @@ const V_FAQS = [
   ],
 ];
 
+// Gallery photographs. The prerendered page carried no <img> at all, so none
+// of this was eligible for image search, which is a separate slot on exactly
+// the queries VORIC targets. Vite fingerprints filenames, so the built asset is
+// resolved by prefix at generation time.
+const ASSETS = readdirSync(join(root, "dist", "assets"));
+const assetUrl = (stem) => {
+  const file = ASSETS.find((a) => a.startsWith(`${stem}-`));
+  return file ? `${BASE}/assets/${file}` : null;
+};
+
+// Alt text describes what is actually in the frame. It is written for someone
+// who cannot see the image, which is also what makes it useful for search.
+const V_IMAGES = [
+  ["traffic-police-group", "Bengaluru traffic police personnel with the VORIC team at an occupational lung health screening camp"],
+  ["spirometry-test", "A Bengaluru traffic police officer undergoing a spirometry lung function test at a VORIC roadside screening camp"],
+  ["mobile-screening-camp", "VORIC mobile respiratory screening camp set up at a workplace in Bengaluru"],
+  ["vitals-check", "Blood pressure and oxygen saturation being checked at a VORIC occupational health screening camp"],
+  ["doctor-consultation", "A pulmonologist consulting a worker during a VORIC respiratory screening camp in Bengaluru"],
+  ["screening-registration", "Workers registering for free respiratory screening at a VORIC camp in Bengaluru"],
+  ["health-screening-desk", "Health screening in progress at a VORIC occupational respiratory illness camp"],
+  ["traffic-police-jc", "The VORIC team with the Joint Commissioner of Police (Traffic), Bengaluru"],
+  ["bmtc-ksrtc-leadership", "The VORIC team with BMTC and KSRTC leadership on respiratory screening for bus crew"],
+  ["bbmp-chief-commissioner", "The VORIC team with the Chief Commissioner of the BBMP, Bengaluru"],
+  ["felicitation-1", "Dr Ravindra Mehta with Sri M.N. Anucheth, IPS, then Joint Commissioner of Police (Traffic), Bengaluru"],
+  ["felicitation-2", "Dr Ravindra Mehta with Sri Tejasvi Surya, Member of Parliament for Bangalore South"],
+].map(([stem, alt]) => ({ stem, alt, url: assetUrl(stem) }))
+ .filter((i) => i.url);
+
 const V_STUDIES = [
   [
     "Respiratory and Multimorbidity Analysis in 2,450 Traffic Police Personnel in Bangalore City",
@@ -275,6 +303,18 @@ const V_SCHEMA = {
         acceptedAnswer: { "@type": "Answer", text: a },
       })),
     },
+    ...V_IMAGES.map((i, n) => ({
+      "@type": "ImageObject",
+      "@id": `${V_URL}#image-${n + 1}`,
+      contentUrl: i.url,
+      url: i.url,
+      caption: i.alt,
+      description: i.alt,
+      representativeOfPage: n === 0,
+      creditText: "VORIC, VAAYU Occupational Respiratory Illness Clinic",
+      copyrightNotice: "Vaayu Chest & Sleep Specialists",
+      isPartOf: { "@id": `${V_URL}#page` },
+    })),
     {
       "@type": "BreadcrumbList",
       "@id": `${V_URL}#breadcrumb`,
@@ -367,6 +407,10 @@ ${V_STUDIES.map(([t, v]) => `    <li>${t}. ${v}</li>`).join("\n")}
 
   <h2>Frequently asked questions</h2>
 ${V_FAQS.map(([q, a]) => `  <h3>${q}</h3>\n  <p>${a.replace(/&/g, "&amp;")}</p>`).join("\n")}
+
+  <h2>VORIC in action: screening camps and engagement</h2>
+  <p>Photographs from VORIC occupational respiratory screening camps for traffic police, bus crew, construction workers and municipal staff across Bengaluru.</p>
+${V_IMAGES.map((i) => `  <figure><img src="${i.url}" alt="${i.alt.replace(/"/g, "&quot;")}" width="800" height="600" loading="lazy" /><figcaption>${i.alt}</figcaption></figure>`).join("\n")}
 
   <h2>Engagement with officials and public representatives</h2>
   <p>VORIC works directly with the departments whose personnel it screens, and the programme has been recognised by senior officials and elected representatives in Bengaluru. Dr Ravindra Mehta of Vaayu Chest &amp; Sleep Specialists has presented the programme to Sri M.N. Anucheth, IPS, then Joint Commissioner of Police (Traffic), Bengaluru, and to Sri Tejasvi Surya, Member of Parliament for Bangalore South, alongside meetings with the Joint Commissioner of Traffic Police, BMTC and KSRTC leadership and the Chief Commissioner of the BBMP.</p>
