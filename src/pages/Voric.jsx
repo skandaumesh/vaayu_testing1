@@ -33,8 +33,8 @@ const GALLERY = [
   { src: gTrafficPoliceJC, cap: "With the Joint Commissioner of Traffic Police", category: "Dignitaries & Officials" },
   { src: gBmtcKsrtc, cap: "With BMTC & KSRTC leadership", category: "Dignitaries & Officials" },
   { src: gBbmp, cap: "With the Chief Commissioner, BBMP", category: "Dignitaries & Officials" },
-  { src: gFelicitation1, cap: "Felicitated for VORIC's community impact", category: "Dignitaries & Officials" },
-  { src: gFelicitation2, cap: "Felicitated during a VORIC outreach visit", category: "Dignitaries & Officials" },
+  { src: gFelicitation1, cap: "Dr Ravindra Mehta with Sri M.N. Anucheth, IPS, then Joint Commissioner of Police (Traffic), Bengaluru", category: "Dignitaries & Officials" },
+  { src: gFelicitation2, cap: "Dr Ravindra Mehta with Sri Tejasvi Surya, Member of Parliament, Bangalore South", category: "Dignitaries & Officials" },
 ];
 
 const BASE_URL = "https://vaayuchest.com";

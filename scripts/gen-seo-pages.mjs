@@ -225,6 +225,20 @@ const V_SCHEMA = {
         { "@type": "MedicalCondition", name: "Chronic obstructive pulmonary disease (COPD)", url: `${BASE}/specialty-clinic/copd` },
         { "@type": "MedicalCondition", name: "Asthma", url: `${BASE}/specialty-clinic/asthma` },
         { "@type": "MedicalCondition", name: "Interstitial lung disease", url: `${BASE}/specialty-clinic/ild` },
+        // Public figures who have engaged with the programme. Named because
+        // they appear in captioned photographs on the page.
+        {
+          "@type": "Person",
+          name: "Tejasvi Surya",
+          honorificPrefix: "Sri",
+          jobTitle: "Member of Parliament, Bangalore South",
+        },
+        {
+          "@type": "Person",
+          name: "M.N. Anucheth",
+          honorificPrefix: "Sri",
+          jobTitle: "Indian Police Service; then Joint Commissioner of Police (Traffic), Bengaluru",
+        },
       ],
     },
     {
@@ -353,6 +367,9 @@ ${V_STUDIES.map(([t, v]) => `    <li>${t}. ${v}</li>`).join("\n")}
 
   <h2>Frequently asked questions</h2>
 ${V_FAQS.map(([q, a]) => `  <h3>${q}</h3>\n  <p>${a.replace(/&/g, "&amp;")}</p>`).join("\n")}
+
+  <h2>Engagement with officials and public representatives</h2>
+  <p>VORIC works directly with the departments whose personnel it screens, and the programme has been recognised by senior officials and elected representatives in Bengaluru. Dr Ravindra Mehta of Vaayu Chest &amp; Sleep Specialists has presented the programme to Sri M.N. Anucheth, IPS, then Joint Commissioner of Police (Traffic), Bengaluru, and to Sri Tejasvi Surya, Member of Parliament for Bangalore South, alongside meetings with the Joint Commissioner of Traffic Police, BMTC and KSRTC leadership and the Chief Commissioner of the BBMP.</p>
 
   <h2>Related care at Vaayu</h2>
   <p>Workers found to have a respiratory condition during VORIC screening are referred into specialist care at Vaayu Chest &amp; Sleep Specialists in Jayanagar, Bengaluru:</p>
