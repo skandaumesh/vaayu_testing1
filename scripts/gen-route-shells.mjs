@@ -19,6 +19,7 @@ import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 import { BASE, BRAND, META, CUSTOM_PRERENDER, slugToTitle } from "../src/seo/routeMeta.js";
+import { SECTIONS, findArticle, articlesIn, pathOf } from "../src/content/articles.js";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const dist = join(root, "dist");
@@ -42,6 +43,8 @@ const MAIN_NAV = [
   ["/allergy-immunology", "Allergy and immunology"],
   ["/preventive-clinics", "Preventive lung health checks"],
   ["/voric", "VORIC: impact of air pollution on traffic police in Bengaluru"],
+  ["/newsroom", "Newsroom: news and announcements from Vaayu"],
+  ["/research", "Research on air pollution and lung health in Bengaluru"],
   ["/social-impact", "Social impact and community screening"],
   ["/resources/publications", "Research and publications"],
   ["/media-spotlight", "Media coverage"],
@@ -176,6 +179,53 @@ const buildShell = (path) => {
   ];
   if (isDoctor) graph.push(physicianNode(path, title, description));
 
+  // Newsroom / research article: full text in the shell plus article schema.
+  const article = findArticle(path);
+  if (article) {
+    graph.push({
+      "@type": article.section === "newsroom" ? "NewsArticle" : "MedicalScholarlyArticle",
+      "@id": `${url}#article`,
+      headline: article.title,
+      description: article.description,
+      datePublished: article.date,
+      dateModified: article.date,
+      inLanguage: "en-IN",
+      image: OG_IMG,
+      mainEntityOfPage: { "@id": `${url}#page` },
+      author: { "@id": CLINIC_ID },
+      publisher: { "@id": CLINIC_ID },
+      about: "Impact of air pollution on occupational respiratory health in Bengaluru",
+      ...(article.sources.length ? { citation: article.sources.map(([, u]) => u) } : {}),
+    });
+  }
+  const NL = String.fromCharCode(10);
+  const blockHtml = (b) =>
+    b.h ? `  <h2>${esc(b.h)}</h2>`
+    : b.p ? `  <p>${esc(b.p)}</p>`
+    : b.ul ? `  <ul>${NL}${b.ul.map((li) => `    <li>${esc(li)}</li>`).join(NL)}${NL}  </ul>`
+    : b.stats ? `  <ul>${NL}${b.stats.map(([n, l]) => `    <li><strong>${esc(n)}</strong> ${esc(l)}</li>`).join(NL)}${NL}  </ul>`
+    : "";
+  const sourcesHtml =
+    article && article.sources.length
+      ? `  <h2>Press coverage and sources</h2>${NL}  <ul>${NL}${article.sources.map(([l, u]) => `    <li><a href="${u}">${esc(l)}</a></li>`).join(NL)}${NL}  </ul>${NL}`
+      : "";
+  const articleHtml = article
+    ? `  <p>${esc(article.eventLabel)}. Vaayu Chest &amp; Sleep Specialists. <time datetime="${article.date}">Published ${esc(article.dateLabel)}</time>.</p>
+${article.body.map(blockHtml).join(NL)}
+${sourcesHtml}  <h2>Related</h2>
+  <ul>
+${article.related.map(([to, l]) => `    <li><a href="${BASE}${to}">${esc(l)}</a></li>`).join(NL)}
+  </ul>
+`
+    : "";
+  // Section index: list articles with their summaries.
+  const sectionKey = Object.keys(SECTIONS).find((k) => SECTIONS[k].path === path);
+  const sectionHtml = sectionKey
+    ? articlesIn(sectionKey)
+        .map((a) => `  <h2><a href="${BASE}${pathOf(a)}">${esc(a.title)}</a></h2>${NL}  <p>${esc(a.description)}</p>`)
+        .join(NL) + NL
+    : "";
+
   const schema = { "@context": "https://schema.org", "@graph": graph };
 
   let html = template;
@@ -193,7 +243,7 @@ const buildShell = (path) => {
     )
     .replace(/(<meta property="og:image" content=")[^"]*(")/, `$1${OG_IMG}$2`)
     .replace(/(<meta property="og:url" content=")[^"]*(")/, `$1${url}$2`)
-    .replace(/(<meta property="og:type" content=")[^"]*(")/, `$1website$2`)
+    .replace(/(<meta property="og:type" content=")[^"]*(")/, `$1${findArticle(path) ? "article" : "website"}$2`)
     .replace(/(<link rel="canonical" href=")[^"]*(")/, `$1${url}$2`);
 
   html = html.replace(
@@ -212,7 +262,9 @@ const buildShell = (path) => {
   // to child pages, and the clinic's contact details. No clinical claims are
   // generated here.
   const kids = childrenOf(path);
-  const childList = kids.length
+  const childList = sectionKey
+    ? sectionHtml
+    : kids.length
     ? `  <h2>In this section</h2>
   <ul>
 ${kids.map((k) => `    <li><a href="${BASE}${k}">${esc(labelFor(k))}</a></li>`).join("\n")}
@@ -236,7 +288,7 @@ ${kids.map((k) => `    <li><a href="${BASE}${k}">${esc(labelFor(k))}</a></li>`).
   <nav>${trail}</nav>
   <h1>${esc(heading)}</h1>
   <p>${esc(description)}</p>
-${childList}  <h2>Vaayu Chest &amp; Sleep Specialists</h2>
+${article || sectionKey ? "" : "<!--page-content-->\n"}${articleHtml}${childList}  <h2>Vaayu Chest &amp; Sleep Specialists</h2>
   <p>${ADDRESS}. Telephone ${PHONE}. Email ${EMAIL}.</p>
   <p><a href="${BASE}/appointment">Book an appointment</a> &middot; <a href="${BASE}/contact">Contact us</a> &middot; <a href="${BASE}/doctors/dr-ravindra-mehta">Our specialists</a></p>
   <h2>Explore Vaayu</h2>
@@ -279,6 +331,7 @@ const homeNav = MAIN_NAV.filter(([href]) => href !== "/")
 const homeSummary = `<div id="root"><main style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">
   <h1>Vaayu Chest &amp; Sleep Specialists, Bengaluru</h1>
   <p>${esc(homeMeta.d)}</p>
+<!--page-content-->
   <h2>Our clinics and services</h2>
   <ul>
 ${homeNav}

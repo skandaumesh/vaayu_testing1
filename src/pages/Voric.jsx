@@ -59,6 +59,22 @@ const T = {
   gold: "#b48a2c",
 };
 
+// Bump whenever the page content changes; feeds the visible "Last updated"
+// line and dateModified in the schema. Keep in sync with V_UPDATED in
+// scripts/gen-seo-pages.mjs.
+const LAST_UPDATED_ISO = "2026-11-11";
+const LAST_UPDATED_LABEL = "11 November 2026";
+
+// Screening findings presented at the "Protecting Those Who Protect Our City"
+// roundtable, Bengaluru, October 2026. Keep in sync with V_FINDINGS in
+// scripts/gen-seo-pages.mjs.
+const FINDINGS = [
+  { n: "45%", label: "of Pourakarmikas (municipal sanitation workers) had reduced lung function" },
+  { n: "29.5%", label: "of BMTC bus personnel had reduced lung function" },
+  { n: "28%", label: "of traffic police personnel had reduced lung function" },
+  { n: "15%", label: "of construction workers had reduced lung function" },
+];
+
 const STATS = [
   { n: "11,000+", label: "People screened" },
   { n: "3,287", label: "Traffic police personnel" },
@@ -182,11 +198,15 @@ const PUBLICATIONS = [
 const FAQS = [
   {
     q: "How does air pollution affect traffic police in Bengaluru?",
-    a: "Traffic police in Bengaluru spend long hours at busy junctions, directly exposed to vehicular exhaust and particulate matter (PM2.5 and PM10). VORIC screening of 3,287 traffic police personnel has found reduced lung function, respiratory symptoms and previously undiagnosed conditions such as asthma and COPD, alongside metabolic conditions like hypertension and diabetes. Long-term exposure is also linked to heart disease and stroke, which is why respiratory disease in this group is treated as multimorbidity affecting the lungs, heart and other organs.",
+    a: "Traffic police in Bengaluru spend long hours at busy junctions, directly exposed to vehicular exhaust and particulate matter (PM2.5 and PM10). VORIC screening of 3,287 traffic police personnel found reduced lung function in 28% of them, along with respiratory symptoms and previously undiagnosed conditions such as asthma and COPD, alongside metabolic conditions like hypertension and diabetes. Long-term exposure is also linked to heart disease and stroke, which is why respiratory disease in this group is treated as multimorbidity affecting the lungs, heart and other organs.",
+  },
+  {
+    q: "What percentage of Bengaluru's traffic police and frontline workers have reduced lung function?",
+    a: "Screening of more than 11,000 frontline workers in Bengaluru by VORIC since November 2023 found reduced lung function in 28% of traffic police personnel, 29.5% of BMTC bus personnel, 45% of Pourakarmikas (municipal sanitation workers) and 15% of construction workers. Higher rates of diabetes, uncontrolled blood pressure and overweight or obesity were also seen across these groups. The findings were presented by Dr Ravindra Mehta at the roundtable 'Protecting Those Who Protect Our City' in Bengaluru in October 2026.",
   },
   {
     q: "What is VORIC?",
-    a: "VORIC is the VAAYU Occupational Respiratory Illness Clinic, a social-impact initiative of Vaayu Chest & Sleep Specialists and the VAAYU Respiratory Foundation in Bengaluru. Running since November 2023, it studies and addresses the impact of air pollution on traffic police and other people routinely exposed to exhaust fumes, dust and smoke at work, combining free workplace screening with treatment, education, research and policy advocacy.",
+    a: "VORIC, also written VOERIC (VAAYU Occupational & Environmental Respiratory Illness Clinic), is a social-impact initiative of Vaayu Chest & Sleep Specialists and the VAAYU Respiratory Foundation in Bengaluru. Running since November 2023, it studies and addresses the impact of air pollution on traffic police and other people routinely exposed to exhaust fumes, dust and smoke at work, combining free workplace screening with treatment, education, research and policy advocacy.",
   },
   {
     q: "How many people has VORIC screened?",
@@ -224,6 +244,8 @@ const VORIC_SCHEMA = {
       description: SEO_DESCRIPTION,
       url: `${BASE_URL}/voric`,
       inLanguage: "en-IN",
+      dateModified: LAST_UPDATED_ISO,
+      lastReviewed: LAST_UPDATED_ISO,
       about: {
         "@type": "MedicalCondition",
         name: "Occupational respiratory illness from air pollution exposure",
@@ -248,7 +270,12 @@ const VORIC_SCHEMA = {
       "@type": ["Organization", "MedicalOrganization"],
       "@id": `${BASE_URL}/voric#organization`,
       name: "VORIC — VAAYU Occupational Respiratory Illness Clinic",
-      alternateName: ["VORIC", "Vaayu Occupational Respiratory Illness Clinic"],
+      alternateName: [
+        "VORIC",
+        "VOERIC",
+        "Vaayu Occupational Respiratory Illness Clinic",
+        "VAAYU Occupational & Environmental Respiratory Illness Clinic",
+      ],
       url: `${BASE_URL}/voric`,
       description:
         "Social-impact initiative of VAAYU Chest & Sleep Specialists studying and screening for the impact of air pollution on Bengaluru's traffic police and other high-risk outdoor workers since November 2023, in a 5-year research collaboration with the Indian Institute of Science (IISc) and the Public Health Foundation of India (PHFI).",
@@ -547,6 +574,10 @@ const Voric = () => {
           }
           .bg-stat p { color: ${T.muted}; font-size: 13.5px; line-height: 1.55; margin: 12px 0 0; }
           .bg-copy { max-width: 820px; margin: 0 auto; }
+          .find-grid { grid-template-columns: repeat(4, 1fr); margin: 30px 0 22px; }
+          .find-note { color: ${T.muted}; font-size: 13.5px; line-height: 1.7; max-width: 820px; margin: 0 auto 34px; text-align: center; }
+          .find-note a { color: ${T.green}; font-weight: 700; }
+          @media (max-width: 900px) { .find-grid { grid-template-columns: 1fr 1fr; } }
           .bg-copy p { color: ${T.muted}; font-size: 15px; line-height: 1.8; margin: 0 0 16px; }
           .bg-copy p:last-child { margin-bottom: 0; }
           .bg-copy strong { color: ${T.deep}; }
@@ -754,7 +785,7 @@ const Voric = () => {
           @media (max-width: 640px) {
             .stat-row { grid-template-columns: 1fr 1fr; }
             .stem-grid, .g3, .comm-grid, .team-grid { grid-template-columns: 1fr; }
-            .bg-grid { grid-template-columns: 1fr; }
+            .bg-grid, .find-grid { grid-template-columns: 1fr; }
             .impact-icon-grid { grid-template-columns: 1fr 1fr; }
           }
         `}</style>
@@ -1061,6 +1092,37 @@ const Voric = () => {
         {/* IMPACT */}
         <section id="impact" className="vsection white">
           <div className="vwrap">
+            <div className="vcenter">
+              <p className="veyebrow">Key Findings · October 2026</p>
+              <h2 className="vheading">
+                What screening 11,000+ frontline workers in Bengaluru found
+              </h2>
+            </div>
+            <div className="bg-grid find-grid">
+              {FINDINGS.map((f) => (
+                <div className="bg-stat vcard" key={f.label}>
+                  <div className="bg-num">{f.n}</div>
+                  <p>{f.label}</p>
+                </div>
+              ))}
+            </div>
+            <p className="find-note">
+              Findings from VORIC (also written VOERIC) screening since
+              November 2023, presented by Dr Ravindra Mehta at the roundtable
+              &ldquo;Protecting Those Who Protect Our City&rdquo; in Bengaluru,
+              October 2026. Higher rates of diabetes, uncontrolled blood
+              pressure and overweight or obesity were also seen across these
+              groups. Coverage:{" "}
+              <a href="https://www.deccanherald.com/india/karnataka/bengaluru/air-pollution-is-new-tobacco-says-former-jayadeva-chief-4196286" target="_blank" rel="noopener noreferrer">Deccan Herald</a>
+              {" · "}
+              <a href="https://www.pninews.com/voeric-roundtable-calls-for-stronger-action-on-air-pollution-and-frontline-workers-health-in-bengaluru/" target="_blank" rel="noopener noreferrer">Press Network of India</a>
+              {" · "}
+              <a href="/media-spotlight">more media coverage</a>. Read{" "}
+              <a href="/newsroom/roundtable-protecting-those-who-protect-our-city">our full account of the roundtable</a>{" "}
+              and the <a href="/research">research summaries</a>.
+              <br />
+              <time dateTime={LAST_UPDATED_ISO}>Page last updated {LAST_UPDATED_LABEL}</time>
+            </p>
             <div className="vcenter" style={{ margin: "0 auto", maxWidth: 820 }}>
               <p className="vtext">
                 VORIC has helped identify previously undiagnosed respiratory

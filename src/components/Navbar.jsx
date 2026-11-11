@@ -713,6 +713,8 @@ alt="Vaayu Chest and Sleep Specialists"
                   <RouterLink to="/social-impact" onClick={closeAll} className="py-3 px-3 rounded-xl bg-[#f5f7ef] font-semibold">Social Impact</RouterLink>
                   <RouterLink to="/voric" onClick={closeAll} className="py-3 px-3 rounded-xl bg-[#f5f7ef] font-semibold">VORIC</RouterLink>
                   <RouterLink to="/media-spotlight" onClick={closeAll} className="py-3 px-3 rounded-xl bg-[#f5f7ef] font-semibold">Media Spotlight</RouterLink>
+                  <RouterLink to="/newsroom" onClick={closeAll} className="py-3 px-3 rounded-xl bg-[#f5f7ef] font-semibold">Newsroom</RouterLink>
+                  <RouterLink to="/research" onClick={closeAll} className="py-3 px-3 rounded-xl bg-[#f5f7ef] font-semibold">Research</RouterLink>
                 </div>
               </div>
             </div>
@@ -929,6 +931,8 @@ alt="Vaayu Chest and Sleep Specialists"
                 <li><RouterLink to="/Procedural-Training" className="block px-4 py-3 text-white hover:bg-[#556B2F]" onClick={closeAll}>Procedural Video&apos;s</RouterLink></li>
                 <li><RouterLink to="/resources/innovations" className="block px-4 py-3 text-white hover:bg-[#556B2F]" onClick={closeAll}>Our Innovations</RouterLink></li>
                 <li><RouterLink to="/resources/publications" className="block px-4 py-3 text-white hover:bg-[#556B2F]" onClick={closeAll}>Our Publications</RouterLink></li>
+                <li><RouterLink to="/research" className="block px-4 py-3 text-white hover:bg-[#556B2F]" onClick={closeAll}>Research Summaries</RouterLink></li>
+                <li><RouterLink to="/newsroom" className="block px-4 py-3 text-white hover:bg-[#556B2F]" onClick={closeAll}>Newsroom</RouterLink></li>
                 <li><RouterLink to="/resources/job-openings" className="block px-4 py-3 text-white hover:bg-[#556B2F]" onClick={closeAll}>Job Openings</RouterLink></li>
               </ul>
             </Flyout>

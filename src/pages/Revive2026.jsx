@@ -243,8 +243,6 @@ const MORE_FACULTY = [
   },
 ];
 
-const REGISTER_URL = "https://forms.gle/VpHGZ17V5tZDi9fF6";
-
 const EVENT_SCHEMA = {
   "@context": "https://schema.org",
   "@type": "Event",
@@ -1574,16 +1572,6 @@ const Revive2026 = () => {
               <p className="hero-date">
                 23 August 2026 &mdash; Hyatt Centric Hebbal, Bengaluru
               </p>
-              <div>
-                <a
-                  className="cta-btn solid pulse"
-                  href="https://forms.gle/VpHGZ17V5tZDi9fF6"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Register Now
-                </a>
-              </div>
             </div>
           </div>
         </section>
@@ -1593,8 +1581,6 @@ const Revive2026 = () => {
           <a href="#about">About</a>
           <a href="#highlights">Highlights</a>
           <a href="#speakers">Speakers</a>
-          {/* TODO: point to the registration/payment link once available */}
-          <a href="#register" className="reg">Registration</a>
         </nav>
 
         {/* COUNTDOWN */}
@@ -2070,29 +2056,6 @@ const Revive2026 = () => {
                 Bengaluru with hands-on workshops, clinical insights, and
                 meaningful innovation.
               </p>
-            </div>
-          </div>
-        </section>
-
-        {/* CLOSING / CTA */}
-        <section id="register" className="revive-section" style={{ paddingTop: 0 }}>
-          <div className="revive-wrap">
-            <div className="revive-card impact-card dark-card">
-              <h2 className="revive-heading">Be Part of REVIVE 2026</h2>
-              <p className="revive-text max">
-                Register your interest for the conclave, workshops, or the
-                pre-conference paper presentations.
-              </p>
-              <div>
-                <a
-                  className="cta-btn pulse"
-                  href="https://forms.gle/VpHGZ17V5tZDi9fF6"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Register Now
-                </a>
-              </div>
             </div>
           </div>
         </section>

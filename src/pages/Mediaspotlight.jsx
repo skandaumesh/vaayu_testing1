@@ -23,12 +23,43 @@ import pniCriticalCapture from "../assets/img/media/captures/pni-news-critical-p
 import southFirstCapture from "../assets/img/media/captures/south-first-breathless.jpg";
 import ndtvCapture from "../assets/img/media/captures/ndtv-copd.jpg";
 import pniInaugurationCapture from "../assets/img/media/captures/pni-news-inauguration.jpg";
+import voricScreeningPhoto from "../assets/img/voric/traffic-police-group.jpg";
 import hinduSurveillanceCapture from "../assets/img/media/captures/the-hindu-traffic-police-surveillance.jpg";
 
 
 const font =
   "'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif";
 const mediaItems = [
+  {
+    id: 19,
+    featured: false,
+    source: "Deccan Herald",
+    date: "Oct 2026",
+    category: "Respiratory Health Roundtable",
+    title: "Air pollution: Bengaluru frontline workers face lung risks, says expert",
+    excerpt:
+      "Deccan Herald reports on the findings presented at Vaayu's roundtable 'Protecting Those Who Protect Our City': reduced lung function in 45% of Pourakarmikas, 29.5% of BMTC personnel, 28% of traffic police and 15% of construction workers screened in Bengaluru.",
+    author: "Deccan Herald",
+    link: "https://www.deccanherald.com/india/karnataka/bengaluru/air-pollution-is-new-tobacco-says-former-jayadeva-chief-4196286",
+    image: voricScreeningPhoto,
+    imageAlt: "Bengaluru traffic police personnel with the VORIC team at an occupational lung health screening camp",
+    type: "external",
+  },
+  {
+    id: 18,
+    featured: false,
+    source: "PNI News",
+    date: "28 Oct 2026",
+    category: "Respiratory Health Roundtable",
+    title: "VOERIC Roundtable Calls for Stronger Action on Air Pollution and Frontline Workers' Health in Bengaluru",
+    excerpt:
+      "Press Network of India covers the roundtable convened by VAAYU Chest & Sleep Specialists and the VAAYU Respiratory Foundation, where screening findings from more than 11,000 frontline workers were presented and experts called for regular occupational health screening and longitudinal research.",
+    author: "Radha Mani",
+    link: "https://www.pninews.com/voeric-roundtable-calls-for-stronger-action-on-air-pollution-and-frontline-workers-health-in-bengaluru/",
+    image: voricScreeningPhoto,
+    imageAlt: "Bengaluru traffic police personnel with the VORIC team at an occupational lung health screening camp",
+    type: "external",
+  },
   {
     id: 17,
     featured: true,
@@ -325,7 +356,7 @@ const MediaCard = ({ item }) => {
             <div className="relative rounded-xl overflow-hidden mb-4 shadow-[0_10px_24px_rgba(63,71,46,0.18)] ring-1 ring-black/[0.06] bg-[#EEF2E4]">
               <img
                 src={item.image}
-                alt={`${item.source} clipping — ${item.title}`}
+                alt={item.imageAlt || `${item.source} clipping — ${item.title}`}
                 className="w-full h-44 object-cover object-top transition duration-500 group-hover:scale-[1.05]"
                 loading="lazy"
                 decoding="async"

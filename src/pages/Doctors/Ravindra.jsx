@@ -625,6 +625,32 @@ useEffect(() => {
       </section>
 
       <section className="bg-white border-t">
+        <div className="mx-auto max-w-6xl px-4 pt-12">
+          <div
+            id="research-and-news"
+            className="rounded-3xl p-7 shadow-sm"
+            style={{ backgroundColor: "#ffffff", border: `1px solid ${vaayu.sage}` }}
+          >
+            <h2 className="text-2xl font-bold" style={{ color: vaayu.dark }}>
+              Research and public health work
+            </h2>
+            <p className="mt-3 text-sm leading-6 text-neutral-700">
+              Dr. Ravindra Mehta is the Founder and Medical Director of VAAYU
+              Chest &amp; Sleep Specialists, whose occupational respiratory
+              programme, VORIC, has screened more than 11,000 frontline workers
+              in Bengaluru since November 2023. He presented its findings at the
+              roundtable &ldquo;Protecting Those Who Protect Our City&rdquo; in
+              October 2026.
+            </p>
+            <ul className="mt-4 space-y-2 text-sm leading-6 list-disc pl-5" style={{ color: vaayu.dark }}>
+              <li><a className="font-semibold underline" href="/newsroom/roundtable-protecting-those-who-protect-our-city">Roundtable: what screening 11,000+ frontline workers in Bengaluru found</a></li>
+              <li><a className="font-semibold underline" href="/research/traffic-police-lung-health-study">Lung health in 2,450 traffic police personnel: study summary</a></li>
+              <li><a className="font-semibold underline" href="/research/breathe-study-bus-drivers">The BREATHE study of bus drivers</a></li>
+              <li><a className="font-semibold underline" href="/voric">VORIC: the impact of air pollution on Bengaluru&apos;s traffic police</a></li>
+              <li><a className="font-semibold underline" href="/media-spotlight">Media coverage</a></li>
+            </ul>
+          </div>
+        </div>
         <div className="mx-auto max-w-6xl px-4 py-12">
           <div
             id="book"

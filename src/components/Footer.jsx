@@ -39,6 +39,8 @@ const Footer = () => {
     { label: "Testimonials", path: "/patient-resources/testimonials" },
     { label: "Social Impact", path: "/social-impact" },
     { label: "Media Spotlight", path: "/media-spotlight" },
+    { label: "Newsroom", path: "/newsroom" },
+    { label: "Research", path: "/research" },
     { label: "Contact", path: "/contact" },
   ];
             {/* Critical Care */}

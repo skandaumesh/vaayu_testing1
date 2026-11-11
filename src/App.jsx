@@ -17,6 +17,7 @@ import SeoManager from "./components/SeoManager";
 import MobileContactBar from "./components/MobileContactBar";
 import { initConversionTracking } from "./analytics/track";
 import Home from "./pages/Home";
+import { SectionIndex, ArticlePage } from "./pages/Newsroom";
 import Services from "./components/Services";
 import DoctorsAndTeam from "./components/DoctorsAndTeam";
 import Blogs from "./components/Blogs";
@@ -284,6 +285,13 @@ const App = () => {
           />
 
           <Route path="/media-spotlight" element={<Mediaspotlight />} />
+          <Route path="/newsroom" element={<SectionIndex section="newsroom" />} />
+          <Route path="/newsroom/roundtable-protecting-those-who-protect-our-city" element={<ArticlePage path="/newsroom/roundtable-protecting-those-who-protect-our-city" />} />
+          <Route path="/newsroom/karnataka-statewide-respiratory-surveillance-traffic-police" element={<ArticlePage path="/newsroom/karnataka-statewide-respiratory-surveillance-traffic-police" />} />
+          <Route path="/research" element={<SectionIndex section="research" />} />
+          <Route path="/research/traffic-police-lung-health-study" element={<ArticlePage path="/research/traffic-police-lung-health-study" />} />
+          <Route path="/research/breathe-study-bus-drivers" element={<ArticlePage path="/research/breathe-study-bus-drivers" />} />
+          <Route path="/research/iisc-phfi-traffic-police-pollution-study" element={<ArticlePage path="/research/iisc-phfi-traffic-police-pollution-study" />} />
           <Route
             path="/media/dr-ravindra-mehta-times-of-india"
             element={<DrRavindraMehtaTOI />}

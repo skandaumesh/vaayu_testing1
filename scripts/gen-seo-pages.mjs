@@ -15,10 +15,9 @@ const BASE = "https://vaayuchest.com";
 const TITLE =
   "REVIVE 2026 – Reimagining Pulmonary & Cardiac Rehabilitation | 23 Aug 2026, Hyatt Centric Hebbal Bengaluru";
 const DESC =
-  "REVIVE 2026, the Conclave of Pulmonary & Cardiac Rehabilitation by Vaayu Chest & Sleep Specialists — 23 August 2026 at Hyatt Centric Hebbal, Bengaluru. Hands-on workshops, international faculty and pre-conference scientific paper presentations. Register now.";
+  "REVIVE 2026, the Conclave of Pulmonary & Cardiac Rehabilitation by Vaayu Chest & Sleep Specialists — 23 August 2026 at Hyatt Centric Hebbal, Bengaluru. Hands-on workshops, international faculty and pre-conference scientific paper presentations.";
 const OG_IMG = `${BASE}/revive-2026-og.jpg`;
 const URL = `${BASE}/revive-2026`;
-const REGISTER = "https://forms.gle/VpHGZ17V5tZDi9fF6";
 
 const SCHEMA = {
   "@context": "https://schema.org",
@@ -115,7 +114,7 @@ const staticSummary = `<div id="root"><main style="position:absolute;width:1px;h
   <h2>Pre-Conference</h2>
   <p>Scientific E-Poster Paper Presentation. Theme: Innovations in Cardiopulmonary Rehabilitation: From Research to Real-World Practice. Thursday, 20 August 2026, 02:30-04:30 PM (virtual session). Prizes: 1st &#8377;10,000, 2nd &#8377;7,500, 3rd &#8377;5,000.</p>
   <p>Abstract submissions: open 18 July 2026, close 5 August 2026 (max 350 words; original research, case reports or quality improvement projects). Selected abstracts notified 10 August 2026. E-posters due to rehabilitation@vaayuchest.com by 10 August 2026. Categories: Junior (UG/PG students), Senior (graduates, clinicians, academicians), PhD Scholars.</p>
-  <p><a href="${REGISTER}">Register for REVIVE 2026</a> &middot; Contact: +91 63649 28680 &middot; admin@vaayuchest.com</p>
+  <p>REVIVE 2026 was held on 23 August 2026; registration is closed. Contact: +91 63649 28680 &middot; admin@vaayuchest.com</p>
 </main></div>`;
 html = html.replace(/<div id="root">\s*<\/div>/, staticSummary);
 
@@ -135,6 +134,15 @@ const V_DESC =
 const V_KEYWORDS =
   "impact of pollution on traffic police Bengaluru, traffic police health screening, occupational respiratory illness, VORIC, air pollution health effects Bengaluru";
 const V_URL = `${BASE}/voric`;
+// Keep in sync with LAST_UPDATED_ISO / FINDINGS in src/pages/Voric.jsx.
+const V_UPDATED = "2026-11-11";
+const V_UPDATED_LABEL = "11 November 2026";
+const V_FINDINGS = [
+  ["45%", "of Pourakarmikas (municipal sanitation workers) had reduced lung function"],
+  ["29.5%", "of BMTC bus personnel had reduced lung function"],
+  ["28%", "of traffic police personnel had reduced lung function"],
+  ["15%", "of construction workers had reduced lung function"],
+];
 const V_OG_IMG = `${BASE}/og-image.jpg`;
 
 // Q&A phrased the way people and AI assistants actually ask. Kept in sync with
@@ -142,11 +150,15 @@ const V_OG_IMG = `${BASE}/og-image.jpg`;
 const V_FAQS = [
   [
     "How does air pollution affect traffic police in Bengaluru?",
-    "Traffic police in Bengaluru spend long hours at busy junctions, directly exposed to vehicular exhaust and particulate matter (PM2.5 and PM10). VORIC screening of 3,287 traffic police personnel has found reduced lung function, respiratory symptoms and previously undiagnosed conditions such as asthma and COPD, alongside metabolic conditions like hypertension and diabetes. Long-term exposure is also linked to heart disease and stroke, which is why respiratory disease in this group is treated as multimorbidity affecting the lungs, heart and other organs.",
+    "Traffic police in Bengaluru spend long hours at busy junctions, directly exposed to vehicular exhaust and particulate matter (PM2.5 and PM10). VORIC screening of 3,287 traffic police personnel found reduced lung function in 28% of them, along with respiratory symptoms and previously undiagnosed conditions such as asthma and COPD, alongside metabolic conditions like hypertension and diabetes. Long-term exposure is also linked to heart disease and stroke, which is why respiratory disease in this group is treated as multimorbidity affecting the lungs, heart and other organs.",
+  ],
+  [
+    "What percentage of Bengaluru's traffic police and frontline workers have reduced lung function?",
+    "Screening of more than 11,000 frontline workers in Bengaluru by VORIC since November 2023 found reduced lung function in 28% of traffic police personnel, 29.5% of BMTC bus personnel, 45% of Pourakarmikas (municipal sanitation workers) and 15% of construction workers. Higher rates of diabetes, uncontrolled blood pressure and overweight or obesity were also seen across these groups. The findings were presented by Dr Ravindra Mehta at the roundtable 'Protecting Those Who Protect Our City' in Bengaluru in October 2026.",
   ],
   [
     "What is VORIC?",
-    "VORIC is the VAAYU Occupational Respiratory Illness Clinic, a social-impact initiative of Vaayu Chest & Sleep Specialists and the VAAYU Respiratory Foundation in Bengaluru. Running since November 2023, it studies and addresses the impact of air pollution on traffic police and other people routinely exposed to exhaust fumes, dust and smoke at work, combining free workplace screening with treatment, education, research and policy advocacy.",
+    "VORIC, also written VOERIC (VAAYU Occupational & Environmental Respiratory Illness Clinic), is a social-impact initiative of Vaayu Chest & Sleep Specialists and the VAAYU Respiratory Foundation in Bengaluru. Running since November 2023, it studies and addresses the impact of air pollution on traffic police and other people routinely exposed to exhaust fumes, dust and smoke at work, combining free workplace screening with treatment, education, research and policy advocacy.",
   ],
   [
     "How many people has VORIC screened?",
@@ -227,6 +239,8 @@ const V_SCHEMA = {
       description: V_DESC,
       url: V_URL,
       inLanguage: "en-IN",
+      dateModified: V_UPDATED,
+      lastReviewed: V_UPDATED,
       about: {
         "@type": "MedicalCondition",
         name: "Occupational respiratory illness from air pollution exposure",
@@ -273,7 +287,12 @@ const V_SCHEMA = {
       "@type": ["Organization", "MedicalOrganization"],
       "@id": `${V_URL}#organization`,
       name: "VORIC — VAAYU Occupational Respiratory Illness Clinic",
-      alternateName: ["VORIC", "Vaayu Occupational Respiratory Illness Clinic"],
+      alternateName: [
+        "VORIC",
+        "VOERIC",
+        "Vaayu Occupational Respiratory Illness Clinic",
+        "VAAYU Occupational & Environmental Respiratory Illness Clinic",
+      ],
       url: V_URL,
       description:
         "Social-impact initiative of VAAYU Chest & Sleep Specialists studying and screening for the impact of air pollution on Bengaluru's traffic police and other high-risk outdoor workers since November 2023, in a 5-year research collaboration with the Indian Institute of Science (IISc) and the Public Health Foundation of India (PHFI).",
@@ -358,6 +377,7 @@ vHtml = vHtml
 
 const vHeadExtras = `
     <meta name="keywords" content="${V_KEYWORDS}" />
+    <meta property="article:modified_time" content="${V_UPDATED}" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="${V_TITLE}" />
     <meta name="twitter:description" content="${V_DESC}" />
@@ -373,6 +393,14 @@ vHtml = vHtml.replace("</head>", vHeadExtras);
 const vStaticSummary = `<div id="root"><main style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">
   <h1>VORIC: The Impact of Air Pollution on Bengaluru's Traffic Police</h1>
   <p>The VAAYU Occupational Respiratory Illness Clinic (VORIC) is a social-impact initiative of Vaayu Chest &amp; Sleep Specialists and the VAAYU Respiratory Foundation, Bengaluru. Running since November 2023, VORIC studies and addresses the impact of air pollution on Bengaluru's traffic police, BMTC &amp; KSRTC bus crew, construction workers, municipal and sanitation workers (Paurakarmikas) and professional drivers, connecting free workplace screening with treatment, education, research and policy advocacy.</p>
+
+  <p><time datetime="${V_UPDATED}">Page last updated ${V_UPDATED_LABEL}</time>. VORIC is also written VOERIC, the VAAYU Occupational &amp; Environmental Respiratory Illness Clinic.</p>
+
+  <h2>Key findings, October 2026: what screening 11,000+ frontline workers in Bengaluru found</h2>
+  <ul>
+${V_FINDINGS.map(([n, l]) => `    <li><strong>${n}</strong> ${l}</li>`).join("\n")}
+  </ul>
+  <p>Findings from VORIC screening since November 2023, presented by Dr Ravindra Mehta at the roundtable "Protecting Those Who Protect Our City" in Bengaluru, October 2026. Higher rates of diabetes, uncontrolled blood pressure and overweight or obesity were also seen across these groups. Coverage: <a href="https://www.deccanherald.com/india/karnataka/bengaluru/air-pollution-is-new-tobacco-says-former-jayadeva-chief-4196286">Deccan Herald</a>, <a href="https://www.pninews.com/voeric-roundtable-calls-for-stronger-action-on-air-pollution-and-frontline-workers-health-in-bengaluru/">Press Network of India</a>. Read <a href="${BASE}/newsroom/roundtable-protecting-those-who-protect-our-city">our full account of the roundtable</a> and the <a href="${BASE}/research">research summaries</a>.</p>
 
   <h2>The impact of pollution on traffic police in Bengaluru</h2>
   <p>Traffic police personnel in Bengaluru work long hours at congested junctions, directly exposed to vehicular exhaust and particulate matter. Around 30% of urban air pollution comes from vehicular traffic emissions, and respiratory disease is among the leading causes of illness and death in India. Constant exposure to exhaust fumes, PM2.5 and PM10 affects far more than the lungs: long-term exposure is linked to asthma and chronic obstructive pulmonary disease (COPD), reduced lung function, respiratory infections, heart disease and stroke, and reduced productivity and quality of life. The impact of respiratory disease in this population is now recognised as one of multimorbidity, affecting the lungs, heart and virtually every organ in the body.</p>

@@ -3,6 +3,8 @@
 // scripts/gen-seo-pages.mjs, which prerenders a static HTML shell per route.
 // Keep route keys lowercase and without a trailing slash.
 
+import { ARTICLE_META } from "../content/articles.js";
+
 export const BASE = "https://vaayuchest.com";
 export const BRAND = "Vaayu Chest & Sleep Specialists, Bengaluru";
 
@@ -14,6 +16,8 @@ export const SKIP = ["/revive-2026", "/rehab-conference", "/capi-2025", "/voric"
 export const CUSTOM_PRERENDER = ["/revive-2026", "/voric"];
 
 export const META = {
+  // Newsroom and research pages, generated from src/content/articles.js
+  ...ARTICLE_META,
   "/": {
     t: "Vaayu Chest & Sleep Specialists | Pulmonologist & Sleep Clinic in Bengaluru",
     d: "Chest, sleep and rehabilitation specialty centre in Bengaluru: asthma, COPD, ILD, sleep apnea, allergy testing and pulmonary & cardiac rehab under one roof. Book an appointment.",

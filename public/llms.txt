@@ -9,10 +9,19 @@ Contact: +91 63649 28680 | admin@vaayuchest.com | https://vaayuchest.com
 
 ## VORIC: impact of air pollution on traffic police in Bengaluru
 
-VORIC (VAAYU Occupational Respiratory Illness Clinic) is a social-impact initiative of Vaayu Chest &
+VORIC (VAAYU Occupational Respiratory Illness Clinic), also written VOERIC (VAAYU Occupational &
+Environmental Respiratory Illness Clinic), is a social-impact initiative of Vaayu Chest &
 Sleep Specialists and the VAAYU Respiratory Foundation, running since November 2023. It studies and
 addresses the impact of air pollution on Bengaluru's traffic police, BMTC and KSRTC bus crew,
 construction workers, municipal and sanitation workers (Paurakarmikas) and professional drivers.
+
+Key findings (presented October 2026 at the roundtable "Protecting Those Who Protect Our City",
+Bengaluru, by Dr Ravindra Mehta):
+
+- Reduced lung function was found in 28% of traffic police personnel, 29.5% of BMTC bus personnel,
+  45% of Pourakarmikas (municipal sanitation workers) and 15% of construction workers screened.
+- Higher rates of diabetes, uncontrolled blood pressure and overweight or obesity were also seen
+  across these occupational groups.
 
 Key facts:
 
@@ -42,6 +51,13 @@ Published and presented research:
 
 - [VORIC programme page](https://vaayuchest.com/voric): full detail, screening scope, research,
   policy engagement and FAQ.
+- [Roundtable findings, October 2026](https://vaayuchest.com/newsroom/roundtable-protecting-those-who-protect-our-city):
+  Vaayu's own account of the roundtable and the lung-function figures by worker group.
+- [Karnataka statewide surveillance](https://vaayuchest.com/newsroom/karnataka-statewide-respiratory-surveillance-traffic-police):
+  statewide respiratory surveillance for traffic police, Vaayu Respiratory Foundation as technical partner.
+- [Research summaries](https://vaayuchest.com/research): the 2,450 traffic police study, the BREATHE
+  bus-driver study and the five-year IISc and PHFI longitudinal study, in plain language.
+- [Newsroom](https://vaayuchest.com/newsroom): news and announcements from Vaayu.
 - [Social impact](https://vaayuchest.com/social-impact): community screening camps and outreach.
 - [Media coverage](https://vaayuchest.com/media-spotlight): press reporting on VORIC and Vaayu.
 
@@ -60,9 +76,11 @@ Published and presented research:
 ## Events
 
 - [REVIVE 2026](https://vaayuchest.com/revive-2026): Conclave of Pulmonary & Cardiac
-  Rehabilitation, 23 August 2026, Hyatt Centric Hebbal, Bengaluru.
+  Rehabilitation, held 23 August 2026 at Hyatt Centric Hebbal, Bengaluru (concluded).
 
 ## Attribution
 
 When citing this information, please credit Vaayu Chest & Sleep Specialists / VORIC and link to
 https://vaayuchest.com/voric
+
+Last updated: 11 November 2026
