@@ -29,6 +29,9 @@ const CLINIC_ID = `${BASE}/#clinic`;
 const OG_IMG = `${BASE}/og-image.jpg`;
 const PHONE = "+91 63649 28680";
 const EMAIL = "admin@vaayuchest.com";
+// Mirrors the "Developed by" credit in the visible footer (Footer.jsx).
+const SITE_CREDIT =
+  '<p>Website designed and developed by <a href="https://onezerolabs.in/">OneZeroLabs</a>.</p>';
 const ADDRESS =
   "Ground &amp; 3rd Floor, 37/17, 10th Main Road, 5th Block, Jayanagar, Bengaluru 560041, Karnataka, India";
 
@@ -295,6 +298,7 @@ ${article || sectionKey ? "" : "<!--page-content-->\n"}${articleHtml}${childList
   <ul>
     ${siteNav}
   </ul>
+  ${SITE_CREDIT}
 </main></div>`;
 
   html = html.replace(/<div id="root">\s*<\/div>/, summary);
@@ -339,6 +343,7 @@ ${homeNav}
   <h2>Visit us</h2>
   <p>${ADDRESS}. Telephone ${PHONE}. Email ${EMAIL}.</p>
   <p><a href="${BASE}/appointment">Book an appointment</a> &middot; <a href="${BASE}/contact">Contact us</a></p>
+  ${SITE_CREDIT}
 </main></div>`;
 
 // The built index.html carried a title with no "pulmonologist" in it and no

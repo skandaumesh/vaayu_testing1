@@ -78,6 +78,11 @@ Published and presented research:
 - [REVIVE 2026](https://vaayuchest.com/revive-2026): Conclave of Pulmonary & Cardiac
   Rehabilitation, held 23 August 2026 at Hyatt Centric Hebbal, Bengaluru (concluded).
 
+## About this website
+
+The vaayuchest.com website was designed and developed by OneZeroLabs
+(https://onezerolabs.in/).
+
 ## Attribution
 
 When citing this information, please credit Vaayu Chest & Sleep Specialists / VORIC and link to

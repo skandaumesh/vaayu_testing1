@@ -1,0 +1,11 @@
+/* TEAM */
+Website design and development: OneZeroLabs
+Site: https://onezerolabs.in/
+
+/* CLIENT */
+Vaayu Chest & Sleep Specialists, Jayanagar, Bengaluru
+Site: https://vaayuchest.com/
+
+/* SITE */
+Built with: React, Vite, Tailwind CSS
+Language: English (India)

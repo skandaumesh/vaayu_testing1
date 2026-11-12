@@ -12,6 +12,9 @@ const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const distIndex = join(root, "dist", "index.html");
 
 const BASE = "https://vaayuchest.com";
+// Mirrors the "Developed by" credit in the visible footer (Footer.jsx).
+const SITE_CREDIT =
+  '<p>Website designed and developed by <a href="https://onezerolabs.in/">OneZeroLabs</a>.</p>';
 const TITLE =
   "REVIVE 2026 – Reimagining Pulmonary & Cardiac Rehabilitation | 23 Aug 2026, Hyatt Centric Hebbal Bengaluru";
 const DESC =
@@ -115,6 +118,7 @@ const staticSummary = `<div id="root"><main style="position:absolute;width:1px;h
   <p>Scientific E-Poster Paper Presentation. Theme: Innovations in Cardiopulmonary Rehabilitation: From Research to Real-World Practice. Thursday, 20 August 2026, 02:30-04:30 PM (virtual session). Prizes: 1st &#8377;10,000, 2nd &#8377;7,500, 3rd &#8377;5,000.</p>
   <p>Abstract submissions: open 18 July 2026, close 5 August 2026 (max 350 words; original research, case reports or quality improvement projects). Selected abstracts notified 10 August 2026. E-posters due to rehabilitation@vaayuchest.com by 10 August 2026. Categories: Junior (UG/PG students), Senior (graduates, clinicians, academicians), PhD Scholars.</p>
   <p>REVIVE 2026 was held on 23 August 2026; registration is closed. Contact: +91 63649 28680 &middot; admin@vaayuchest.com</p>
+  ${SITE_CREDIT}
 </main></div>`;
 html = html.replace(/<div id="root">\s*<\/div>/, staticSummary);
 
@@ -457,6 +461,7 @@ ${V_IMAGES.map((i) => `  <figure><img src="${i.url}" alt="${i.alt.replace(/"/g, 
 
   <h2>Contact VORIC</h2>
   <p>VAAYU Respiratory Foundation, Ground &amp; 3rd Floor, 37/17, 10th Main Road, 5th Block, Jayanagar, Bengaluru 560041, Karnataka, India. Telephone +91 63649 28680. Email anmol@vaayuchest.com. <a href="${BASE}/contact">Contact Vaayu Chest &amp; Sleep Specialists</a> to request a screening camp, explore CSR support or collaborate on research. <a href="${BASE}/appointment">Book an appointment</a>.</p>
+  ${SITE_CREDIT}
 </main></div>`;
 vHtml = vHtml.replace(/<div id="root">\s*<\/div>/, vStaticSummary);
 

@@ -200,15 +200,15 @@ const Footer = () => {
               © {new Date().getFullYear()} Vaayu Chest & Sleep Specialists. All
               rights reserved.
             </p>
-            <p>
+            <p className="text-sm">
   Developed by{" "}
   <a
-    href="https://tech-sculpt.com/"
+    href="https://onezerolabs.in/"
     target="_blank"
     rel="noopener noreferrer"
-    className="text-white font-semibold hover:text-[#E0F7F3] transition"
+    className="text-base text-white font-semibold hover:text-[#E0F7F3] transition"
   >
-    TechSculpt Technologies
+    OneZeroLabs
   </a>
 </p>
           </div>
